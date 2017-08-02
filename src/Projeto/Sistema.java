@@ -1,15 +1,20 @@
 package Projeto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Sistema {
 
+	Set<Usuario> usuarios;
+	
 	public Sistema(){
-		
+		usuarios = new HashSet<Usuario>();
 	}
 
 	public void cadastraUsuario(String nome, String telefone, String email) {
-
 		
 	}
+
 
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
 

@@ -3,11 +3,12 @@ package Projeto;
 import java.util.HashSet;
 
 public class Usuario {
-	String nome;
-	String email;
-	String telefone;
 	
-	HashSet<Item> itens = new HashSet<>();
+	private String nome;
+	private String email;
+	private String telefone;
+	
+	private HashSet<Item> itens;
 	
 	
 	public Usuario(String nome, String telefone, String email ){
@@ -15,40 +16,54 @@ public class Usuario {
 		this.nome = nome;
 		this.telefone = telefone ;
 		this.email = email;
+		itens = new HashSet<>();
 		
 	}
 
 	public String getNome() {
+		
 		return nome;
 	}
 
 	public void setNome(String nome) {
+		
 		this.nome = nome;
 	}
 
 	public String getEmail() {
+		
 		return email;
 	}
 
 	public void setEmail(String email) {
+		
 		this.email = email;
 	}
 
 	public String getCelular() {
+		
 		return telefone;
 	}
 
 	public void setCelular(String celular) {
+		
 		this.telefone = celular;
+	}
+	
+	public void adicionaItem(Item item){
+		
+		itens.add(item);
 	}
 
 	@Override
 	public String toString() {
+		
 		return this.nome + ", " +this.email + ", " + this.telefone;
 	}
 
 	@Override
 	public int hashCode() {
+	
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
@@ -58,6 +73,7 @@ public class Usuario {
 
 	@Override
 	public boolean equals(Object obj) {
+		
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -77,7 +93,4 @@ public class Usuario {
 			return false;
 		return true;
 	}
-	
-	
-
 }

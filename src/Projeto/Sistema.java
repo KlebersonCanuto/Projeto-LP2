@@ -5,9 +5,10 @@ import java.util.Set;
 
 public class Sistema {
 
-	Set<Usuario> usuarios;
+	private Set<Usuario> usuarios;
 	
 	public Sistema(){
+		
 		usuarios = new HashSet<Usuario>();
 	}
 

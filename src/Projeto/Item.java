@@ -2,40 +2,49 @@ package Projeto;
 
 public class Item {
 	
-	protected String nome;
-	protected int valor; 
-	protected boolean emprestado = false;
+	private String nome;
+	private int valor; 
+	private boolean emprestado;
 	
-	public Item(String nome, int valor, boolean emprestado){
+	public Item(String nome, int valor){
+		
 		this.nome = nome;
 		this.valor = valor;
-		this.emprestado = emprestado;
+		this.emprestado = false;
 	}
 
 	public String getNome() {
-		return nome;
+		
+		return this.nome;
 	}
 
 	public void setNome(String nome) {
+		
 		this.nome = nome;
 	}
 
 	public int getValor() {
-		return valor;
+		
+		return this.valor;
 	}
 
 	public void setValor(int valor) {
+		
 		this.valor = valor;
 	}
 
 	public boolean getEmprestado() {
-		return emprestado;
+		
+		return this.emprestado;
 	}
 
-	public void setEmprestado(boolean emprestado) {
-		this.emprestado = emprestado;
+	public void emprestou() {
+	
+		this.emprestado = true;
 	}
 	
-	
-
+	public void retornou(){
+		
+		this.emprestado = false;
+	}
 }

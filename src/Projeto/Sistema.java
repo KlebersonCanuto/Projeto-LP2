@@ -1,16 +1,16 @@
 package Projeto;
 
 import java.util.HashSet;
-import java.util.Set;
+
 
 public class Sistema {
 
 	private UsuarioController usuarioController;
-	private ItemController itemController;
+	private HashSet<Item> itens;
 	public Sistema(){
 		
 		usuarioController = new UsuarioController();
-		itemController = new ItemController();
+		itens = new HashSet<>();
 	}
 
 	public void cadastraUsuario(String nome, String telefone, String email) {
@@ -20,28 +20,32 @@ public class Sistema {
 
 
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
-
-		return null;
+		
+		return usuarioController.getInfo(nome, telefone, atributo);
 	}
 
 	public void removerUsuario(String nome, String telefone) {
 
-		
+		usuarioController.removerUsuario(nome, telefone);
 	}
 
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
-
 		
+		usuarioController.atualizarUsuario(nome, telefone, atributo, valor);
 	}
 
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco) {
 
-		
+		Item eletronico = new JogosEletronicos(nomeItem, preco);
+		itens.add(eletronico);
+		usuarioController.adicionaItem(nome, telefone, eletronico);
 	}
 
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
-
 		
+		Item tabuleiro = new JogosTabuleiro(nomeItem, preco);	
+		itens.add(tabuleiro);
+		usuarioController.adicionaItem(nome, telefone, tabuleiro);
 	}
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {

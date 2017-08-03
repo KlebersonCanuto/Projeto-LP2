@@ -5,15 +5,17 @@ import java.util.Set;
 
 public class Sistema {
 
-	private Set<Usuario> usuarios;
-	
+	private UsuarioController usuarioController;
+	private ItemController itemController;
 	public Sistema(){
 		
-		usuarios = new HashSet<Usuario>();
+		usuarioController = new UsuarioController();
+		itemController = new ItemController();
 	}
 
 	public void cadastraUsuario(String nome, String telefone, String email) {
 		
+		usuarioController.adicionaUsuario(nome, telefone, email);
 	}
 
 

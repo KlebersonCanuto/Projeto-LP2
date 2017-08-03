@@ -72,18 +72,21 @@ public class UsuarioController {
 
 		Usuario usuario = getUsuario(nome, telefone);
 		Item filme = new BlurayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
+		usuario.adicionaItem(filme);
 	}
 
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao, int numeroFaixas, String artista, String classificacao) {
 
 		Usuario usuario = getUsuario(nome, telefone);
 		Item show = new BlurayShow(nomeItem, preco, duracao, numeroFaixas, artista, classificacao);
+		usuario.adicionaItem(show);
 	}
 
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
 
 		Usuario usuario = getUsuario(nome, telefone);
 		Item serie = new BluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
+		usuario.adicionaItem(serie);
 	}
 
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
@@ -94,17 +97,21 @@ public class UsuarioController {
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
 
 		Usuario usuario = getUsuario(nome, telefone);
+		Item item = usuario.getItem(nomeItem);
+		
 		return null;
 	}
 
-	public void removerItem(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
+	public void removerItem(String nome, String telefone, String nomeItem){
 
 		Usuario usuario = getUsuario(nome, telefone);
+		usuario.removeItem(nomeItem);
 	}
 
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
 
 		Usuario usuario = getUsuario(nome, telefone);
+		usuario.atualizaItem(nomeItem, atributo, valor);
 	}
 
 	public String listarItensOrdenadosPorNome() {

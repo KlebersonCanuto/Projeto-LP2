@@ -69,9 +69,9 @@ public class Facade {
 		return controlador.getInfoItem(nome, telefone, nomeItem, atributo);
 	}
 	
-	public void removerItem(String nome, String telefone, String nomeBlurayTemporada, int duracao){
+	public void removerItem(String nome, String telefone, String nomeItem){
 		
-		controlador.removerItem(nome, telefone, nomeBlurayTemporada, duracao);
+		controlador.removerItem(nome, telefone, nomeItem);
 	}
 	
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor){

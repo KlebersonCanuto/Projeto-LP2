@@ -54,6 +54,25 @@ public class Usuario {
 		
 		itens.add(item);
 	}
+	
+	public Item getItem(String nomeItem){
+		
+		return null;
+	}
+
+	public void removeItem(String nomeItem) {
+		
+	}
+	
+	public void atualizaItem(String nomeItem, String atributo, String valor) {
+		
+		Item item = getItem(nomeItem);
+		if (atributo.toLowerCase().equals("nome"))
+			item.setNome(valor);
+/*		if (atributo.toLowerCase().equals("valor"))
+			item.setValor(); */
+		
+	}
 
 	@Override
 	public String toString() {

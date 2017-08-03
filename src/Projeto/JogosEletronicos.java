@@ -4,7 +4,7 @@ public class JogosEletronicos extends Item {
 	
 	private String plataforma;
 	
-	public JogosEletronicos(String nomeItem, float valor, String plataforma){
+	public JogosEletronicos(String nomeItem, double valor, String plataforma){
 		super(nomeItem, valor);
 	}
 	
@@ -17,8 +17,8 @@ public class JogosEletronicos extends Item {
 	}
 
 
-/**ESTÁ FALTANDO O EQUALS]
- * Tem que comparar a plataforma e o nome, porém não como o nome ta em item não consegui saber como fazer(MATHEUS)
+/**ESTï¿½ FALTANDO O EQUALS]
+ * Tem que comparar a plataforma e o nome, porï¿½m nï¿½o como o nome ta em item nï¿½o consegui saber como fazer(MATHEUS)
 	
 	**/
 	

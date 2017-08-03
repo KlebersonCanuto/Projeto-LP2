@@ -5,7 +5,7 @@ public class BlurayShow extends Bluray{
 	private String artista;
 	private int numeroFaixas;
 	
-	public BlurayShow(String nome, int valor, int duracao, String classificao, String artista, int numeroFaixas) {
+	public BlurayShow(String nome, double valor, int duracao, int numeroFaixas, String artista, String classificao) {
 		super(nome, valor, duracao, classificao);
 		this.artista = artista;
 		this.numeroFaixas = numeroFaixas;

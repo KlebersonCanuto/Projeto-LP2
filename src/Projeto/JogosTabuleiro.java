@@ -8,15 +8,15 @@ public class JogosTabuleiro extends Item {
 	private List pecasPerdidas;
 	
 	
-	public JogosTabuleiro(String nomeItem, float valor) {
+	public JogosTabuleiro(String nomeItem, double valor) {
 		super(nomeItem, valor);
 		pecasPerdidas = new ArrayList();
 		
 		
 	}
 	
-	/**ESTÁ FALTANDO O EQUALS]
-	 * Tem que comparar as peças perdidas e o nome, porém não como o nome ta em item não consegui saber como fazer(MATHEUS)
+	/**ESTï¿½ FALTANDO O EQUALS]
+	 * Tem que comparar as peï¿½as perdidas e o nome, porï¿½m nï¿½o como o nome ta em item nï¿½o consegui saber como fazer(MATHEUS)
 		
 		**/
 

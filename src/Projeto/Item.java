@@ -3,10 +3,10 @@ package Projeto;
 public class Item {
 	
 	private String nomeItem;
-	private float valor; 
+	private double valor; 
 	private boolean emprestado;
 	
-	public Item(String nomeItem, float valor){
+	public Item(String nomeItem, double valor){
 		
 		this.nomeItem = nomeItem;
 		this.valor = valor;
@@ -23,12 +23,12 @@ public class Item {
 		this.nomeItem = nomeItem;
 	}
 
-	public float getValor() {
+	public double getValor() {
 		
 		return this.valor;
 	}
 
-	public void setValor(int valor) {
+	public void setValor(double valor) {
 		
 		this.valor = valor;
 	}

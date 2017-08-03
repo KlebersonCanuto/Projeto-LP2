@@ -2,28 +2,28 @@ package Projeto;
 
 public class Item {
 	
-	private String nome;
-	private int valor; 
+	private String nomeItem;
+	private float valor; 
 	private boolean emprestado;
 	
-	public Item(String nome, int valor){
+	public Item(String nomeItem, float valor){
 		
-		this.nome = nome;
+		this.nomeItem = nomeItem;
 		this.valor = valor;
 		this.emprestado = false;
 	}
 
 	public String getNome() {
 		
-		return this.nome;
+		return this.nomeItem;
 	}
 
-	public void setNome(String nome) {
+	public void setNome(String nomeItem) {
 		
-		this.nome = nome;
+		this.nomeItem = nomeItem;
 	}
 
-	public int getValor() {
+	public float getValor() {
 		
 		return this.valor;
 	}
@@ -47,4 +47,6 @@ public class Item {
 		
 		this.emprestado = false;
 	}
+	
+	//To string para levar over das filhas.
 }

@@ -1,4 +1,4 @@
-package Kleberson;
+package Projeto;
 
 import java.util.HashSet;
 
@@ -55,29 +55,24 @@ public class Usuario {
 		itens.add(item);
 	}
 	
-	public void removeItem(String nomeItem) {
+	public Item getItem(String nomeItem){
+		
+		return null;
+	}
 
-		itens.remove(getItem(nomeItem));
-		}	
+	public void removeItem(String nomeItem) {
+		
+	}
 	
 	public void atualizaItem(String nomeItem, String atributo, String valor) {
 		
 		Item item = getItem(nomeItem);
 		if (atributo.toLowerCase().equals("nome"))
 			item.setNome(valor);
-		else if (atributo.toLowerCase().equals("valor"))
-			item.setValor(Double.valueOf(valor));
+/*		if (atributo.toLowerCase().equals("valor"))
+			item.setValor(); */
+		
 	}
-	
-	public Item getItem(String nomeItem){
-		
-		for (Item item : itens){
-			if(item.getNome().equals(nomeItem))
-				return item;
-			}
-		return null;
-		}
-		
 
 	@Override
 	public String toString() {

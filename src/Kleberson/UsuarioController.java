@@ -1,11 +1,13 @@
 package Kleberson;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 
 public class UsuarioController {
-
 
 	private Set<Usuario> usuarios;
 	
@@ -123,18 +125,46 @@ public class UsuarioController {
 	}
 
 	public String listarItensOrdenadosPorNome() {
-
-		return null;
+		
+		String todosItens = "";
+		List<Item> itens = listaItens();
+		Collections.sort(itens, new ComparadorNome());
+		for (Item item : itens){
+			
+			todosItens+=item.toString();
+		}
+		return todosItens;
 	}
 
 	public String listarItensOrdenadosPorValor() {
 
-		return null;
+		String todosItens = "";
+		List<Item> itens = listaItens();
+		Collections.sort(itens, new ComparadorValor());
+		for (Item item : itens){
+			
+			todosItens+=item.toString();
+		}
+		return todosItens;
 	}
-
-	public String pesquisarDetalhesItem() {
-
-		return null;
+	
+	public String listaTodosItens(){
+		
+		String todosItens = "";
+		List<Item> itens = listaItens();
+//		Collections.sort(itens);
+		for (Item item : itens){
+			
+			todosItens+=item.toString();
+		}
+		return todosItens;
+	}
+	
+	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
+		
+		Usuario usuario = getUsuario(nome, telefone);
+		Item item = usuario.getItem(nomeItem);
+		return item.toString();
 	}
 
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
@@ -147,6 +177,15 @@ public class UsuarioController {
 		
 	}
 	
+	private List<Item> listaItens() {
+		
+		List<Item> itens = new ArrayList<Item>();
+		for (Usuario usuario : usuarios){
+			
+			usuario.listaItens(itens);
+		}
+		return itens;
+	}
 	
 	private boolean usuarioExiste(String nome, String telefone) {
 		

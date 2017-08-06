@@ -1,6 +1,8 @@
 package Kleberson;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Usuario {
 	
@@ -8,7 +10,7 @@ public class Usuario {
 	private String email;
 	private String telefone;
 	
-	private HashSet<Item> itens;
+	private Set<Item> itens;
 	
 	
 	public Usuario(String nome, String telefone, String email ){
@@ -77,7 +79,15 @@ public class Usuario {
 			}
 		return null;
 		}
+	
+	public List<Item> listaItens(List<Item> lista){
 		
+		for (Item item : itens){
+			
+			lista.add(item);
+		}
+		return lista;
+	}
 
 	@Override
 	public String toString() {

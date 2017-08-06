@@ -158,12 +158,17 @@ public class UsuarioController {
 
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
 
-		
+		Usuario dono = getUsuario(nomeDono, telefoneDono);
+		Usuario requerente = getUsuario(nomeRequerente, telefoneRequerente);
+		Item item = dono.getItem(nomeItem);
+		Emprestimo emprestimo = new Emprestimo(dono, requerente, item, dataEmprestimo, periodo);
 	}
 
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {		
 	
-		
+		Usuario dono = getUsuario(nomeDono, telefoneDono);
+		Usuario requerente = getUsuario(nomeRequerente, telefoneRequerente);
+		Item item = dono.getItem(nomeItem);
 	}
 	
 	private List<Item> listaItens() {

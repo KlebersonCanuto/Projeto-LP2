@@ -1,41 +1,29 @@
 package Projeto;
 
 public class JogosEletronicos extends Item {
-
+	
 	private String plataforma;
-
-	public JogosEletronicos(String nomeItem, double valor, String plataforma) {
+	
+	public JogosEletronicos(String nomeItem, double valor, String plataforma){
+		
 		super(nomeItem, valor);
 		this.plataforma = plataforma;
 	}
-
+	
 	public String getPlataforma() {
-		return this.plataforma;
+		
+		return plataforma;
 	}
 
 	public void setPlataforma(String plataforma) {
+		
 		this.plataforma = plataforma;
 	}
-
-	@Override
-	public String toString() {
-
-		if (getEmprestado()) {
-
-			return "JOGO ELETRONICO: " + getNome() + ", " + "R$" + getValor() + ", " + "Emprestado" + ", "
-					+ this.plataforma;
-		} else {
-
-			return "JOGO ELETRONICO: " + getNome() + ", " + "R$" + getValor() + ", " + "Nao emprestado" + ", "
-					+ this.plataforma;
-		}
-
-	}
-
-	/**
-	 * EST� FALTANDO O EQUALS] Tem que comparar a plataforma e o nome, por�m
-	 * n�o como o nome ta em item n�o consegui saber como fazer(MATHEUS)
-	 * 
-	 **/
+	
+/**EST� FALTANDO O EQUALS]
+ * Tem que comparar a plataforma e o nome, por�m n�o como o nome ta em item n�o consegui saber como fazer(MATHEUS)
+	
+	**/
+	
 
 }

@@ -1,6 +1,8 @@
 package Projeto;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Usuario {
 	
@@ -8,7 +10,7 @@ public class Usuario {
 	private String email;
 	private String telefone;
 	
-	private HashSet<Item> itens;
+	private Set<Item> itens;
 	
 	
 	public Usuario(String nome, String telefone, String email ){
@@ -55,23 +57,36 @@ public class Usuario {
 		itens.add(item);
 	}
 	
-	public Item getItem(String nomeItem){
-		
-		return null;
-	}
-
 	public void removeItem(String nomeItem) {
-		
-	}
+
+		itens.remove(getItem(nomeItem));
+		}	
 	
 	public void atualizaItem(String nomeItem, String atributo, String valor) {
 		
 		Item item = getItem(nomeItem);
 		if (atributo.toLowerCase().equals("nome"))
 			item.setNome(valor);
-/*		if (atributo.toLowerCase().equals("valor"))
-			item.setValor(); */
+		else if (atributo.toLowerCase().equals("valor"))
+			item.setValor(Double.valueOf(valor));
+	}
+	
+	public Item getItem(String nomeItem){
 		
+		for (Item item : itens){
+			if(item.getNome().equals(nomeItem))
+				return item;
+			}
+		return null;
+		}
+	
+	public List<Item> listaItens(List<Item> lista){
+		
+		for (Item item : itens){
+			
+			lista.add(item);
+		}
+		return lista;
 	}
 
 	@Override

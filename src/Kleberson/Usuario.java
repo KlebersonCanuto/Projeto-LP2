@@ -60,7 +60,7 @@ public class Usuario {
 	public void removeItem(String nomeItem) {
 
 		itens.remove(getItem(nomeItem));
-		}	
+	}	
 	
 	public void atualizaItem(String nomeItem, String atributo, String valor) {
 		

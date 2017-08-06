@@ -5,6 +5,10 @@ public class Facade {
 	UsuarioController controlador;
 	public Facade(){
 		
+	}
+	
+	public void iniciarSistema(){
+		
 		controlador = new UsuarioController();
 	}
 	

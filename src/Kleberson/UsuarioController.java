@@ -55,6 +55,7 @@ public class UsuarioController {
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
 
 		Usuario usuario = getUsuario(nome, telefone);
+
 		Item eletronico = new JogosEletronicos(nomeItem, preco, plataforma);
 		usuario.adicionaItem(eletronico);
 	}
@@ -131,7 +132,7 @@ public class UsuarioController {
 		Collections.sort(itens, new ComparadorNome());
 		for (Item item : itens){
 			
-			todosItens+=item.toString();
+			todosItens+=item.toString() + System.lineSeparator();
 		}
 		return todosItens;
 	}
@@ -143,23 +144,11 @@ public class UsuarioController {
 		Collections.sort(itens, new ComparadorValor());
 		for (Item item : itens){
 			
-			todosItens+=item.toString();
+			todosItens+=item.toString() + System.lineSeparator();
 		}
 		return todosItens;
 	}
-	
-	public String listaTodosItens(){
 		
-		String todosItens = "";
-		List<Item> itens = listaItens();
-//		Collections.sort(itens);
-		for (Item item : itens){
-			
-			todosItens+=item.toString();
-		}
-		return todosItens;
-	}
-	
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
 		
 		Usuario usuario = getUsuario(nome, telefone);

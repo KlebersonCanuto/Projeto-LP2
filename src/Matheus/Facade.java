@@ -1,9 +1,13 @@
-package Projeto;
+package Matheus;
 
 public class Facade {
 
 	UsuarioController controlador;
 	public Facade(){
+		
+	}
+	
+	public void iniciarSistema(){
 		
 		controlador = new UsuarioController();
 	}
@@ -91,7 +95,7 @@ public class Facade {
 	
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem){
 		
-		return controlador.pesquisarDetalhesItem();
+		return controlador.pesquisarDetalhesItem(nome, telefone, nomeItem);
 	}
 	
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo){

@@ -1,6 +1,6 @@
-package Projeto;
+package Matheus;
 
-public class Item {
+public abstract class Item {
 	
 	private String nomeItem;
 	private double valor; 
@@ -48,5 +48,32 @@ public class Item {
 		this.emprestado = false;
 	}
 	
-	//To string para levar over das filhas.
+	public abstract String toString();
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nomeItem == null) ? 0 : nomeItem.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Item other = (Item) obj;
+		if (nomeItem == null) {
+			if (other.nomeItem != null)
+				return false;
+		} else if (!nomeItem.equals(other.nomeItem))
+			return false;
+		return true;
+	}
+
+	
 }

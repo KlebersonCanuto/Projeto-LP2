@@ -10,10 +10,12 @@ import java.util.Set;
 public class UsuarioController {
 
 	private Set<Usuario> usuarios;
+	private List<Emprestimo> emprestimos;
 	
 	public UsuarioController(){
 		
 		usuarios = new HashSet<>();
+		emprestimos = new ArrayList<>();
 	}
 
 	public void cadastraUsuario(String nome, String telefone, String email) {
@@ -162,13 +164,28 @@ public class UsuarioController {
 		Usuario requerente = getUsuario(nomeRequerente, telefoneRequerente);
 		Item item = dono.getItem(nomeItem);
 		Emprestimo emprestimo = new Emprestimo(dono, requerente, item, dataEmprestimo, periodo);
+		dono.adicionaEmprestimo(emprestimo);
+		requerente.adicionaEmprestimo(emprestimo);
+		emprestimos.add(emprestimo);
+
 	}
 
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {		
 	
 		Usuario dono = getUsuario(nomeDono, telefoneDono);
 		Usuario requerente = getUsuario(nomeRequerente, telefoneRequerente);
-		Item item = dono.getItem(nomeItem);
+		Item item = requerente.getItem(nomeItem);
+		Emprestimo emprestimo = null;
+		for (Emprestimo cadaEmprestimo : emprestimos){
+			
+			if (cadaEmprestimo.getItem().equals(item))
+				if (cadaEmprestimo.getDono().equals(dono))
+					if (cadaEmprestimo.getRequerente().equals(requerente))
+						if (cadaEmprestimo.getDataEmprestimo().equals(dataEmprestimo))
+								emprestimo = cadaEmprestimo;
+				
+		}
+		emprestimo.encerra(dataDevolucao);
 	}
 	
 	private List<Item> listaItens() {

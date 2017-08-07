@@ -1,5 +1,6 @@
 package Kleberson;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +13,8 @@ public class Usuario {
 	
 	private Set<Item> itens;
 	
+	private List<Emprestimo> emprestimos;
+	
 	
 	public Usuario(String nome, String telefone, String email ){
 		
@@ -19,7 +22,7 @@ public class Usuario {
 		this.telefone = telefone ;
 		this.email = email;
 		itens = new HashSet<>();
-		
+		emprestimos = new ArrayList<>();
 	}
 
 	public String getNome() {
@@ -87,6 +90,16 @@ public class Usuario {
 			lista.add(item);
 		}
 		return lista;
+	}
+	
+	public void adicionaEmprestimo(Emprestimo emprestimo){
+		
+		emprestimos.add(emprestimo);
+	}
+	
+	public void devolveItem(Item item){
+		
+		itens.remove(item);
 	}
 
 	@Override

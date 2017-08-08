@@ -31,9 +31,9 @@ public class UsuarioController {
 			if (usuarioExiste(nome, telefone))
 				return getUsuario(nome, telefone).getEmail();
 			else{
-				return null; //excessão futuramente
+				return null;
 			}
-		return null; //excessão futuramente
+		return null;
 	}
 
 	public void removerUsuario(String nome, String telefone) {

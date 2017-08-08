@@ -1,11 +1,14 @@
 package Kleberson;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Emprestimo {
 	
 	private Usuario dono;
 	private Usuario requerente;
 	private Item item;
-	private String dataEmprestimo;
+	private LocalDate dataEmprestimo;
 	private int periodo;
 	private boolean passouDoPeriodo;
 	
@@ -14,17 +17,23 @@ public class Emprestimo {
 		this.dono = dono;
 		this.requerente = requerente;
 		this.item = item;
-		this.dataEmprestimo = dataEmprestimo;
 		this.periodo = periodo;
 		this.item.emprestou();
 		this.requerente.adicionaItem(this.item);
+		this.dataEmprestimo = LocalDate.parse(dataEmprestimo, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 
 	public void encerra(String dataDevolucao) {
 		
 		this.requerente.devolveItem(this.item);
 		this.item.retornou();
-// 		calcula o periodo que ficou com o usuario e compara com o periodo decidido inicialmente e então seta se passou ou não do periodo
+		LocalDate diaDevolucao = LocalDate.parse(dataDevolucao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		int duracao = (int) (diaDevolucao.toEpochDay() - this.dataEmprestimo.toEpochDay());
+		
+		if (duracao > this.periodo)
+			this.passouDoPeriodo = true;
+		else
+			this.passouDoPeriodo = false;
 	}
 	
 	public boolean passouDoPeriodo(){
@@ -47,7 +56,7 @@ public class Emprestimo {
 		return this.item;
 	}
 
-	public String getDataEmprestimo() {
+	public LocalDate getDataEmprestimo() {
 		
 		return this.dataEmprestimo;
 	}

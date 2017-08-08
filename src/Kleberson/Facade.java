@@ -3,6 +3,7 @@ package Kleberson;
 public class Facade {
 
 	UsuarioController controlador;
+	
 	public Facade(){
 		
 	}

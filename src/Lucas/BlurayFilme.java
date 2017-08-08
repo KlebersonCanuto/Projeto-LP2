@@ -4,25 +4,37 @@ public class BlurayFilme extends Bluray {
 
 	private String genero;
 	private int anoLancamento;
-	public BlurayFilme(String nome, double valor, int duracao, String genero, String classificao, int anoLancamento) {
+	
+	public BlurayFilme(String nome, double valor, int duracao, String genero, String classificao, int anoLancamento){
+	
 		super(nome, valor, duracao, classificao);
 		this.genero = genero;
 		this.anoLancamento = anoLancamento;
 		
 	}
-	public String getGenero() {
+	
+	public String getGenero(){
+		
 		return genero;
 	}
-	public void setGenero(String genero) {
+	
+	public void setGenero(String genero){
+		
 		this.genero = genero;
 	}
-	public int getAnoLancamento() {
+	
+	public int getAnoLancamento(){
+		
 		return anoLancamento;
 	}
-	public void setAnoLancamento(int anoLancamento) {
+	
+	public void setAnoLancamento(int anoLancamento){
+		
 		this.anoLancamento = anoLancamento;
 	}
 	
-	
-
+	public String toString(){
+		
+		return "FILME: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getGenero() + ", " + this.getAnoLancamento();
+	}
 }

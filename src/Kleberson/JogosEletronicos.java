@@ -57,6 +57,5 @@ public class JogosEletronicos extends Item {
 		
 		return true;
 	}
-	
 }
 

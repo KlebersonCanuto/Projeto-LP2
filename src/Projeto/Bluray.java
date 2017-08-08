@@ -12,22 +12,22 @@ public class Bluray extends Item{
 		this.classificao = classificao;
 	}
 
-	public int getDuracao() {
+	public int getDuracao(){
 		
 		return this.duracao;
 	}
 
-	public void setDuracao(int duracao) {
+	public void setDuracao(int duracao){
 		
 		this.duracao = duracao;
 	}
 
-	public String getClassificao() {
+	public String getClassificao(){
 		
 		return this.classificao;
 	}
 
-	public void setClassificao(String classificao) {
+	public void setClassificao(String classificao){
 		
 		this.classificao = classificao;
 	}
@@ -36,7 +36,5 @@ public class Bluray extends Item{
 		
 		this.duracao += duracao;
 	}
-	
-	
-	// falta o equals de nomes
 }
+

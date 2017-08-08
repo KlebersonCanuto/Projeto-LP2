@@ -1,61 +1,76 @@
 package Projeto;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Emprestimo {
 	
 	private Usuario dono;
 	private Usuario requerente;
 	private Item item;
-	private String dataEmprestimo;
+	private LocalDate dataEmprestimo;
 	private int periodo;
+	private boolean passouDoPeriodo;
 	
 	public Emprestimo(Usuario dono, Usuario requerente, Item item, String dataEmprestimo, int periodo){
 		
 		this.dono = dono;
 		this.requerente = requerente;
 		this.item = item;
-		this.dataEmprestimo = dataEmprestimo;
-		this.periodo = periodo;
-		item.emprestou();
+		if (periodo < 7)
+			this.periodo = periodo;
+		else
+			this.periodo = 7;
+		this.item.emprestou();
+		this.requerente.adicionaItem(this.item);
+		this.dataEmprestimo = LocalDate.parse(dataEmprestimo, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 
+	public void encerra(String dataDevolucao) {
+		
+		this.requerente.devolveItem(this.item);
+		this.item.retornou();
+		LocalDate diaDevolucao = LocalDate.parse(dataDevolucao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		int duracao = (int) (diaDevolucao.toEpochDay() - this.dataEmprestimo.toEpochDay());
+		
+		if (duracao > this.periodo)
+			this.passouDoPeriodo = true;
+		else
+			this.passouDoPeriodo = false;
+	}
+	
+	public boolean passouDoPeriodo(){
+		
+		return this.passouDoPeriodo;
+	}
+	
 	public Usuario getDono() {
 		
 		return this.dono;
 	}
 
-	public void setDono(Usuario dono) {
-		this.dono = dono;
-	}
-
 	public Usuario getRequerente() {
+		
 		return this.requerente;
 	}
 
-	public void setRequerente(Usuario requerente) {
-		this.requerente = requerente;
-	}
-
 	public Item getItem() {
+	
 		return this.item;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
-	}
-
-	public String getDataEmprestimo() {
+	public LocalDate getDataEmprestimo() {
+		
 		return this.dataEmprestimo;
 	}
 
-	public void setDataEmprestimo(String dataEmprestimo) {
-		this.dataEmprestimo = dataEmprestimo;
-	}
-
 	public int getPeriodo() {
+		
 		return this.periodo;
 	}
 
 	public void setPeriodo(int periodo) {
+		
 		this.periodo = periodo;
 	}
 }

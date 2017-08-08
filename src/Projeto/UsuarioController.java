@@ -1,5 +1,4 @@
 package Projeto;
-
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,41 +6,42 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class UsuarioController {
+public class UsuarioController{
 
 	private Set<Usuario> usuarios;
+	private List<Emprestimo> emprestimos;
 	
 	public UsuarioController(){
 		
 		usuarios = new HashSet<>();
+		emprestimos = new ArrayList<>();
 	}
 
-	public void cadastraUsuario(String nome, String telefone, String email) {
+	public void cadastraUsuario(String nome, String telefone, String email){
 		
 		Usuario usuario = new Usuario(nome, telefone, email);
 		usuarios.add(usuario);
 	}
 
 
-	public String getInfoUsuario(String nome, String telefone, String atributo) {
+	public String getInfoUsuario(String nome, String telefone, String atributo){
 		
 		if (atributo.toLowerCase().equals("email"))
 			if (usuarioExiste(nome, telefone))
 				return getUsuario(nome, telefone).getEmail();
 			else{
-				return null; //excessão futuramente
+				return null;
 			}
-		return null; //excessão futuramente
+		return null;
 	}
 
-	public void removerUsuario(String nome, String telefone) {
-
+	public void removerUsuario(String nome, String telefone){
 
 		if (usuarioExiste(nome, telefone))
 			usuarios.remove(getUsuario(nome, telefone));
 	}
 
-	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
+	public void atualizarUsuario(String nome, String telefone, String atributo, String valor){
 		
 		Usuario usuario = getUsuario(nome, telefone);
 		if(atributo.toLowerCase().equals("email"))
@@ -52,7 +52,7 @@ public class UsuarioController {
 			usuario.setCelular(valor);
 	}
 
-	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
+	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma){
 
 		Usuario usuario = getUsuario(nome, telefone);
 
@@ -60,49 +60,49 @@ public class UsuarioController {
 		usuario.adicionaItem(eletronico);
 	}
 
-	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
+	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco){
 		
 		Usuario usuario = getUsuario(nome, telefone);
 		Item tabuleiro = new JogosTabuleiro(nomeItem, preco);	
 		usuario.adicionaItem(tabuleiro);
 	}
 
-	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
+	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca){
 
 		Usuario usuario = getUsuario(nome, telefone);
 		JogosTabuleiro item = (JogosTabuleiro) usuario.getItem(nomeItem);
 		item.adicionaPecaPerdida(nomePeca);
 	}
 	
-	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao, String genero, String classificacao, int anoLancamento) {
+	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao, String genero, String classificacao, int anoLancamento){
 
 		Usuario usuario = getUsuario(nome, telefone);
 		Item filme = new BlurayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
 		usuario.adicionaItem(filme);
 	}
 
-	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao, int numeroFaixas, String artista, String classificacao) {
+	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao, int numeroFaixas, String artista, String classificacao){
 
 		Usuario usuario = getUsuario(nome, telefone);
 		Item show = new BlurayShow(nomeItem, preco, duracao, numeroFaixas, artista, classificacao);
 		usuario.adicionaItem(show);
 	}
 
-	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
+	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada){
 
 		Usuario usuario = getUsuario(nome, telefone);
 		Item serie = new BluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 		usuario.adicionaItem(serie);
 	}
 
-	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
+	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao){
 
 		Usuario usuario = getUsuario(nome, telefone);
 		BluraySerie serie = (BluraySerie) usuario.getItem(nomeBlurayTemporada);
 		serie.adicionaBluRay(duracao);
 	}
 
-	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
+	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo){
 
 		Usuario usuario = getUsuario(nome, telefone);
 		Item item = usuario.getItem(nomeItem);
@@ -119,13 +119,13 @@ public class UsuarioController {
 		usuario.removeItem(nomeItem);
 	}
 
-	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
+	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor){
 
 		Usuario usuario = getUsuario(nome, telefone);
 		usuario.atualizaItem(nomeItem, atributo, valor);
 	}
 
-	public String listarItensOrdenadosPorNome() {
+	public String listarItensOrdenadosPorNome(){
 		
 		String todosItens = "";
 		List<Item> itens = listaItens();
@@ -137,7 +137,7 @@ public class UsuarioController {
 		return todosItens;
 	}
 
-	public String listarItensOrdenadosPorValor() {
+	public String listarItensOrdenadosPorValor(){
 
 		String todosItens = "";
 		List<Item> itens = listaItens();
@@ -149,29 +149,44 @@ public class UsuarioController {
 		return todosItens;
 	}
 		
-	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
+	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem){
 		
 		Usuario usuario = getUsuario(nome, telefone);
 		Item item = usuario.getItem(nomeItem);
 		return item.toString();
 	}
 
-	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo){
 
 		Usuario dono = getUsuario(nomeDono, telefoneDono);
 		Usuario requerente = getUsuario(nomeRequerente, telefoneRequerente);
 		Item item = dono.getItem(nomeItem);
 		Emprestimo emprestimo = new Emprestimo(dono, requerente, item, dataEmprestimo, periodo);
+		dono.adicionaEmprestimo(emprestimo);
+		requerente.adicionaEmprestimo(emprestimo);
+		emprestimos.add(emprestimo);
+
 	}
 
-	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {		
+	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao){		
 	
 		Usuario dono = getUsuario(nomeDono, telefoneDono);
 		Usuario requerente = getUsuario(nomeRequerente, telefoneRequerente);
-		Item item = dono.getItem(nomeItem);
+		Item item = requerente.getItem(nomeItem);
+		Emprestimo emprestimo = null;
+		for (Emprestimo cadaEmprestimo : emprestimos){
+			
+			if (cadaEmprestimo.getItem().equals(item))
+				if (cadaEmprestimo.getDono().equals(dono))
+					if (cadaEmprestimo.getRequerente().equals(requerente))
+						if (cadaEmprestimo.getDataEmprestimo().equals(dataEmprestimo))
+								emprestimo = cadaEmprestimo;
+				
+		}
+		emprestimo.encerra(dataDevolucao);
 	}
 	
-	private List<Item> listaItens() {
+	private List<Item> listaItens(){
 		
 		List<Item> itens = new ArrayList<Item>();
 		for (Usuario usuario : usuarios){
@@ -181,7 +196,7 @@ public class UsuarioController {
 		return itens;
 	}
 	
-	private boolean usuarioExiste(String nome, String telefone) {
+	private boolean usuarioExiste(String nome, String telefone){
 		
 		for (Usuario usuario : usuarios){
 			if(usuario.getNome().equals(nome))
@@ -191,7 +206,7 @@ public class UsuarioController {
 		return false;
 	}
 
-	private Usuario getUsuario(String nome, String telefone) {
+	private Usuario getUsuario(String nome, String telefone){
 
 		for (Usuario usuario : usuarios){
 			if(usuario.getNome().equals(nome))

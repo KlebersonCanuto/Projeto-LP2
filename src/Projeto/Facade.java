@@ -3,13 +3,15 @@ package Projeto;
 public class Facade {
 
 	UsuarioController controlador;
+	
 	public Facade(){
 		
+		controlador = new UsuarioController();
 	}
 	
 	public void iniciarSistema(){
+
 		
-		controlador = new UsuarioController();
 	}
 	
 	public void cadastraUsuario(String nome, String telefone, String email){
@@ -106,5 +108,10 @@ public class Facade {
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao){
 		
 		controlador.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+	}
+	
+	public void fecharSistema(){
+		
+		
 	}
 }

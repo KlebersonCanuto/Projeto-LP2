@@ -3,36 +3,37 @@ package Kleberson;
 import java.util.List;
 import java.util.ArrayList;
 
-public class JogosTabuleiro extends Item{
+public class JogoTabuleiro extends Item{
 
 	private List<String> pecasPerdidas;
 	
 	
-	public JogosTabuleiro(String nomeItem, double valor){
+	public JogoTabuleiro(String nomeItem, double valor){
 		
 		super(nomeItem, valor);
 		pecasPerdidas = new ArrayList<>();	
 	}
 	
 	public void adicionaPecaPerdida(String nomePeca){
-		
+		// Adiciona uma peca perdida
 		pecasPerdidas.add(nomePeca);
 	}
 	
 	public String verificaPecas(){
+		// Verifica se tem pecas perdidas ou nao
 		if(pecasPerdidas.size() > 0)
 			return "COM PECAS PERDIDAS";
 		else
-			return "SEM PECAS PERDIDAS";	
+			return "COMPLETO";	
 	}
 
 	public String toString(){
-
+		// Retorna a representacao em string de um jogo de tabuleiro
 		return "JOGO DE TABULEIRO: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.verificaPecas();
 	}
 	
 	public boolean equals(Object obj){
-		
+		// Verifica se 2 jogos de tabuleiro são iguais
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -40,7 +41,7 @@ public class JogosTabuleiro extends Item{
 		if (getClass() != obj.getClass())
 			return false;
 		
-		JogosTabuleiro o = (JogosTabuleiro) obj;
+		JogoTabuleiro o = (JogoTabuleiro) obj;
 		if (this.getNome() == null) {
 			if (o.getNome() != null)
 				return false;

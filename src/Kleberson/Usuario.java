@@ -26,65 +26,56 @@ public class Usuario {
 	}
 
 	public String getNome() {
-		
-		return nome;
+		// Retorna o nome do usuario
+		return this.nome;
 	}
 
 	public void setNome(String nome) {
-		
+		// Modifica o nome do usuario
 		this.nome = nome;
 	}
 
 	public String getEmail() {
-		
-		return email;
+		// Retorna o email do usuario
+		return this.email;
 	}
 
 	public void setEmail(String email) {
-		
+		// Modifica o email do usuario
 		this.email = email;
 	}
 
 	public String getCelular() {
-		
-		return telefone;
+		// Retorna o celular do usuario
+		return this.telefone;
 	}
 
 	public void setCelular(String celular) {
-		
+		// Modifica o celular do usuario
 		this.telefone = celular;
 	}
 	
 	public void adicionaItem(Item item){
-		
+		// Adiciona um item ao usuario
 		itens.add(item);
 	}
 	
 	public void removeItem(String nomeItem) {
-
+		// Remove um item do usuario
 		itens.remove(getItem(nomeItem));
 	}	
 	
-	public void atualizaItem(String nomeItem, String atributo, String valor) {
-		
-		Item item = getItem(nomeItem);
-		if (atributo.toLowerCase().equals("nome"))
-			item.setNome(valor);
-		else if (atributo.toLowerCase().equals("valor"))
-			item.setValor(Double.valueOf(valor));
-	}
-	
 	public Item getItem(String nomeItem){
-		
+		// Retorna um item do usuario
 		for (Item item : itens){
 			if(item.getNome().equals(nomeItem))
 				return item;
 			}
-		return null;
+		throw new NullPointerException("Item nao encontrado");
 		}
 	
 	public List<Item> listaItens(List<Item> lista){
-		
+		// Retorna a lista de itens do usuario
 		for (Item item : itens){
 			
 			lista.add(item);
@@ -93,24 +84,22 @@ public class Usuario {
 	}
 	
 	public void adicionaEmprestimo(Emprestimo emprestimo){
-		
+		// Adidiciona um emprestimo ao historico do usuario
 		emprestimos.add(emprestimo);
 	}
 	
 	public void devolveItem(Item item){
-		
+		// Devolve um item emprestado ao dono original
 		itens.remove(item);
 	}
 
-	@Override
 	public String toString() {
-		
+		// Representacao em string do usuario
 		return this.nome + ", " +this.email + ", " + this.telefone;
 	}
 
-	@Override
 	public int hashCode() {
-	
+		// hashCode do usuario
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
@@ -118,9 +107,8 @@ public class Usuario {
 		return result;
 	}
 
-	@Override
 	public boolean equals(Object obj) {
-		
+		// Verifica se 2 usuarios sao iguais
 		if (this == obj)
 			return true;
 		if (obj == null)

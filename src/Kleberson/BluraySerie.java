@@ -21,47 +21,42 @@ public class BluraySerie extends Bluray {
 	}
 	
 	public String getDescricao(){
-		
-		return descricao;
+		// Retorna a descricao da serie
+		return this.descricao;
 	}
 	
 	public void setDescricao(String descricao){
-		
+		// Modifica a descricao da serie
 		this.descricao = descricao;
 	}
 	
 	public String getGenero(){
-		
-		return genero;
+		// Retorna o genero da serie
+		return this.genero;
 	}
 	
 	public void setGenero(String genero){
-		
+		// Modifica o genero da serie
 		this.genero = genero;
 	}
 	
 	public int getTemporada(){
-		
-		return temporada;
+		// Retorna a temporada da serie
+		return this.temporada;
 	}
-	
-	public void setTemporada(int temporada){
 		
-		this.temporada = temporada;
-	}
-	
 	public void adicionaBluRay(int duracao){
-		
+		// Adiciona um episodio a serie
 		episodios.add(duracao);
 	}
 	
 	public String toString(){
-	
+		// Retorna a representacao em String da serie
 		return "SERIE: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getGenero() + ", Temporada " + this.getTemporada();
 	}
 
 	public int hashCode(){
-		
+		// hashCode da serie
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((this.getNome() == null) ? 0 : this.getNome().hashCode());
@@ -70,7 +65,7 @@ public class BluraySerie extends Bluray {
 	}
 	
 	public boolean equals(Object obj){
-		
+		// Verifica se 2 series sao iguais
 		if (this == obj)
 			return true;
 		if (!super.equals(obj))

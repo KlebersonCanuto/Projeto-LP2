@@ -13,27 +13,27 @@ public class BlurayShow extends Bluray{
 	}
 
 	public String getArtista(){
-		
-		return artista;
+		// Retorna o artista
+		return this.artista;
 	}
 
 	public void setArtista(String artista){
-		
+		// Modifica o artista
 		this.artista = artista;
 	}
 
 	public int getNumeroFaixas(){
-		
-		return numeroFaixas;
+		// Retorna o numero de faixas do show
+		return this.numeroFaixas;
 	}
 
 	public void setNumeroFaixas(int numeroFaixas){
-		
+		// Modifica o numero de faixas do show
 		this.numeroFaixas = numeroFaixas;
 	}
 	
 	public String toString(){
-		
-		return "SHOW: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getArtista() + ", " + this.getNumeroFaixas();
+		// Retorna a representacao em string do show
+		return "SHOW: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getArtista() + ", " + this.getNumeroFaixas() + " faixas";
 	}
 }

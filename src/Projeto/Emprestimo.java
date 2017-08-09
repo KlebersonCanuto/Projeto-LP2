@@ -17,17 +17,18 @@ public class Emprestimo {
 		this.dono = dono;
 		this.requerente = requerente;
 		this.item = item;
+		this.requerente.adicionaItem(this.item);
+		this.item.emprestou();
+		this.dataEmprestimo = LocalDate.parse(dataEmprestimo, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		
 		if (periodo < 7)
 			this.periodo = periodo;
 		else
 			this.periodo = 7;
-		this.item.emprestou();
-		this.requerente.adicionaItem(this.item);
-		this.dataEmprestimo = LocalDate.parse(dataEmprestimo, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 
 	public void encerra(String dataDevolucao) {
-		
+		// Encerra um emprestimo
 		this.requerente.devolveItem(this.item);
 		this.item.retornou();
 		LocalDate diaDevolucao = LocalDate.parse(dataDevolucao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -40,37 +41,37 @@ public class Emprestimo {
 	}
 	
 	public boolean passouDoPeriodo(){
-		
+		// Verifica se passou do periodo de entrega
 		return this.passouDoPeriodo;
 	}
 	
 	public Usuario getDono() {
-		
+		// Retorna o dono do item
 		return this.dono;
 	}
 
 	public Usuario getRequerente() {
-		
+		// Retorna o requerente do item
 		return this.requerente;
 	}
 
 	public Item getItem() {
-	
+		// Retorna o item emprestado
 		return this.item;
 	}
 
-	public LocalDate getDataEmprestimo() {
-		
-		return this.dataEmprestimo;
+	public String getDataEmprestimo() {
+		// Retorna a data do emprestimo
+		return this.dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 
 	public int getPeriodo() {
-		
+		// Retorna o periodo do emprestimo
 		return this.periodo;
 	}
 
 	public void setPeriodo(int periodo) {
-		
+		// Modifica o periodo de emprestimo
 		this.periodo = periodo;
 	}
 }

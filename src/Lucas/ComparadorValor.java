@@ -1,15 +1,17 @@
-package Projeto;
+package Lucas;
 
 import java.util.Comparator;
 
-public class ComparadorValor implements Comparator<Item>{
+// comparar o valor 
 
-	public int compare(Item o1, Item o2){
-       
-		if (o1.getValor() < o2.getValor()) 
+public class ComparadorValor implements Comparator<Item> {
+
+	public int compare(Item o1, Item o2) {
+
+		if (o1.getValor() < o2.getValor())
 			return -1;
-        if (o1.getValor() > o2.getValor()) 
-        	return 1;
-        return 0;	
+		if (o1.getValor() > o2.getValor())
+			return 1;
+		return 0;
 	}
 }

@@ -1,40 +1,50 @@
-package Projeto;
+package Lucas;
 
-public class Bluray extends Item{
-	
+public class Bluray extends Item {
+
 	private int duracao;
 	private String classificao;
-	
-	public Bluray(String nome, double valor, int duracao, String classificao){
-		
+
+	// construtor da classe
+
+	public Bluray(String nome, double valor, int duracao, String classificao) {
+
 		super(nome, valor);
 		this.duracao = duracao;
 		this.classificao = classificao;
 	}
 
-	public int getDuracao(){
-		
+	// Retorna a duração do Bluray
+	public int getDuracao() {
+
 		return this.duracao;
 	}
 
-	public void setDuracao(int duracao){
-		
+	// Modifica a duração do Bluray
+
+	public void setDuracao(int duracao) {
+
 		this.duracao = duracao;
 	}
 
-	public String getClassificao(){
-		
+	// Retorna a classificação do Bluray
+
+	public String getClassificao() {
+
 		return this.classificao;
 	}
 
-	public void setClassificao(String classificao){
-		
+	// Modifica a classificação do Bluray
+
+	public void setClassificao(String classificao) {
+
 		this.classificao = classificao;
 	}
 
-	public void adicionaDuracao(int duracao){
-		
+	// recebe a duração do Bluray
+
+	public void adicionaDuracao(int duracao) {
+
 		this.duracao += duracao;
 	}
 }
-

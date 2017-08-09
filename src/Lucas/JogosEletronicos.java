@@ -1,32 +1,41 @@
-package Projeto;
+package Lucas;
 
 public class JogosEletronicos extends Item {
 
 	private String plataforma;
-	
-	public JogosEletronicos(String nomeItem, double valor, String plataforma){
-		
+
+	// construtor da classe
+
+	public JogosEletronicos(String nomeItem, double valor, String plataforma) {
+
 		super(nomeItem, valor);
 		this.plataforma = plataforma;
 	}
-	
-	public String getPlataforma(){
-		
+
+	// retorna a plataforma
+
+	public String getPlataforma() {
+
 		return plataforma;
 	}
 
-	public void setPlataforma(String plataforma){
-		
+	// modifica a plataforma
+
+	public void setPlataforma(String plataforma) {
+
 		this.plataforma = plataforma;
 	}
-	
-	public String toString(){
-		
-		return "JOGO ELETRONICO: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getPlataforma();
+
+	// retorna a representação em string
+
+	public String toString() {
+
+		return "JOGO ELETRONICO: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", "
+				+ this.getPlataforma();
 	}
-	
-	public int hashCode(){
-		
+
+	public int hashCode() {
+
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((this.getNome() == null) ? 0 : this.getNome().hashCode());
@@ -34,15 +43,17 @@ public class JogosEletronicos extends Item {
 		return result;
 	}
 
-	public boolean equals(Object obj){
-		
+	// verifica se são iguais por nomes
+
+	public boolean equals(Object obj) {
+
 		if (this == obj)
 			return true;
 		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		
+
 		JogosEletronicos other = (JogosEletronicos) obj;
 		if (this.getNome() == null) {
 			if (other.getNome() != null)
@@ -54,7 +65,7 @@ public class JogosEletronicos extends Item {
 				return false;
 		} else if (!plataforma.equals(other.plataforma))
 			return false;
-		
+
 		return true;
 	}
 }

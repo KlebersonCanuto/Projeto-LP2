@@ -1,4 +1,4 @@
-package Projeto;
+package Lucas;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,15 +13,20 @@ public class UsuarioController{
 	
 	public UsuarioController(){
 		
+	// construtor da classe
+		
 		usuarios = new HashSet<>();
 		emprestimos = new ArrayList<>();
 	}
+	
+	//	 cria o objeto usuario e adiciona usuario ao Hashset 
 
 	public void cadastraUsuario(String nome, String telefone, String email){
 		
 		Usuario usuario = new Usuario(nome, telefone, email);
 		usuarios.add(usuario);
 	}
+	
 
 
 	public String getInfoUsuario(String nome, String telefone, String atributo){
@@ -34,12 +39,16 @@ public class UsuarioController{
 			}
 		return null;
 	}
+	
+	// remove usuario
 
 	public void removerUsuario(String nome, String telefone){
 
 		if (usuarioExiste(nome, telefone))
 			usuarios.remove(getUsuario(nome, telefone));
 	}
+	
+	// atualiza o usario 
 
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor){
 		
@@ -51,6 +60,8 @@ public class UsuarioController{
 		else if(atributo.toLowerCase().equals("telefone"))
 			usuario.setCelular(valor);
 	}
+	
+	// cadastra item eletronico 
 
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma){
 
@@ -59,6 +70,8 @@ public class UsuarioController{
 		Item eletronico = new JogosEletronicos(nomeItem, preco, plataforma);
 		usuario.adicionaItem(eletronico);
 	}
+	
+	// cadastra jogo de tabuleiro 
 
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco){
 		
@@ -66,6 +79,8 @@ public class UsuarioController{
 		Item tabuleiro = new JogosTabuleiro(nomeItem, preco);	
 		usuario.adicionaItem(tabuleiro);
 	}
+	
+	// adiciona peças perdidas
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca){
 
@@ -74,12 +89,16 @@ public class UsuarioController{
 		item.adicionaPecaPerdida(nomePeca);
 	}
 	
+	// cadastra filme bluray
+	
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao, String genero, String classificacao, int anoLancamento){
 
 		Usuario usuario = getUsuario(nome, telefone);
 		Item filme = new BlurayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
 		usuario.adicionaItem(filme);
 	}
+	
+	// cadastra show 
 
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao, int numeroFaixas, String artista, String classificacao){
 
@@ -87,6 +106,8 @@ public class UsuarioController{
 		Item show = new BlurayShow(nomeItem, preco, duracao, numeroFaixas, artista, classificacao);
 		usuario.adicionaItem(show);
 	}
+	
+	// cadastra serie
 
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada){
 
@@ -94,6 +115,8 @@ public class UsuarioController{
 		Item serie = new BluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 		usuario.adicionaItem(serie);
 	}
+	
+	// adiciona bluray 	
 
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao){
 
@@ -112,18 +135,24 @@ public class UsuarioController{
 			return String.valueOf(item.getValor()); 
 		return null;
 	}
-
+	
+	// remove Item 
+	
 	public void removerItem(String nome, String telefone, String nomeItem){
 
 		Usuario usuario = getUsuario(nome, telefone);
 		usuario.removeItem(nomeItem);
 	}
+	
+	// atualiza item
 
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor){
 
 		Usuario usuario = getUsuario(nome, telefone);
 		usuario.atualizaItem(nomeItem, atributo, valor);
 	}
+	
+	// lista ordenados por nome 
 
 	public String listarItensOrdenadosPorNome(){
 		
@@ -136,6 +165,8 @@ public class UsuarioController{
 		}
 		return todosItens;
 	}
+	
+	// lista ordenados por valor
 
 	public String listarItensOrdenadosPorValor(){
 
@@ -155,6 +186,8 @@ public class UsuarioController{
 		Item item = usuario.getItem(nomeItem);
 		return item.toString();
 	}
+	
+	// registra o Emprestimo
 
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo){
 
@@ -167,6 +200,8 @@ public class UsuarioController{
 		emprestimos.add(emprestimo);
 
 	}
+	
+	// devolve o item 
 
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao){		
 	
@@ -196,6 +231,8 @@ public class UsuarioController{
 		return itens;
 	}
 	
+	// detecta se usuario existe
+	
 	private boolean usuarioExiste(String nome, String telefone){
 		
 		for (Usuario usuario : usuarios){
@@ -205,6 +242,8 @@ public class UsuarioController{
 		}
 		return false;
 	}
+	
+	// retorna o usuario da lista
 
 	private Usuario getUsuario(String nome, String telefone){
 

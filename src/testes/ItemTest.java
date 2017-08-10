@@ -21,7 +21,10 @@ public class ItemTest {
 		
 		
 	}
-
+	
+	/**
+	 * Verifica se o construtor está passando as informações para seus devidos lugares
+	 */
 	@Test
 	public void testItem() {
 		I1 = new Item("Cd-Zezo", 15.05);
@@ -37,20 +40,31 @@ public class ItemTest {
 		
 		
 	}
-	//Testa se está realmente pegando a Exceção em caso de PreÇO negativo
+	/**
+	 * Verifica se o programa joga exceção quando @param valor for negativo
+	 * 
+	 */
 	@Test (expected = IllegalArgumentException.class)
 	public void testItemExcecao(){
 		Item I4 = new Item("Lolzin", -25.05);
 		assertEquals("Preco Invalido", new Item("(500) Days of Summer", -1));
 	}
-	// Retorna se está emprestado ou não, como true ou false
+	
+	/**
+	 * Emprestado verifica se o Item está atualmente Emprestado ou Não emprestado
+	 * Retorna um boolean
+	 */
 	@Test
 	public void testEmprestado() {
 		assertEquals(false, I1.emprestado());
 		I1.emprestou();
 		assertEquals(true, I1.emprestado());
 	}
-	// Testa se o metodo transforma a variavel Emprestado para True
+	
+	/**
+	 * Caso emprestado esteja como falso, ou seja, Item não emprestado
+	 * esse metodo modifica para verdadeiro, logo item agr está Emprestado
+	 */
 	@Test
 	public void testEmprestou() {
 		assertEquals(false, I1.emprestado());
@@ -60,7 +74,11 @@ public class ItemTest {
 		I2.emprestou();
 		assertEquals(true, I2.emprestado());
 	}
-	// Testa se o metodo transforma a variavel Emprestado para False
+	
+	/**
+	 * Caso emprestado esteja como verdadeiro, ou seja, Item Emprestado
+	 * esse metodo modifica para falso, logo item agr Não está emprestado
+	 */
 	@Test
 	public void testRetornou() {
 		assertEquals(false, I1.emprestado());
@@ -72,7 +90,11 @@ public class ItemTest {
 		I2.retornou();
 		assertEquals(false, I2.emprestado());
 	}
-	//Testa se dois itens são iguais (Se tem nome igual)
+
+	/**
+	 * Verifica se 2 Itens são iguais
+	 * São iguais se @param NomeItem for igual
+	 */
 	@Test
 	public void testEquals(){
 		Item IE = new Item("", 10.50);
@@ -81,7 +103,13 @@ public class ItemTest {
 		assertEquals(true, I1.equals(I3));
 		assertEquals(false, I1.equals(IE));
 	}
-	// String para representar se está emprestado ou não
+	
+	/** 
+	 * Verifica a situação do item
+	 * Caso emprestado é retornado a String "Emprestado"
+	 * se não é retornado a String "Não emprestado"
+	 *
+	 */
 	@Test
 	public void testStringEmprestado() {
 		assertEquals("Nao emprestado", I1.stringEmprestado());

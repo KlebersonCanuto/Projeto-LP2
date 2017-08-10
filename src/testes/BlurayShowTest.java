@@ -9,6 +9,10 @@ import Projeto.BlurayShow;
 
 public class BlurayShowTest {
 
+
+	/**
+	 * Verifica se o construtor está passando as informações para seus devidos lugares
+	 */
 	@Test
 	public void testBlurayShow() {
 		BlurayShow BS1 = new BlurayShow("Pior Cenario Possivel", 89.70, 60, 15, "Matanza", "DEZOITO_ANOS");
@@ -20,6 +24,10 @@ public class BlurayShowTest {
 		assertEquals("DEZOITO_ANOS", BS1.getClassificao());
 	}
 
+	/** 
+	 * Testa se o toString é do formato
+	 *"SHOW: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getArtista() + ", " + this.getNumeroFaixas() + " faixas"
+	 */
 	@Test
 	public void testToString() {
 		BlurayShow BS2 = new BlurayShow("Tempo de Paz", 89.70, 40, 10, "Maneva", "LIVRE");

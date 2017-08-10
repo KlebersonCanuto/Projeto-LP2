@@ -9,6 +9,10 @@ import Kleberson.JogosEletronicos;
 
 public class JogosEletronicosTest {
 
+	/**
+	 * Verifica se 2 JogosEletronicos são iguais
+	 * São iguais se @param Nome e @param Plataforma forem iguais
+	 */
 	@Test
 	public void testEqualsObject() {
 		JogosEletronicos JE1 = new JogosEletronicos("Lolzin", 0, "PC");
@@ -20,6 +24,10 @@ public class JogosEletronicosTest {
 		assertEquals(false, JE2.equals(JE3));
 	}
 
+
+	/**
+	 * Verifica se o construtor está passando as informações para seus devidos lugares
+	 */
 	@Test
 	public void testJogosEletronicos() {
 		JogosEletronicos JE = new JogosEletronicos("Lolzin", 0, "PC");
@@ -28,7 +36,10 @@ public class JogosEletronicosTest {
 		assertEquals("PC", JE.getPlataforma());
 		
 	}
-
+	/** 
+	 * Testa se o toString é do formato
+	 * "JOGO ELETRONICO: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getPlataforma();
+	 */
 	@Test
 	public void testToString() {
 		JogosEletronicos JE = new JogosEletronicos("Lolzin", 0, "PC");

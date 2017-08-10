@@ -9,13 +9,20 @@ import Kleberson.JogoTabuleiro;
 
 public class JogoTabuleiroTest {
 
+	/**
+	 * Verifica se o construtor está passando as informações para seus devidos lugares
+	 */
 	@Test
 	public void testJogoTabuleiro() {
 		JogoTabuleiro JT = new JogoTabuleiro("War", 100.00);
 		assertEquals("War", JT.getNome());
 		assertEquals(100.00, JT.getValor(), 0.00001);
 	}
-
+	
+	/**
+	 * Dado um Item do tipo JogoTabuleiro faz a verificação se alguma peça
+	 * foi perdida e retorna uma String representando a informação
+	 */
 	@Test
 	public void testVerificaPecas() {
 		JogoTabuleiro JT = new JogoTabuleiro("War", 100.00);
@@ -25,6 +32,10 @@ public class JogoTabuleiroTest {
 		assertEquals("COM PECAS PERDIDAS", JT.verificaPecas());
 	}
 
+	/** 
+	 * Testa se o toString é do formato
+	 * "JOGO DE TABULEIRO: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.verificaPecas();
+	 */
 	@Test
 	public void testToString() {
 		JogoTabuleiro JT = new JogoTabuleiro("War", 100.00);
@@ -37,6 +48,10 @@ public class JogoTabuleiroTest {
 		
 	}
 	
+	/**
+	 * Verifica se 2 JogoTabuleiro são iguais
+	 * São iguais se @param Nome e tiverem peças perdidas iguais 
+	 */
 	@Test
 	public void testEqualsObject() {
 		JogoTabuleiro JT1 = new JogoTabuleiro("War", 100.00);

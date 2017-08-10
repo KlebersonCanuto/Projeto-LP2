@@ -15,13 +15,20 @@ public class SistemaTest {
 	Usuario U1 = new Usuario("Matheus", "94189425", "matheusYasuo@hotmail.com");
 	Sistema sistema = new Sistema();
 	
+	/**
+	 * Testa a exceção, já que não pode haver 2 Usuarios Iguais.
+	 */
 	@Test (expected = IllegalArgumentException.class)
 	public void testCadastraUsuario() {
 		sistema.cadastraUsuario("Matheus", "94189425", "matheusYasuo@hotmail.com");
 		sistema.cadastraUsuario("Matheus", "94189425", "matheusYasuo@hotmail.com");
 		
 	}
-
+	/**
+	 * Ao chamar o getInfoUsuario os @param nome e @param telefone são usados
+	 * para saber qual usuario
+	 * Já o @param atributo define qual vai ser o retorno
+	 */
 	@Test
 	public void testGetInfoUsuario() {
 		sistema.cadastraUsuario("Matheus", "94189425", "matheusYasuo@hotmail.com");
@@ -30,16 +37,18 @@ public class SistemaTest {
 		assertEquals("matheusYasuo@hotmail.com", resposta);
 	}
 	
-	//OLhar se não é null pointer
+	/**OLhar se não é null pointer
+	 * 
+	 */
 	@Test (expected = IllegalArgumentException.class)
 	public void testGetInfoUsuarioExcecao() {
 		sistema.cadastraUsuario("Matheus", "94189425", "matheusYasuo@hotmail.com");
 		sistema.getInfoUsuario("Matheus1", "94189425", "email");
 	}
 
-	/*Esperado que de exceção quando adicionar 2 usuarios iguais.
+	/**Esperado que de exceção quando adicionar 2 usuarios iguais.
 	 * Logo, ao adicionar e depois retirar é preciso cadastrar mais 2 vezes
-	 * 
+	 * @param nome e @param telefone para descobrir qual é o usuario
 	 */
 	@Test (expected = IllegalArgumentException.class)
 	public void testRemoverUsuario() {
@@ -52,6 +61,11 @@ public class SistemaTest {
 	
 	}
 
+	/**
+	 * @param nome e @param telefone para descobrir qual é o usuario
+	 * @param atributo define qual será a informação atualizada
+	 * @param valor define o valor nova pós atualização
+	 */
 	@Test
 	public void testAtualizarUsuario() {
 		sistema.cadastraUsuario("Matheus", "94189425", "matheusYasuo@hotmail.com");
@@ -68,6 +82,11 @@ public class SistemaTest {
 	
 	}	
 
+	/**
+	 * @param nome e @param telefone para descobrir qual é o usuario
+	 * @param nomeItem para saber de qual item retirar a informação
+	 * @param atributo define qual o atributo retornado (nome ou valor)
+	 */
 	@Test
 	public void testGetInfoItem() {	
 		sistema.cadastraUsuario("Matheus1", "94189425", "matheusYasuo@hotmail.com");
@@ -79,7 +98,15 @@ public class SistemaTest {
 		assertEquals("50.0", sistema.getInfoItem("Matheus2", "94189425", "Pior Cenario", "preco"));
 	}
 
-	
+	/**
+	 * @param nome e @param telefone para descobrir qual é o usuario
+	 * @param nomeItem para saber de qual item retirar a informação
+	 * @param atributo define qual o atributo será modificado (nome ou valor)
+	 * @param valor será o valor que vai está onde o atributo
+	 * indicar após a atualização
+	 * 
+	 * Retorna sempre uma String
+	 */
 	@Test
 	public void testAtualizarItem() {
 		sistema.cadastraUsuario("Matheus1", "94189425", "matheusYasuo@hotmail.com");
@@ -93,7 +120,10 @@ public class SistemaTest {
 		assertEquals("25.0", sistema.getInfoItem("Matheus2", "94189425", "Pior Cenario", "preco"));
 		
 	}
-
+	
+	/**
+	 * Lista a representação de todos os Itens cadastrados ordenado pelo nome
+	 */
 	@Test
 	public void testListarItensOrdenadosPorNome() {
 		sistema.cadastraUsuario("Matheus1", "94189425", "matheusYasuo@hotmail.com");
@@ -102,7 +132,10 @@ public class SistemaTest {
 		sistema.cadastrarEletronico("Matheus1", "94189425", "Lolzin", 23, "PC");
 		assertEquals("JOGO ELETRONICO: Lolzin, R$ 23.0, Nao emprestado, PC|SHOW: Pior Cenario, R$ 50.0, Nao emprestado, 50 min, DEZOITO_ANOS, Matanza, 15 faixas|SERIE: VIKINGS, R$ 60.0, Nao emprestado, 50 min, CATORZE_ANOS, AÇÃO, Temporada 4|",sistema.listarItensOrdenadosPorNome());
 	}
-
+	
+	/**
+	 * Lista a representação de todos os Itens cadastrados ordenado pelo valor
+	 */
 	@Test
 	public void testListarItensOrdenadosPorValor() {
 		sistema.cadastraUsuario("Matheus1", "94189425", "matheusYasuo@hotmail.com");
@@ -111,7 +144,11 @@ public class SistemaTest {
 		sistema.cadastrarEletronico("Matheus1", "94189425", "Lolzin", 23, "PC");
 		assertEquals("JOGO ELETRONICO: Lolzin, R$ 23.0, Nao emprestado, PC|SHOW: Pior Cenario, R$ 50.0, Nao emprestado, 50 min, DEZOITO_ANOS, Matanza, 15 faixas|SERIE: VIKINGS, R$ 60.0, Nao emprestado, 50 min, CATORZE_ANOS, AÇÃO, Temporada 4|", sistema.listarItensOrdenadosPorValor());
 	}
-
+	
+	/**
+	 * @param nome e @param telefone para descobrir qual é o usuario
+	 * @param nomeItem para saber se o usuario tem o Item e retornar sua representação
+	 */	
 	@Test
 	public void testPesquisarDetalhesItem() {
 		sistema.cadastraUsuario("Matheus1", "94189425", "matheusYasuo@hotmail.com");
@@ -123,6 +160,9 @@ public class SistemaTest {
 		assertEquals("SERIE: VIKINGS, R$ 60.0, Nao emprestado, 50 min, CATORZE_ANOS, AÇÃO, Temporada 4", sistema.pesquisarDetalhesItem("Matheus1", "94189425", "VIKINGS") );
 	}
 
+	/**
+	 * Ao registrar 2 vezes a exceção é causada
+	 */
 	@Test (expected  = IllegalArgumentException.class)
 	public void testRegistrarEmprestimo() {
 		sistema.cadastraUsuario("Matheus1", "94189425", "matheusYasuo@hotmail.com");
@@ -133,10 +173,10 @@ public class SistemaTest {
 		sistema.registrarEmprestimo("Matheus1", "94189425", "Matheus2", "95189425", "Pior Cenario", "09/08/2017",7);
 		sistema.registrarEmprestimo("Matheus1", "94189425", "Matheus2", "95189425", "Pior Cenario", "09/08/2017",7);
 	}
-
+	
+	//Fazer
 	@Test
 	public void testDevolverItem() {
-		
 	}
 
 }

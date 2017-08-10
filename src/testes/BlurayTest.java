@@ -9,6 +9,10 @@ import Projeto.Bluray;
 
 public class BlurayTest {
 
+
+	/**
+	 * Verifica se o construtor está passando as informações para seus devidos lugares
+	 */
 	@Test
 	public void testBluray() {
 	Bluray B1 = new Bluray("Valente", 29.50, 100, "LIVRE");

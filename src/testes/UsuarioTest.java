@@ -32,6 +32,9 @@ public class UsuarioTest {
 
 	}
 
+	/**
+	 * Verifica se o construtor está passando as informações para seus devidos lugares
+	 */
 	@Test
 	public void testUsuario() {
 		assertEquals("Matheus", U1.getNome());
@@ -40,20 +43,11 @@ public class UsuarioTest {
 		
 	}
 
-	@Test
-	public void testAdicionaItem() {
-		
-		
-	}
-
-	@Test
-	public void testRemoveItem() {
-		
-	}
 
 	/**
 	 * Testa o adicionaItem() 
 	 * E depois verifica com o getItem se foi adicionado
+	 * @param NomeItem utilizado para descobrir se usuario tem tal item
 	 */
 	@Test
 	public void testGetItem() {
@@ -68,6 +62,8 @@ public class UsuarioTest {
 	/**
 	 * Adiciona e depois remove o item para verificar se
 	 * acontece a exceção
+	 *  @param NomeItem utilizado para descobrir se usuario tem tal item
+	 *  como não tem é jogado a exceção
 	 */
 	@Test (expected = NullPointerException.class)
 	public void testGetItemException() {
@@ -86,7 +82,10 @@ public class UsuarioTest {
 		
 	}
 
-	
+	/** 
+	 * Testa se o toString é do formato
+	 * nome + ", " +this.email + ", " + this.telefone
+	 */
 	@Test
 	public void testToString() {
 		assertEquals("Matheus, matheusYasuo@hotmail.com, 94189425", U1.toString());
@@ -94,6 +93,10 @@ public class UsuarioTest {
 	
 	}
 
+	/**
+	 * Verifica se 2 usuarios são iguais
+	 * São iguais se @param Nome e @param Telefone forem iguais
+	 */
 	@Test
 	public void testEqualsObject() {
 		Usuario U4 = new Usuario("Matheus", "94189437", "matheusYasuo@hotmail.com");

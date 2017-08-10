@@ -9,6 +9,9 @@ import Projeto.BluraySerie;
 
 public class BluraySerieTest {
 
+	/**
+	 * Verifica se o construtor está passando as informações para seus devidos lugares
+	 */
 	@Test
 	public void testBluraySerie() {
 		BluraySerie BS1 = new BluraySerie("GOT", 80.50,"VAI MORRER TODO MUNDO!", 50, "DEZOITO_ANOS", "SUSPENSE", 7 );
@@ -23,6 +26,10 @@ public class BluraySerieTest {
 
 	}
 
+	/** 
+	 * Testa se o toString é do formato
+	 *"SERIE: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getGenero() + ", Temporada " + this.getTemporada()
+	 */
 	@Test
 	public void testToString() {
 		BluraySerie BS1 = new BluraySerie("GOT", 80.50,"VAI MORRER TODO MUNDO!", 50, "DEZOITO_ANOS", "SUSPENSE", 7 );
@@ -32,6 +39,11 @@ public class BluraySerieTest {
 		assertEquals("SERIE: VIKINGS, R$ 60.0, Emprestado, 50 min, CATORZE_ANOS, AÇÃO, Temporada 4",BS2.toString());
 	}
 
+
+	/**
+	 * Verifica se 2 BluraySerie são iguais
+	 * São iguais se @param NomeItem e @param temporada forem os mesmos
+	 */
 	@Test
 	public void testEqualsObject() {
 		BluraySerie BS1 = new BluraySerie("GOT", 80.50,"VAI MORRER TODO MUNDO!", 50, "DEZOITO_ANOS", "SUSPENSE", 1 );

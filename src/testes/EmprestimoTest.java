@@ -15,6 +15,9 @@ public class EmprestimoTest {
 	Usuario requerente = new Usuario("Lucas", "21812687", "Lucas@hotmail.com");
 	Item item = new Item("Cd-Zezo", 15.05);
 	
+	/**
+	 * Verifica se o construtor está passando as informações para seus devidos lugares
+	 */
 	@Test
 	public void testEmprestimo() {
 		Emprestimo emprestimo = new Emprestimo(dono, requerente, item, "08/08/2017", 5);
@@ -27,6 +30,11 @@ public class EmprestimoTest {
 		
 	}
 
+	/**
+	 * @param dataDevolucao para definir quantos dias se passaram
+	 * Encerra um emprestimo se esse existe e define de passou ou não do
+	 * periodo definido pelo dono
+	 */
 	@Test
 	public void testEncerra() {
 		Emprestimo emprestimo1 = new Emprestimo(dono, requerente, item, "08/08/2017", 5);

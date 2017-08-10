@@ -9,6 +9,9 @@ import Projeto.BlurayFilme;
 
 public class BlurayFilmeTeste {
 
+	/**
+	 * Verifica se o construtor está passando as informações para seus devidos lugares
+	 */
 	@Test
 	public void testBlurayFilme() {
 		BlurayFilme BF1 = new BlurayFilme("Valente", 29.50, 100, "ANIMAÇÃO", "LIVRE", 2006);
@@ -23,6 +26,10 @@ public class BlurayFilmeTeste {
 	
 	}
 
+	/** 
+	 * Testa se o toString é do formato
+	 *"FILME: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getGenero() + ", " + this.getAnoLancamento()
+	 */
 	@Test
 	public void testToString() {
 		BlurayFilme BF1 = new BlurayFilme("Valente", 29.50, 100, "ANIMAÇÃO", "LIVRE", 2006);

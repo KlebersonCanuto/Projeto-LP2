@@ -32,6 +32,10 @@ public class Sistema {
 		// Retorna uma informacao do usuario
 		if (atributo.toLowerCase().equals("email"))
 			return getUsuario(nome, telefone).getEmail();
+		else if (atributo.toLowerCase().equals("nome"))
+			return getUsuario(nome, telefone).getNome();
+		else if (atributo.toLowerCase().equals("telefone"))
+			return getUsuario(nome, telefone).getCelular();
 		
 		throw new IllegalArgumentException("Usuario invalido");
 	}

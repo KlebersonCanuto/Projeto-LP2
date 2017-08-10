@@ -12,22 +12,27 @@ import Projeto.Usuario;
 
 public class SistemaTest {
 
-	Usuario U1 = new Usuario("Matheus", "94189425", "matheusYasuo@hotmail.com");
 	Sistema sistema = new Sistema();
 	
 	/**
-	 * Testa a exceção, já que não pode haver 2 Usuarios Iguais.
+	 * Testa a excecoes, ja que nao pode haver 2 Usuarios Iguais.
 	 */
 	@Test (expected = IllegalArgumentException.class)
 	public void testCadastraUsuario() {
+
 		sistema.cadastraUsuario("Matheus", "94189425", "matheusYasuo@hotmail.com");
 		sistema.cadastraUsuario("Matheus", "94189425", "matheusYasuo@hotmail.com");
-		
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testCadastraUsuario2() {
+
+		sistema.cadastraUsuario("", "", "");
 	}
 	/**
-	 * Ao chamar o getInfoUsuario os @param nome e @param telefone são usados
+	 * Ao chamar o getInfoUsuario os @param nome e @param telefone sao usados
 	 * para saber qual usuario
-	 * Já o @param atributo define qual vai ser o retorno
+	 * Ja o @param atributo define qual vai ser o retorno
 	 */
 	@Test
 	public void testGetInfoUsuario() {
@@ -37,18 +42,19 @@ public class SistemaTest {
 		assertEquals("matheusYasuo@hotmail.com", resposta);
 	}
 	
-	/**OLhar se não é null pointer
-	 * 
+	/**
+	 * Verifica excecao
 	 */
 	@Test (expected = IllegalArgumentException.class)
 	public void testGetInfoUsuarioExcecao() {
 		sistema.cadastraUsuario("Matheus", "94189425", "matheusYasuo@hotmail.com");
 		sistema.getInfoUsuario("Matheus1", "94189425", "email");
+		
 	}
 
-	/**Esperado que de exceção quando adicionar 2 usuarios iguais.
-	 * Logo, ao adicionar e depois retirar é preciso cadastrar mais 2 vezes
-	 * @param nome e @param telefone para descobrir qual é o usuario
+	/**Esperado que de excecaoo quando adicionar 2 usuarios iguais.
+	 * Logo, ao adicionar e depois retirar e preciso cadastrar mais 2 vezes
+	 * @param nome e @param telefone para descobrir qual ï¿½ o usuario
 	 */
 	@Test (expected = IllegalArgumentException.class)
 	public void testRemoverUsuario() {
@@ -62,9 +68,9 @@ public class SistemaTest {
 	}
 
 	/**
-	 * @param nome e @param telefone para descobrir qual é o usuario
-	 * @param atributo define qual será a informação atualizada
-	 * @param valor define o valor nova pós atualização
+	 * @param nome e @param telefone para descobrir qual e o usuario
+	 * @param atributo define qual serao a informacao atualizada
+	 * @param valor define o valor da nova atualizacao
 	 */
 	@Test
 	public void testAtualizarUsuario() {
@@ -83,8 +89,8 @@ public class SistemaTest {
 	}	
 
 	/**
-	 * @param nome e @param telefone para descobrir qual é o usuario
-	 * @param nomeItem para saber de qual item retirar a informação
+	 * @param nome e @param telefone para descobrir qual eo usuario
+	 * @param nomeItem para saber de qual item retirar a informacao
 	 * @param atributo define qual o atributo retornado (nome ou valor)
 	 */
 	@Test
@@ -99,11 +105,11 @@ public class SistemaTest {
 	}
 
 	/**
-	 * @param nome e @param telefone para descobrir qual é o usuario
-	 * @param nomeItem para saber de qual item retirar a informação
-	 * @param atributo define qual o atributo será modificado (nome ou valor)
-	 * @param valor será o valor que vai está onde o atributo
-	 * indicar após a atualização
+	 * @param nome e @param telefone para descobrir qual ï¿½ o usuario
+	 * @param nomeItem para saber de qual item retirar a informaï¿½ï¿½o
+	 * @param atributo define qual o atributo serï¿½ modificado (nome ou valor)
+	 * @param valor serï¿½ o valor que vai estï¿½ onde o atributo
+	 * indicar apï¿½s a atualizaï¿½ï¿½o
 	 * 
 	 * Retorna sempre uma String
 	 */
@@ -122,46 +128,46 @@ public class SistemaTest {
 	}
 	
 	/**
-	 * Lista a representação de todos os Itens cadastrados ordenado pelo nome
+	 * Lista a representaï¿½ï¿½o de todos os Itens cadastrados ordenado pelo nome
 	 */
 	@Test
 	public void testListarItensOrdenadosPorNome() {
 		sistema.cadastraUsuario("Matheus1", "94189425", "matheusYasuo@hotmail.com");
 		sistema.cadastrarBluRayShow("Matheus1", "94189425", "Pior Cenario", 50.00, 50, 15, "Matanza", "DEZOITO_ANOS");
-		sistema.cadastrarBluRaySerie("Matheus1", "94189425","VIKINGS", 60.00 ,"As aventuras de ragnaldo e seus amigos", 50, "CATORZE_ANOS", "AÇÃO", 4 );;
+		sistema.cadastrarBluRaySerie("Matheus1", "94189425","VIKINGS", 60.00 ,"As aventuras de ragnaldo e seus amigos", 50, "CATORZE_ANOS", "Aï¿½ï¿½O", 4 );;
 		sistema.cadastrarEletronico("Matheus1", "94189425", "Lolzin", 23, "PC");
-		assertEquals("JOGO ELETRONICO: Lolzin, R$ 23.0, Nao emprestado, PC|SHOW: Pior Cenario, R$ 50.0, Nao emprestado, 50 min, DEZOITO_ANOS, Matanza, 15 faixas|SERIE: VIKINGS, R$ 60.0, Nao emprestado, 50 min, CATORZE_ANOS, AÇÃO, Temporada 4|",sistema.listarItensOrdenadosPorNome());
+		assertEquals("JOGO ELETRONICO: Lolzin, R$ 23.0, Nao emprestado, PC|SHOW: Pior Cenario, R$ 50.0, Nao emprestado, 50 min, DEZOITO_ANOS, Matanza, 15 faixas|SERIE: VIKINGS, R$ 60.0, Nao emprestado, 50 min, CATORZE_ANOS, Aï¿½ï¿½O, Temporada 4|",sistema.listarItensOrdenadosPorNome());
 	}
 	
 	/**
-	 * Lista a representação de todos os Itens cadastrados ordenado pelo valor
+	 * Lista a representaï¿½ï¿½o de todos os Itens cadastrados ordenado pelo valor
 	 */
 	@Test
 	public void testListarItensOrdenadosPorValor() {
 		sistema.cadastraUsuario("Matheus1", "94189425", "matheusYasuo@hotmail.com");
 		sistema.cadastrarBluRayShow("Matheus1", "94189425", "Pior Cenario", 50.00, 50, 15, "Matanza", "DEZOITO_ANOS");
-		sistema.cadastrarBluRaySerie("Matheus1", "94189425","VIKINGS", 60.00 ,"As aventuras de ragnaldo e seus amigos", 50, "CATORZE_ANOS", "AÇÃO", 4 );;
+		sistema.cadastrarBluRaySerie("Matheus1", "94189425","VIKINGS", 60.00 ,"As aventuras de ragnaldo e seus amigos", 50, "CATORZE_ANOS", "Aï¿½ï¿½O", 4 );;
 		sistema.cadastrarEletronico("Matheus1", "94189425", "Lolzin", 23, "PC");
-		assertEquals("JOGO ELETRONICO: Lolzin, R$ 23.0, Nao emprestado, PC|SHOW: Pior Cenario, R$ 50.0, Nao emprestado, 50 min, DEZOITO_ANOS, Matanza, 15 faixas|SERIE: VIKINGS, R$ 60.0, Nao emprestado, 50 min, CATORZE_ANOS, AÇÃO, Temporada 4|", sistema.listarItensOrdenadosPorValor());
+		assertEquals("JOGO ELETRONICO: Lolzin, R$ 23.0, Nao emprestado, PC|SHOW: Pior Cenario, R$ 50.0, Nao emprestado, 50 min, DEZOITO_ANOS, Matanza, 15 faixas|SERIE: VIKINGS, R$ 60.0, Nao emprestado, 50 min, CATORZE_ANOS, Aï¿½ï¿½O, Temporada 4|", sistema.listarItensOrdenadosPorValor());
 	}
 	
 	/**
-	 * @param nome e @param telefone para descobrir qual é o usuario
-	 * @param nomeItem para saber se o usuario tem o Item e retornar sua representação
+	 * @param nome e @param telefone para descobrir qual ï¿½ o usuario
+	 * @param nomeItem para saber se o usuario tem o Item e retornar sua representaï¿½ï¿½o
 	 */	
 	@Test
 	public void testPesquisarDetalhesItem() {
 		sistema.cadastraUsuario("Matheus1", "94189425", "matheusYasuo@hotmail.com");
 		sistema.cadastrarBluRayShow("Matheus1", "94189425", "Pior Cenario", 50.00, 50, 15, "Matanza", "DEZOITO_ANOS");
-		sistema.cadastrarBluRaySerie("Matheus1", "94189425","VIKINGS", 60.00 ,"As aventuras de ragnaldo e seus amigos", 50, "CATORZE_ANOS", "AÇÃO", 4 );;
+		sistema.cadastrarBluRaySerie("Matheus1", "94189425","VIKINGS", 60.00 ,"As aventuras de ragnaldo e seus amigos", 50, "CATORZE_ANOS", "Aï¿½ï¿½O", 4 );;
 		
 		assertEquals("SHOW: Pior Cenario, R$ 50.0, Nao emprestado, 50 min, DEZOITO_ANOS, Matanza, 15 faixas", sistema.pesquisarDetalhesItem("Matheus1", "94189425", "Pior Cenario"));
 		
-		assertEquals("SERIE: VIKINGS, R$ 60.0, Nao emprestado, 50 min, CATORZE_ANOS, AÇÃO, Temporada 4", sistema.pesquisarDetalhesItem("Matheus1", "94189425", "VIKINGS") );
+		assertEquals("SERIE: VIKINGS, R$ 60.0, Nao emprestado, 50 min, CATORZE_ANOS, Aï¿½ï¿½O, Temporada 4", sistema.pesquisarDetalhesItem("Matheus1", "94189425", "VIKINGS") );
 	}
 
 	/**
-	 * Ao registrar 2 vezes a exceção é causada
+	 * Ao registrar 2 vezes a exceï¿½ï¿½o ï¿½ causada
 	 */
 	@Test (expected  = IllegalArgumentException.class)
 	public void testRegistrarEmprestimo() {
@@ -173,10 +179,6 @@ public class SistemaTest {
 		sistema.registrarEmprestimo("Matheus1", "94189425", "Matheus2", "95189425", "Pior Cenario", "09/08/2017",7);
 		sistema.registrarEmprestimo("Matheus1", "94189425", "Matheus2", "95189425", "Pior Cenario", "09/08/2017",7);
 	}
-	
-	//Fazer
-	@Test
-	public void testDevolverItem() {
-	}
+
 
 }

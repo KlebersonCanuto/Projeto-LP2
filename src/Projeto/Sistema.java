@@ -22,6 +22,8 @@ public class Sistema {
 		// Cadastra um usuario
 		if (usuarioExiste(nome, telefone))
 			throw new IllegalArgumentException("Usuario ja cadastrado");
+		else if (nome.equals("") || email.equals("") || telefone.equals(""))
+			throw new IllegalArgumentException("Atributo vazio");
 		else{
 			Usuario usuario = new Usuario(nome, telefone, email);
 			usuarios.add(usuario);
@@ -30,14 +32,18 @@ public class Sistema {
 
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
 		// Retorna uma informacao do usuario
-		if (atributo.toLowerCase().equals("email"))
-			return getUsuario(nome, telefone).getEmail();
-		else if (atributo.toLowerCase().equals("nome"))
-			return getUsuario(nome, telefone).getNome();
-		else if (atributo.toLowerCase().equals("telefone"))
-			return getUsuario(nome, telefone).getCelular();
-		
-		throw new IllegalArgumentException("Usuario invalido");
+		if (usuarioExiste(nome, telefone)){
+			if (atributo.toLowerCase().equals("email"))
+				return getUsuario(nome, telefone).getEmail();
+			else if (atributo.toLowerCase().equals("nome"))
+				return getUsuario(nome, telefone).getNome();
+			else if (atributo.toLowerCase().equals("telefone"))
+				return getUsuario(nome, telefone).getCelular();
+			else
+				return null;
+		}
+		else
+			throw new IllegalArgumentException("Usuario invalido");
 	}
 
 	public void removerUsuario(String nome, String telefone) {

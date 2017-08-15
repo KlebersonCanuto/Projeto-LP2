@@ -109,13 +109,57 @@ public class Facade {
 		sistema.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 	}
 	
+	public String listarEmprestimoUsuarioEmprestando(String nome, String telefone){
+		
+		return sistema.listarEmprestimoUsuarioEmprestando(nome, telefone);
+	}
+	
+	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone){
+		
+		return sistema.listarEmprestimoUsuarioPegandoEmprestado(nome, telefone);
+	}
+	
+	public String listarEmprestimosItem(String nomeItem){
+		
+		return sistema.listarEmprestimosItem(nomeItem);
+	}
+	
+	public String listarItensNaoEmprestados(){
+		
+		return sistema.listarItensNaoEmprestados();
+	}
+	
+	public String listarItensEmprestados(){
+		
+		return sistema.listarItensEmprestados();
+	}
+	
+	public String listarTop10(){
+		
+		return sistema.listarTop10();
+	}
+	
+	public String listarCaloteiros() {
+		
+		return sistema.listarCaloteiros();
+	}
+	
+	public String listarTop10MelhoresUsuarios() {
+		
+		return sistema.listarTop10MelhoresUsuarios();
+	}
+	
+	public String listarTop10PioresUsuarios() {
+		
+		return sistema.listarTop10PioresUsuarios();
+	}
 	public void fecharSistema(){
 		// Fecha o sistema
 	}
 	
 	public static void main(String[] args) {
 		// Testes easyAccept
-		args = new String[] {"Kleberson.Facade", "Tests/us1.txt", "Tests/us2.txt", "Tests/us3.txt", "Tests/us4.txt"};
+		args = new String[] {"Kleberson.Facade", "Tests/us1.txt", "Tests/us2.txt", "Tests/us3.txt", "Tests/us4.txt", "Tests/us5.txt", "Tests/us6.txt", "Tests/us7.txt", "Tests/us8.txt"};
 		EasyAccept.main(args);
 	}
 }

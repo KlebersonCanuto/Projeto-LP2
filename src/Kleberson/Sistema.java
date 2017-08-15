@@ -22,6 +22,8 @@ public class Sistema {
 		// Cadastra um usuario
 		if (usuarioExiste(nome, telefone))
 			throw new IllegalArgumentException("Usuario ja cadastrado");
+		else if (nome.equals("") || email.equals("") || telefone.equals(""))
+			throw new IllegalArgumentException("Atributo vazio");
 		else{
 			Usuario usuario = new Usuario(nome, telefone, email);
 			usuarios.add(usuario);
@@ -197,6 +199,51 @@ public class Sistema {
 		else
 			throw new NullPointerException("Emprestimo nao encontrado");
 	}
+
+	public String listarEmprestimoUsuarioEmprestando(String nome, String telefone){
+		
+		return null;
+	}
+
+	public String listarEmprestimoUsuarioPegandoEmprestado(String nome, String telefone){
+
+		return null;
+	}
+
+	public String listarEmprestimosItem(String nomeItem){
+
+		return null;
+	}
+
+	public String listarItensNaoEmprestados(){
+
+		return null;
+	}
+
+	public String listarItensEmprestados(){
+
+		return null;
+	}
+
+	public String listarTop10(){
+
+		return null;
+	}
+
+	public String listarCaloteiros(){
+
+		return null;
+	}
+
+	public String listarTop10MelhoresUsuarios(){
+		
+		return null;
+	}
+
+	public String listarTop10PioresUsuarios(){
+		
+		return null;
+	}
 	
 	private List<Item> listaItens() {
 		// Lista todos os itens (sem ordem definida)
@@ -226,4 +273,5 @@ public class Sistema {
 		}
 		throw new NullPointerException("Usuario invalido");
 	}
+
 }

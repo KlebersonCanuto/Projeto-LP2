@@ -93,7 +93,7 @@ public class Usuario {
 		itens.remove(item);
 	}
 
-	public String toString() {
+	public String toString(){
 		// Representacao em string do usuario
 		return this.nome + ", " +this.email + ", " + this.telefone;
 	}

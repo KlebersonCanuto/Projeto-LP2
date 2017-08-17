@@ -157,7 +157,7 @@ public class Facade {
 		// Fecha o sistema
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		// Testes easyAccept
 		args = new String[] {"Kleberson.Facade", "Tests/us1.txt", "Tests/us2.txt", "Tests/us3.txt", "Tests/us4.txt", "Tests/us5.txt", "Tests/us6.txt", "Tests/us7.txt", "Tests/us8.txt"};
 		EasyAccept.main(args);

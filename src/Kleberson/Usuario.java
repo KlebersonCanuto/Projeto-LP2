@@ -107,7 +107,7 @@ public class Usuario {
 		return result;
 	}
 
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj){
 		// Verifica se 2 usuarios sao iguais
 		if (this == obj)
 			return true;

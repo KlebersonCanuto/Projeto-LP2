@@ -149,7 +149,7 @@ public class Facade {
 		return sistema.listarTop10MelhoresUsuarios();
 	}
 	
-	public String listarTop10PioresUsuarios() {
+	public String listarTop10PioresUsuarios(){
 		
 		return sistema.listarTop10PioresUsuarios();
 	}

@@ -29,5 +29,4 @@ expect "1: Tobias - Reputacao: -99,14|2: Vilmar - Reputacao: 0,00|3: Josefina - 
 
 
 
-
 fecharSistema

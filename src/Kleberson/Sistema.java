@@ -254,7 +254,7 @@ public class Sistema {
 		return itens;
 	}
 	
-	private boolean usuarioExiste(String nome, String telefone) {
+	private boolean usuarioExiste(String nome, String telefone){
 		// Verifica se o usuario existe
 		for (Usuario usuario : usuarios){
 			if(usuario.getNome().equals(nome))

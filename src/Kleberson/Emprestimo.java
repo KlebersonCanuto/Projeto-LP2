@@ -11,6 +11,8 @@ public class Emprestimo {
 	private LocalDate dataEmprestimo;
 	private int periodo;
 	private boolean passouDoPeriodo;
+	private LocalDate dataDevolucao;
+	private boolean terminou;
 	
 	public Emprestimo(Usuario dono, Usuario requerente, Item item, String dataEmprestimo, int periodo){
 		
@@ -20,11 +22,11 @@ public class Emprestimo {
 		this.requerente.adicionaItem(this.item);
 		this.item.emprestou();
 		this.dataEmprestimo = LocalDate.parse(dataEmprestimo, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		
 		if (periodo < 7)
 			this.periodo = periodo;
 		else
 			this.periodo = 7;
+		this.terminou = false;
 	}
 
 	public void encerra(String dataDevolucao) {
@@ -38,6 +40,7 @@ public class Emprestimo {
 			this.passouDoPeriodo = true;
 		else
 			this.passouDoPeriodo = false;
+		this.terminou = true;
 	}
 	
 	public boolean passouDoPeriodo(){
@@ -73,5 +76,21 @@ public class Emprestimo {
 	public void setPeriodo(int periodo) {
 		// Modifica o periodo de emprestimo
 		this.periodo = periodo;
+	}
+	
+	public boolean terminou() {
+		
+		return this.terminou;
+	}
+	public String toString() {
+		
+		return "EMPRESTIMO - De: " + this.dono.getNome() + ", Para: " + this.requerente.getNome() + ", " + this.item.getNome() + ", " + this.getDataEmprestimo() + ", " + this.periodo + " dias, ENTREGA: " + this.getDataEntrega();
+	}
+
+	private String getDataEntrega() {
+		
+		if (terminou())
+			return this.dataDevolucao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		return "Emprestimo em andamento";
 	}
 }

@@ -106,7 +106,7 @@ public class Usuario {
 		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
 		return result;
 	}
-
+	
 	public boolean equals(Object obj){
 		// Verifica se 2 usuarios sao iguais
 		if (this == obj)

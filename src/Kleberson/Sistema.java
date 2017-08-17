@@ -202,12 +202,28 @@ public class Sistema {
 
 	public String listarEmprestimoUsuarioEmprestando(String nome, String telefone){
 		
-		return null;
+		Usuario usuario = getUsuario(nome, telefone);
+		String stringEmprestimos = "Emprestimos: ";
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getDono().equals(usuario))
+				stringEmprestimos+=emprestimo.toString() + "|";
+		}
+		if (stringEmprestimos.equals("Emprestimos: "))
+			return "Nenhum item emprestado";
+		return stringEmprestimos;
 	}
 
 	public String listarEmprestimoUsuarioPegandoEmprestado(String nome, String telefone){
 
-		return null;
+		Usuario usuario = getUsuario(nome, telefone);
+		String stringEmprestimos = "Emprestimos pegos: ";
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getRequerente().equals(usuario))
+				stringEmprestimos+=emprestimo.toString() + "|";
+		}
+		if (stringEmprestimos.equals("Emprestimos pegos: "))
+			return "Nenhum item pego emprestado";
+		return stringEmprestimos;
 	}
 
 	public String listarEmprestimosItem(String nomeItem){

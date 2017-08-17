@@ -109,7 +109,7 @@ public class Facade {
 		sistema.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 	}
 	
-	public String listarEmprestimoUsuarioEmprestando(String nome, String telefone){
+	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone){
 		
 		return sistema.listarEmprestimoUsuarioEmprestando(nome, telefone);
 	}

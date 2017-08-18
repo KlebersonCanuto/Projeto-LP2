@@ -1,163 +1,122 @@
 package Lucas;
 
+import easyaccept.EasyAccept; 
+
 public class Facade {
 
-	UsuarioController controlador;
-
-	// construtor da Facade
-
-	public Facade() {
-
-		controlador = new UsuarioController();
-	}
-
-	// inicializar o sistema
-	public void iniciarSistema() {
-
-	}
-
-	// chama o método cadastra usuario
-
-	public void cadastraUsuario(String nome, String telefone, String email) {
-
-		controlador.cadastraUsuario(nome, telefone, email);
-	}
-
-	public String getInfoUsuario(String nome, String telefone, String atributo) {
-
-		return controlador.getInfoUsuario(nome, telefone, atributo);
-	}
-
-	// chama o método remove usuário
-	public void removerUsuario(String nome, String telefone) {
-
-		controlador.removerUsuario(nome, telefone);
-	}
-
-	// chama o método atualizar o usuário
-
-	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
-
-		controlador.atualizarUsuario(nome, telefone, atributo, valor);
-	}
-
-	// chama o método cadastrar Eletronico
-
-	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
-
-		controlador.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
-	}
-
-	// chama o método cadastrar Jogo de Tabuleiro
-
-	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
-
-		controlador.cadastrarJogoTabuleiro(nome, telefone, nomeItem, preco);
-
-	}
-
-	// chama o método adiciona peças perdidas
-
-	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
-
-		controlador.adicionarPecaPerdida(nome, telefone, nomeItem, nomePeca);
-	}
-
-	// chama o método cadastrar o Filme
-
-	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
-			String genero, String classificacao, int anoLancamento) {
-
-		controlador.cadastrarBluRayFilme(nome, telefone, nomeItem, preco, duracao, genero, classificacao,
-				anoLancamento);
-	}
-
-	// chama o método cadastar Show
-
-	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao,
-			int numeroFaixas, String artista, String classificacao) {
-
-		controlador.cadastrarBluRayShow(nome, telefone, nomeItem, preco, duracao, numeroFaixas, artista, classificacao);
-	}
-
-	// chama o método cadastrar Série
-	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
-			int duracao, String classificacao, String genero, int temporada) {
-
-		controlador.cadastrarBluRaySerie(nome, telefone, nomeItem, preco, descricao, duracao, classificacao, genero,
-				temporada);
-	}
-
-	// adiciona o Bluray
-
-	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
-
-		controlador.adicionarBluRay(nome, telefone, nomeBlurayTemporada, duracao);
+	Sistema sistema;
+	
+	public Facade(){
+		
+		sistema = new Sistema();
 	}
 	
-	// cadastra informações do Item
-
-	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
-
-		return controlador.getInfoItem(nome, telefone, nomeItem, atributo);
+	public void iniciarSistema(){
+		// Inicializa o sistema
 	}
 	
-	// remove o Item 
-
-	public void removerItem(String nome, String telefone, String nomeItem) {
-
-		controlador.removerItem(nome, telefone, nomeItem);
+	public void cadastrarUsuario(String nome, String telefone, String email){
+		// Cadastra um usuario
+		sistema.cadastraUsuario(nome, telefone, email);
 	}
 	
-	// chama o metodo para atualizar os Itens 
-
-	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
-
-		controlador.atualizarItem(nome, telefone, nomeItem, atributo, valor);
+	public String getInfoUsuario(String nome, String telefone, String atributo){
+		// Recebe uma informacao do usuario
+		return sistema.getInfoUsuario(nome, telefone, atributo);
 	}
 	
-	// chama o método para listar os Itens por nome
-
-	public String listarItensOrdenadosPorNome() {
-
-		return controlador.listarItensOrdenadosPorNome();
+	public void removerUsuario(String nome, String telefone){
+		// Remove um usuario
+		sistema.removerUsuario(nome, telefone);
 	}
 	
-	// chama o método para listar os Itens por valor
-
-	public String listarItensOrdenadosPorValor() {
-
-		return controlador.listarItensOrdenadosPorValor();
+	public void atualizarUsuario(String nome, String telefone, String atributo, String valor){
+		// Atualiza um atributo de usuario
+		sistema.atualizarUsuario(nome, telefone, atributo, valor);
 	}
 	
-	// chama o método para pesquisar os Detalhes item
-
-	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
-
-		return controlador.pesquisarDetalhesItem(nome, telefone, nomeItem);
+	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma){
+		// Cadastra um jogo eletronico 
+		sistema.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
 	}
 	
-	// chama o método registrar Emprestimo
-
-	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
-			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
-
-		controlador.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem,
-				dataEmprestimo, periodo);
+	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco){
+		// Cadastra um jogo de tabuleiro
+		sistema.cadastrarJogoTabuleiro(nome, telefone, nomeItem, preco);
 	}
 	
-	// chama o método devolver item
-
-	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
-			String nomeItem, String dataEmprestimo, String dataDevolucao) {
-
-		controlador.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo,
-				dataDevolucao);
+	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca){
+		// Adiciona uma peca perdida a um jogo de tabuleiro
+		sistema.adicionarPecaPerdida(nome, telefone, nomeItem, nomePeca);
 	}
 	
-	// finaliza o sistema
-
-	public void fecharSistema() {
-
+	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao, String genero, String classificacao, int anoLancamento){
+		// Cadastra um BluRay de filme
+		sistema.cadastrarBluRayFilme(nome, telefone, nomeItem, preco, duracao, genero, classificacao, anoLancamento);
+	}
+	
+	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao, int numeroFaixas, String artista, String classificacao){
+		// Cadastra um BluRay de show
+		sistema.cadastrarBluRayShow(nome, telefone, nomeItem, preco, duracao, numeroFaixas, artista, classificacao);
+	}
+	
+	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada){
+		// Cadastra um BluRay de serie
+		sistema.cadastrarBluRaySerie(nome, telefone, nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
+	}
+	
+	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao){
+		// Adiciona um episodio a serie
+		sistema.adicionarBluRay(nome, telefone, nomeBlurayTemporada, duracao);
+	}
+	
+	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo){
+		// Retorna uma informacao de um item
+		return sistema.getInfoItem(nome, telefone, nomeItem, atributo);
+	}
+	
+	public void removerItem(String nome, String telefone, String nomeItem){
+		// Remove um item
+		sistema.removerItem(nome, telefone, nomeItem);
+	}
+	
+	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor){
+		// Atualiza um atributo de item
+		sistema.atualizarItem(nome, telefone, nomeItem, atributo, valor);
+	}
+	
+	public String listarItensOrdenadosPorNome(){
+		// Lista os itens ordenados por nome
+		return sistema.listarItensOrdenadosPorNome();
+	}
+	
+	public String listarItensOrdenadosPorValor(){
+		// Lista os itens ordenados por valor
+		return sistema.listarItensOrdenadosPorValor();
+	}
+	
+	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem){
+		// Pesquisa detalhes de um item
+		return sistema.pesquisarDetalhesItem(nome, telefone, nomeItem);
+	}
+	
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo){
+		// Registra um emprestimo
+		sistema.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, periodo);
+	}
+	
+	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao){
+		// Devolve um item
+		sistema.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+	}
+	
+	public void fecharSistema(){
+		// Fecha o sistema
+	}
+	
+	public static void main(String[] args) {
+		// Testes easyAccept
+		args = new String[] {"Projeto.Facade", "Tests/us1.txt", "Tests/us2.txt", "Tests/us3.txt", "Tests/us4.txt"};
+		EasyAccept.main(args);
 	}
 }

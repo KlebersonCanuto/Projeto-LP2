@@ -1,104 +1,88 @@
 package Lucas;
 
 public class Item {
-
+	
 	private String nomeItem;
-	private double valor;
+	private double valor; 
 	private boolean emprestado;
-
-	// Construtor da classe
-
-	public Item(String nomeItem, double valor) {
-
-		this.nomeItem = nomeItem;
-		this.valor = valor;
-		this.emprestado = false;
+	
+	public Item(String nomeItem, double valor){
+		
+		if (valor < 0)
+			throw new IllegalArgumentException("Preco invalido");
+		else{
+			this.nomeItem = nomeItem;
+			this.valor = valor;
+			this.emprestado = false;
+		}
 	}
-
-	// Retorna o Item
-
-	public String getNome() {
-
+	
+	public String getNome(){
+		// Retorna o nome do item
 		return this.nomeItem;
 	}
 
-	// modifica o Item
-
-	public void setNome(String nomeItem) {
-
+	public void setNome(String nomeItem){
+		// Muda o nome do item
 		this.nomeItem = nomeItem;
 	}
 
-	// retorna o valor do Bluray
-
-	public double getValor() {
-
+	public double getValor(){
+		// Retorna o preco do item
 		return this.valor;
 	}
 
-	// modifica o valor do Bluray
-
-	public void setValor(double valor) {
-
+	public void setValor(double valor){
+		// Muda o preco do item
 		this.valor = valor;
 	}
 
-	// retorna se o bluray está emprestado ou não
-
-	public boolean emprestado() {
-
+	public boolean emprestado(){
+		// Verifica se o item esta emprestado
 		return this.emprestado;
 	}
 
-	// retorna true se estiver emrpestado
-
-	public void emprestou() {
-
+	public void emprestou(){
+		// Muda o item para emprestado
 		this.emprestado = true;
 	}
-
-	// retorna false quando não ta emprestado
-
-	public void retornou() {
-
+	
+	public void retornou(){
+		// Muda o item para nao emprestado
 		this.emprestado = false;
 	}
-
-	// verifica se foi emprestado ou não
-
-	public String stringEmprestado() {
-
+	
+	public String stringEmprestado(){
+		// Representacao em string do emprestimo do item
 		if (this.emprestado)
 			return "Emprestado";
-		return "Não Emprestado";
+		return "Nao emprestado";
 	}
-
-	public int hashCode() {
-
+	
+	public int hashCode(){
+		// hashCode de um item
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((nomeItem == null) ? 0 : nomeItem.hashCode());
 		return result;
 	}
 
-	// verifica o item pelo nome
-
-	public boolean equals(Object obj) {
-
+	public boolean equals(Object obj){
+		// Verifica se 2 itens são iguais
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-
+		
 		Item other = (Item) obj;
 		if (nomeItem == null) {
 			if (other.nomeItem != null)
 				return false;
 		} else if (!nomeItem.equals(other.nomeItem))
 			return false;
-
+	
 		return true;
 	}
 }

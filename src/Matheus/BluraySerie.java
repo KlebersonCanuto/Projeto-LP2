@@ -1,82 +1,78 @@
 package Matheus;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class BluraySerie extends Bluray {
 
 	private String descricao;
 	private String genero;
 	private int temporada;
+	private List <Integer> episodios; 
 	
-	public BluraySerie(String nome, double valor, String descricao, int duracao, String classificao, String genero, int temporada) {
+	public BluraySerie(String nome, double valor, String descricao, int duracao, String classificao, String genero, int temporada){
 		
 		super(nome, valor, duracao, classificao);
 		this.descricao = descricao;
 		this.genero = genero;
 		this.temporada = temporada;
-	}
-	public String getDescricao() {
-		
-		return descricao;
+		episodios = new ArrayList<>();
 	}
 	
-	public void setDescricao(String descricao) {
-		
+	public String getDescricao(){
+		// Retorna a descricao da serie
+		return this.descricao;
+	}
+	
+	public void setDescricao(String descricao){
+		// Modifica a descricao da serie
 		this.descricao = descricao;
 	}
 	
-	public String getGenero() {
-		
-		return genero;
+	public String getGenero(){
+		// Retorna o genero da serie
+		return this.genero;
 	}
 	
-	public void setGenero(String genero) {
-		
+	public void setGenero(String genero){
+		// Modifica o genero da serie
 		this.genero = genero;
 	}
 	
-	public int getTemporada() {
-		
-		return temporada;
+	public int getTemporada(){
+		// Retorna a temporada da serie
+		return this.temporada;
 	}
-	
-	public void setTemporada(int temporada) {
 		
-		this.temporada = temporada;
-	}
-	
 	public void adicionaBluRay(int duracao){
-		
-		adicionaDuracao(duracao);
-	}
-
-	@Override
-	public String toString() {
-		if(this.getEmprestado()) {
-		return "SERIE: " + this.getNome() + ", R$ " + this.getValor() + ", Emprestado, " 
-	+ this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getGenero() + ", Temporada " + this.getTemporada();
-	} else {
-		return "SERIE: " + this.getNome() + ", R$ " + this.getValor() + ", Não Emprestado, " 
-				+ this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getGenero() + ", Temporada " + this.getTemporada();
-	}
-
-	
+		// Adiciona um episodio a serie
+		episodios.add(duracao);
 	}
 	
-	@Override
-	public int hashCode() {
+	public String toString(){
+		// Retorna a representacao em String da serie
+		return "SERIE: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getGenero() + ", Temporada " + this.getTemporada();
+	}
+
+	public int hashCode(){
+		// hashCode da serie
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((this.getNome() == null) ? 0 : this.getNome().hashCode());
 		result = prime * result + temporada;
 		return result;
 	}
-	@Override
-	public boolean equals(Object obj) {
+	
+	public boolean equals(Object obj){
+		// Verifica se 2 series sao iguais
 		if (this == obj)
 			return true;
 		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		
 		BluraySerie other = (BluraySerie) obj;
 		if (this.getNome() == null) {
 			if (other.getNome() != null)
@@ -85,7 +81,7 @@ public class BluraySerie extends Bluray {
 			return false;
 		if (temporada != other.temporada)
 			return false;
+		
 		return true;
 	}
-	
 }

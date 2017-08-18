@@ -4,9 +4,8 @@ public class BlurayFilme extends Bluray {
 
 	private String genero;
 	private int anoLancamento;
-
 	
-	public BlurayFilme(String nome, double valor, int duracao, String genero, String classificao, int anoLancamento) {
+	public BlurayFilme(String nome, double valor, int duracao, String genero, String classificao, int anoLancamento){
 	
 		super(nome, valor, duracao, classificao);
 		this.genero = genero;
@@ -14,38 +13,23 @@ public class BlurayFilme extends Bluray {
 		
 	}
 	
-	public String getGenero() {
-		
-		return genero;
+	public String getGenero(){
+		// Retorna o genero do filme
+		return this.genero;
 	}
 	
-	public void setGenero(String genero) {
-		
+	public void setGenero(String genero){
+		// Modifica o genero do filme
 		this.genero = genero;
 	}
 	
-	public int getAnoLancamento() {
+	public int getAnoLancamento(){
+		// Retorna o ano de lancamento do filme
+		return this.anoLancamento;
+	}
 		
-		return anoLancamento;
+	public String toString(){
+		// Retorna a representação em String do filme
+		return "FILME: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getGenero() + ", " + this.getAnoLancamento();
 	}
-	
-	public void setAnoLancamento(int anoLancamento) {
-		
-		this.anoLancamento = anoLancamento;
-	}
-	
-	@Override
-	public String toString() {
-		if(this.getEmprestado()) {
-		return "FILME: " + this.getNome() + ", R$ " + this.getValor() + ", Emprestado, " 
-	+ this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getGenero() + ", " + this.getAnoLancamento();
-	} else {
-		return "FILME: " + this.getNome() + ", R$ " + this.getValor() + ", Não Emprestado, " 
-				+ this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getGenero() + ", " + this.getAnoLancamento();
-	}
-
-	
-	}
-
-	
 }

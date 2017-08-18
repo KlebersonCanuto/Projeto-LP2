@@ -1,7 +1,6 @@
 package Matheus;
 
-public abstract class Bluray extends Item{
-	
+public class Bluray extends Item{
 	
 	private int duracao;
 	private String classificao;
@@ -13,34 +12,23 @@ public abstract class Bluray extends Item{
 		this.classificao = classificao;
 	}
 
-	public int getDuracao() {
-		
+	public int getDuracao(){
+		// Retorna a duração do Bluray	
 		return this.duracao;
 	}
 
-	public void setDuracao(int duracao) {
-		
+	public void setDuracao(int duracao){
+		// Modifica a duração do Bluray
 		this.duracao = duracao;
 	}
 
-	public String getClassificao() {
-		
+	public String getClassificao(){
+		// Retorna a classificação do Bluray
 		return this.classificao;
 	}
 
-	public void setClassificao(String classificao) {
-		
+	public void setClassificao(String classificao){
+		// Modifica a classificação do Bluray
 		this.classificao = classificao;
 	}
-
-	public void adicionaDuracao(int duracao){
-		
-		this.duracao += duracao;
-
-	}
-	
-	public abstract String toString();
-
-	
-	
 }

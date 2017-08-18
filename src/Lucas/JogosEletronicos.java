@@ -3,39 +3,30 @@ package Lucas;
 public class JogosEletronicos extends Item {
 
 	private String plataforma;
-
-	// construtor da classe
-
-	public JogosEletronicos(String nomeItem, double valor, String plataforma) {
-
+	
+	public JogosEletronicos(String nomeItem, double valor, String plataforma){
+		
 		super(nomeItem, valor);
 		this.plataforma = plataforma;
 	}
-
-	// retorna a plataforma
-
-	public String getPlataforma() {
-
+	
+	public String getPlataforma(){
+		// Retorna a plataforma do jogo
 		return plataforma;
 	}
 
-	// modifica a plataforma
-
-	public void setPlataforma(String plataforma) {
-
+	public void setPlataforma(String plataforma){
+		// Modifica a plataforma do jogo
 		this.plataforma = plataforma;
 	}
-
-	// retorna a representação em string
-
-	public String toString() {
-
-		return "JOGO ELETRONICO: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", "
-				+ this.getPlataforma();
+	
+	public String toString(){
+		// Retorna a representacao em string do jogo
+		return "JOGO ELETRONICO: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getPlataforma();
 	}
-
-	public int hashCode() {
-
+	
+	public int hashCode(){
+		// hashCode do jogo eletronico
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((this.getNome() == null) ? 0 : this.getNome().hashCode());
@@ -43,17 +34,15 @@ public class JogosEletronicos extends Item {
 		return result;
 	}
 
-	// verifica se são iguais por nomes
-
-	public boolean equals(Object obj) {
-
+	public boolean equals(Object obj){
+		// Verifica se 2 jogos eletronicos sao iguais
 		if (this == obj)
 			return true;
 		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-
+		
 		JogosEletronicos other = (JogosEletronicos) obj;
 		if (this.getNome() == null) {
 			if (other.getNome() != null)
@@ -65,7 +54,8 @@ public class JogosEletronicos extends Item {
 				return false;
 		} else if (!plataforma.equals(other.plataforma))
 			return false;
-
+		
 		return true;
 	}
 }
+

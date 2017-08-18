@@ -6,138 +6,100 @@ import java.util.List;
 import java.util.Set;
 
 public class Usuario {
-
+	
 	private String nome;
 	private String email;
 	private String telefone;
-
+	
 	private Set<Item> itens;
-
+	
 	private List<Emprestimo> emprestimos;
-
-	// construtor da classe
-
-	public Usuario(String nome, String telefone, String email) {
-
+	
+	
+	public Usuario(String nome, String telefone, String email ){
+		
 		this.nome = nome;
-		this.telefone = telefone;
+		this.telefone = telefone ;
 		this.email = email;
 		itens = new HashSet<>();
 		emprestimos = new ArrayList<>();
 	}
 
-	// retorna o nome
-
 	public String getNome() {
-
-		return nome;
+		// Retorna o nome do usuario
+		return this.nome;
 	}
 
-	// modifica o nome
-
 	public void setNome(String nome) {
-
+		// Modifica o nome do usuario
 		this.nome = nome;
 	}
 
-	// retorna o email
-
 	public String getEmail() {
-
-		return email;
+		// Retorna o email do usuario
+		return this.email;
 	}
 
-	// modifica o email
-
 	public void setEmail(String email) {
-
+		// Modifica o email do usuario
 		this.email = email;
 	}
 
-	// retorna o celular
-
 	public String getCelular() {
-
-		return telefone;
+		// Retorna o celular do usuario
+		return this.telefone;
 	}
-
-	// modifica o celular
 
 	public void setCelular(String celular) {
-
+		// Modifica o celular do usuario
 		this.telefone = celular;
 	}
-
-	// adiciona item ao array
-
-	public void adicionaItem(Item item) {
-
+	
+	public void adicionaItem(Item item){
+		// Adiciona um item ao usuario
 		itens.add(item);
 	}
-
-	// remove item do array
-
+	
 	public void removeItem(String nomeItem) {
-
+		// Remove um item do usuario
 		itens.remove(getItem(nomeItem));
-	}
-
-	// atualiza o item
-	public void atualizaItem(String nomeItem, String atributo, String valor) {
-
-		Item item = getItem(nomeItem);
-		if (atributo.toLowerCase().equals("nome"))
-			item.setNome(valor);
-		else if (atributo.toLowerCase().equals("valor"))
-			item.setValor(Double.valueOf(valor));
-	}
-
-	// retorna o nome do item
-	public Item getItem(String nomeItem) {
-
-		for (Item item : itens) {
-			if (item.getNome().equals(nomeItem))
+	}	
+	
+	public Item getItem(String nomeItem){
+		// Retorna um item do usuario
+		for (Item item : itens){
+			if(item.getNome().equals(nomeItem))
 				return item;
+			}
+		throw new NullPointerException("Item nao encontrado");
 		}
-		return null;
-	}
-
-	// retorna a lista de itens
-
-	public List<Item> listaItens(List<Item> lista) {
-
-		for (Item item : itens) {
-
+	
+	public List<Item> listaItens(List<Item> lista){
+		// Retorna a lista de itens do usuario
+		for (Item item : itens){
+			
 			lista.add(item);
 		}
 		return lista;
 	}
-
-	// adiciona o emprestimo
-
-	public void adicionaEmprestimo(Emprestimo emprestimo) {
-
+	
+	public void adicionaEmprestimo(Emprestimo emprestimo){
+		// Adidiciona um emprestimo ao historico do usuario
 		emprestimos.add(emprestimo);
 	}
-
-	// retorna o item emprestimo
-
-	public void devolveItem(Item item) {
-
+	
+	public void devolveItem(Item item){
+		// Devolve um item emprestado ao dono original
 		itens.remove(item);
 	}
 
-	// retorna a representação em String
-
-	@Override
 	public String toString() {
-
-		return this.nome + ", " + this.email + ", " + this.telefone;
+		// Representacao em string do usuario
+		return this.nome + ", " +this.email + ", " + this.telefone;
 	}
 
-	@Override
 	public int hashCode() {
-
+		// hashCode do usuario
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
@@ -145,11 +107,8 @@ public class Usuario {
 		return result;
 	}
 
-	// verifica se tem o mesmo nome
-
-	@Override
 	public boolean equals(Object obj) {
-
+		// Verifica se 2 usuarios sao iguais
 		if (this == obj)
 			return true;
 		if (obj == null)

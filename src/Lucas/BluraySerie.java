@@ -3,103 +3,76 @@ package Lucas;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class BluraySerie extends Bluray {
 
 	private String descricao;
 	private String genero;
 	private int temporada;
-	private List<Integer> episodios;
-
-	// construtor da classe Bluray serie
-
-	public BluraySerie(String nome, double valor, String descricao, int duracao, String classificao, String genero,
-			int temporada) {
-
+	private List <Integer> episodios; 
+	
+	public BluraySerie(String nome, double valor, String descricao, int duracao, String classificao, String genero, int temporada){
+		
 		super(nome, valor, duracao, classificao);
 		this.descricao = descricao;
 		this.genero = genero;
 		this.temporada = temporada;
 		episodios = new ArrayList<>();
 	}
-
-	// retorna a descrição
-
-	public String getDescricao() {
-
-		return descricao;
+	
+	public String getDescricao(){
+		// Retorna a descricao da serie
+		return this.descricao;
 	}
-
-	// modifica a descrição
-
-	public void setDescricao(String descricao) {
-
+	
+	public void setDescricao(String descricao){
+		// Modifica a descricao da serie
 		this.descricao = descricao;
 	}
-
-	// retorna o genero
-
-	public String getGenero() {
-
-		return genero;
+	
+	public String getGenero(){
+		// Retorna o genero da serie
+		return this.genero;
 	}
-
-	// modifica o genero
-
-	public void setGenero(String genero) {
-
+	
+	public void setGenero(String genero){
+		// Modifica o genero da serie
 		this.genero = genero;
 	}
-
-	// retorna a temporada
-
-	public int getTemporada() {
-
-		return temporada;
+	
+	public int getTemporada(){
+		// Retorna a temporada da serie
+		return this.temporada;
 	}
-
-	// modifica a temporada
-
-	public void setTemporada(int temporada) {
-
-		this.temporada = temporada;
-	}
-
-	// adiciona o Bluray ao ArraList
-
-	public void adicionaBluRay(int duracao) {
-
+		
+	public void adicionaBluRay(int duracao){
+		// Adiciona um episodio a serie
 		episodios.add(duracao);
 	}
-
-	// retorna a representação em String
-
-	public String toString() {
-
-		return "SERIE: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", "
-				+ this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getGenero() + ", Temporada "
-				+ this.getTemporada();
+	
+	public String toString(){
+		// Retorna a representacao em String da serie
+		return "SERIE: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getGenero() + ", Temporada " + this.getTemporada();
 	}
 
-	public int hashCode() {
-
+	public int hashCode(){
+		// hashCode da serie
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((this.getNome() == null) ? 0 : this.getNome().hashCode());
 		result = prime * result + temporada;
 		return result;
 	}
-
-	// verifica o Bluray por nome e por temporada
-
-	public boolean equals(Object obj) {
-
+	
+	public boolean equals(Object obj){
+		// Verifica se 2 series sao iguais
 		if (this == obj)
 			return true;
 		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-
+		
 		BluraySerie other = (BluraySerie) obj;
 		if (this.getNome() == null) {
 			if (other.getNome() != null)
@@ -108,7 +81,7 @@ public class BluraySerie extends Bluray {
 			return false;
 		if (temporada != other.temporada)
 			return false;
-
+		
 		return true;
 	}
 }

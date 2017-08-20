@@ -10,6 +10,8 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String telefone;
+	private double reputacao;
+	
 	
 	private Set<Item> itens;
 	
@@ -21,8 +23,17 @@ public class Usuario {
 		this.nome = nome;
 		this.telefone = telefone ;
 		this.email = email;
+		this.reputacao = 0.0;
 		itens = new HashSet<>();
 		emprestimos = new ArrayList<>();
+	}
+	
+	public double getReputacao(){
+		return this.reputacao;
+	}
+	
+	public void somaReputacao(double valor){
+		this.reputacao += valor;
 	}
 
 	public String getNome() {
@@ -58,6 +69,7 @@ public class Usuario {
 	public void adicionaItem(Item item){
 		// Adiciona um item ao usuario
 		itens.add(item);
+		
 	}
 	
 	public void removeItem(String nomeItem) {

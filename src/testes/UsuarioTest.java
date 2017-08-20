@@ -31,6 +31,13 @@ public class UsuarioTest {
 		I3 = new Item("Cd-Zezo", 15.05);
 
 	}
+	@Test
+	public void testGetReputacao(){
+		assertEquals(0.0, U1.getReputacao(),0.000001);
+		U1.adicionaItem(I2);
+		assertEquals(2.25, U1.getReputacao(), 0.0001);
+		
+	}
 
 	/**
 	 * Verifica se o construtor está passando as informações para seus devidos lugares

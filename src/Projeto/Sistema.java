@@ -39,6 +39,8 @@ public class Sistema {
 				return getUsuario(nome, telefone).getNome();
 			else if (atributo.toLowerCase().equals("telefone"))
 				return getUsuario(nome, telefone).getCelular();
+			else if (atributo.toLowerCase().equals("reputacao"))
+				return String.valueOf(getUsuario(nome, telefone).getReputacao());
 			else
 				return null;
 		}
@@ -67,6 +69,7 @@ public class Sistema {
 		Usuario usuario = getUsuario(nome, telefone);
 		Item eletronico = new JogosEletronicos(nomeItem, preco, plataforma);
 		usuario.adicionaItem(eletronico);
+		usuario.somaReputacao(eletronico.getValor() * 0.05);
 	}
 
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
@@ -74,6 +77,7 @@ public class Sistema {
 		Usuario usuario = getUsuario(nome, telefone);
 		Item tabuleiro = new JogoTabuleiro(nomeItem, preco);	
 		usuario.adicionaItem(tabuleiro);
+		usuario.somaReputacao(tabuleiro.getValor() * 0.05);
 	}
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
@@ -88,6 +92,7 @@ public class Sistema {
 		Usuario usuario = getUsuario(nome, telefone);
 		Item filme = new BlurayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
 		usuario.adicionaItem(filme);
+		usuario.somaReputacao(filme.getValor() * 0.05);
 	}
 
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao, int numeroFaixas, String artista, String classificacao) {
@@ -95,6 +100,7 @@ public class Sistema {
 		Usuario usuario = getUsuario(nome, telefone);
 		Item show = new BlurayShow(nomeItem, preco, duracao, numeroFaixas, artista, classificacao);
 		usuario.adicionaItem(show);
+		usuario.somaReputacao(show.getValor() * 0.05);
 	}
 
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
@@ -102,6 +108,7 @@ public class Sistema {
 		Usuario usuario = getUsuario(nome, telefone);
 		Item serie = new BluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 		usuario.adicionaItem(serie);
+		usuario.somaReputacao(serie.getValor() * 0.05);
 	}
 
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
@@ -178,6 +185,7 @@ public class Sistema {
 		if (!item.emprestado()){
 			Emprestimo emprestimo = new Emprestimo(dono, requerente, item, dataEmprestimo, periodo);
 			dono.adicionaEmprestimo(emprestimo);
+			dono.somaReputacao(item.getValor() * 0.10);
 			requerente.adicionaEmprestimo(emprestimo);
 			emprestimos.add(emprestimo);
 		}
@@ -202,10 +210,19 @@ public class Sistema {
 			}
 		}
 		
-		if (teveEmprestimo)
+		if (teveEmprestimo){
 			emprestimo.encerra(dataDevolucao);
-		else
-			throw new NullPointerException("Emprestimo nao encontrado");
+			int dias;
+			double total;
+			if (emprestimo.passouDoPeriodo()){
+				dias = emprestimo.getDuracao() - emprestimo.getPeriodo();
+				total = -((dias * 0.01) * emprestimo.getItem().getValor());
+				emprestimo.getRequerente().somaReputacao(total);
+			}else{
+				emprestimo.getRequerente().somaReputacao(emprestimo.getItem().getValor() * 0.05);}
+		
+		}else{
+			throw new NullPointerException("Emprestimo nao encontrado");}
 	}
 	
 	private List<Item> listaItens() {

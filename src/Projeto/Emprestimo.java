@@ -11,6 +11,7 @@ public class Emprestimo {
 	private LocalDate dataEmprestimo;
 	private int periodo;
 	private boolean passouDoPeriodo;
+	private int duracao;
 	
 	public Emprestimo(Usuario dono, Usuario requerente, Item item, String dataEmprestimo, int periodo){
 		
@@ -32,7 +33,7 @@ public class Emprestimo {
 		this.requerente.devolveItem(this.item);
 		this.item.retornou();
 		LocalDate diaDevolucao = LocalDate.parse(dataDevolucao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		int duracao = (int) (diaDevolucao.toEpochDay() - this.dataEmprestimo.toEpochDay());
+		duracao = (int) (diaDevolucao.toEpochDay() - this.dataEmprestimo.toEpochDay());
 		
 		if (duracao > this.periodo)
 			this.passouDoPeriodo = true;
@@ -43,6 +44,10 @@ public class Emprestimo {
 	public boolean passouDoPeriodo(){
 		// Verifica se passou do periodo de entrega
 		return this.passouDoPeriodo;
+	}
+	
+	public int getDuracao(){
+		return this.duracao;
 	}
 	
 	public Usuario getDono() {

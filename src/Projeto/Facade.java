@@ -115,7 +115,7 @@ public class Facade {
 	
 	public static void main(String[] args) {
 		// Testes easyAccept
-		args = new String[] {"Projeto.Facade", "Tests/us1.txt", "Tests/us2.txt", "Tests/us3.txt", "Tests/us4.txt", "Tests/us6.txt"};
+		args = new String[] {"Projeto.Facade", "Tests/us1.txt", "Tests/us2.txt", "Tests/us3.txt", "Tests/us4.txt", "Tests/us6.txt", "Tests/us7.txt"};
 		EasyAccept.main(args);
 	}
 }

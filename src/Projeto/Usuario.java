@@ -11,6 +11,8 @@ public class Usuario {
 	private String email;
 	private String telefone;
 	private double reputacao;
+	private String qualificacao;
+	private int periodoMaximo;
 	
 	
 	private Set<Item> itens;
@@ -24,8 +26,37 @@ public class Usuario {
 		this.telefone = telefone ;
 		this.email = email;
 		this.reputacao = 0.0;
+		this.qualificacao = "FreeRyder";
 		itens = new HashSet<>();
 		emprestimos = new ArrayList<>();
+	}
+	
+	public String getQualificacao(){
+		return this.qualificacao;
+	}
+	
+	public void atualizaQualificacao(){
+		if (reputacao < 0){
+			this.qualificacao = "Caloteiro";
+			this.setPeriodoMaximo(0);
+		}else if (reputacao >= 0 && reputacao <= 100){
+			this.qualificacao = "Noob";
+			this.setPeriodoMaximo(7);
+		}else if (reputacao >= 0 && itens.size() == 0){
+			this.qualificacao = "FreeRyder";
+			this.setPeriodoMaximo(5);
+		}else{
+			this.qualificacao = "BomAmigo";
+			this.setPeriodoMaximo(14);
+			}
+	}
+	
+	public int getPeriodoMaximo(){
+		return this.periodoMaximo;
+	}
+	
+	public void setPeriodoMaximo(int periodoMaximo){
+		this.periodoMaximo = periodoMaximo;
 	}
 	
 	public double getReputacao(){

@@ -134,9 +134,14 @@ public class Facade {
 		return sistema.listarItensEmprestados();
 	}
 	
-	public String listarTop10(){
+	public String listarTop10Itens(){
 		
-		return sistema.listarTop10();
+		return sistema.listarTop10Itens();
+	}
+	
+	public String listarHistoricoEmprestimoItem(String nomeItem){
+		
+		return sistema.listarHistoricoEmprestimoItem(nomeItem);
 	}
 	
 	public String listarCaloteiros() {

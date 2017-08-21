@@ -74,7 +74,7 @@ public class Usuario {
 		throw new NullPointerException("Item nao encontrado");
 		}
 	
-	public List<Item> listaItens(List<Item> lista){
+	public Set<Item> listaItens(Set<Item> lista){
 		// Retorna a lista de itens do usuario
 		for (Item item : itens){
 			
@@ -92,7 +92,16 @@ public class Usuario {
 		// Devolve um item emprestado ao dono original
 		itens.remove(item);
 	}
-
+	
+	public List<Item> itensNaoEmprestados(List<Item> lista){
+	
+		for (Item item : itens){
+			if (!item.emprestado())
+				lista.add(item);
+		}
+		return lista;
+	}
+	
 	public String toString(){
 		// Representacao em string do usuario
 		return this.nome + ", " +this.email + ", " + this.telefone;

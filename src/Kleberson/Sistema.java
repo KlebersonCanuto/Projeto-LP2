@@ -227,25 +227,66 @@ public class Sistema {
 	}
 
 	public String listarEmprestimosItem(String nomeItem){
-
-		return null;
+		
+		String stringEmprestimos = "Emprestimos associados ao item: ";
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getItem().getNome().equals(nomeItem))
+				stringEmprestimos+=emprestimo.toString() + "|";
+		}
+		if (stringEmprestimos.equals("Emprestimos associados ao item: "))
+			return "Nenhum emprestimos associados ao item";
+		return stringEmprestimos;
 	}
 
 	public String listarItensNaoEmprestados(){
-
-		return null;
+		
+		String itensNaoEmprestados = "";
+		List<Item> itens = itensNaoEmprestados();
+		Collections.sort(itens, new ComparadorNome());
+		for (Item item : itens){
+			
+			itensNaoEmprestados+=item.toString() + "|";
+		}
+		return itensNaoEmprestados;
 	}
 
 	public String listarItensEmprestados(){
 
-		return null;
+		String itensEmprestados = "";
+		for (Emprestimo emprestimo: emprestimos){
+			if (!emprestimo.terminou())
+				itensEmprestados+="Dono do item: " + emprestimo.getDono().getNome() + ", Nome do item emprestado: " + emprestimo.getItem().getNome() + "|";
+		}
+		
+		return itensEmprestados;
 	}
 
-	public String listarTop10(){
-
-		return null;
+	public String listarTop10Itens(){
+		
+		String top10 = "";
+		List<Item> itens = listaItens();
+		Collections.sort(itens, new ComparadorEmprestimos());
+		int contador = 0;
+		for (Item item : itens){
+			contador+=1;
+			if (item.getQuantidadeEmprestimo() > 0)
+				top10+= contador + ") " + item.getQuantidadeEmprestimo() + " emprestimos - " + item.toString() + "|";
+			if(contador == 10)
+				break;
+		}
+		return top10;
 	}
-
+	
+	public String listarHistoricoEmprestimoItem(String nomeItem){
+		
+		String historico = "";
+		for (Emprestimo emprestimo : emprestimos){
+			if(emprestimo.getItem().getNome().equals(nomeItem))
+				historico+=emprestimo.toString() + "|";
+		}
+		return historico;
+	}
+	
 	public String listarCaloteiros(){
 
 		return null;
@@ -263,9 +304,23 @@ public class Sistema {
 	
 	private List<Item> listaItens() {
 		// Lista todos os itens (sem ordem definida)
-		List<Item> itens = new ArrayList<Item>();
+		Set<Item> itens = new HashSet<Item>();
 		for (Usuario usuario : usuarios){
 			usuario.listaItens(itens);
+		}
+		
+		List<Item> lista = new ArrayList<>();
+		for (Item item : itens){
+			lista.add(item);
+		}
+		return lista;
+	}
+	
+	private List<Item> itensNaoEmprestados() {
+		// Lista todos os itens (sem ordem definida)
+		List<Item> itens = new ArrayList<Item>();
+		for (Usuario usuario : usuarios){
+			usuario.itensNaoEmprestados(itens);
 		}
 		return itens;
 	}

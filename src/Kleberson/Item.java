@@ -5,6 +5,7 @@ public class Item {
 	private String nomeItem;
 	private double valor; 
 	private boolean emprestado;
+	private int quantidadeEmprestimo;
 	
 	public Item(String nomeItem, double valor){
 		
@@ -14,6 +15,7 @@ public class Item {
 			this.nomeItem = nomeItem;
 			this.valor = valor;
 			this.emprestado = false;
+			this.quantidadeEmprestimo = 0;
 		}
 	}
 	
@@ -44,6 +46,7 @@ public class Item {
 
 	public void emprestou(){
 		// Muda o item para emprestado
+		this.quantidadeEmprestimo+=1;
 		this.emprestado = true;
 	}
 	
@@ -59,6 +62,11 @@ public class Item {
 		return "Nao emprestado";
 	}
 	
+	public int getQuantidadeEmprestimo(){
+		
+		return this.quantidadeEmprestimo;
+	}
+
 	public int hashCode(){
 		// hashCode de um item
 		final int prime = 31;

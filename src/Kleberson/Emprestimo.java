@@ -31,9 +31,10 @@ public class Emprestimo {
 
 	public void encerra(String dataDevolucao) {
 		// Encerra um emprestimo
+		LocalDate diaDevolucao = LocalDate.parse(dataDevolucao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		this.dataDevolucao = diaDevolucao;
 		this.requerente.devolveItem(this.item);
 		this.item.retornou();
-		LocalDate diaDevolucao = LocalDate.parse(dataDevolucao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		int duracao = (int) (diaDevolucao.toEpochDay() - this.dataEmprestimo.toEpochDay());
 		
 		if (duracao > this.periodo)

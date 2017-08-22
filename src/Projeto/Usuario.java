@@ -109,6 +109,7 @@ public class Usuario {
 	
 	public void adicionaItemEmprestado(Item item) {
 		
+		itens.add(item);
 	}
 	
 	public void removeItem(String nomeItem) {

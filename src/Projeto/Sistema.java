@@ -344,11 +344,11 @@ public class Sistema {
 		if (usuarios.size()>=10){
 			for (int i = 0; i < 10; i++){
 				Usuario usuario = novaLista.get(i);
-				melhores+= (i+1) +": " + usuario.getNome() + " - Reputacao: " + usuario.getReputacao() + "|";
+				melhores+= (i+1) +": " + usuario.getNome() + " - Reputacao: " + String.format("%.2f", usuario.getReputacao()) + "|";
 			}
 		} else{
 			for (Usuario usuario: novaLista){
-				melhores += (novaLista.indexOf(usuario)+1) + ": " + usuario.getNome() + " - Reputacao: " + usuario.getReputacao() + "|";
+				melhores += (novaLista.indexOf(usuario)+1) + ": " + usuario.getNome() + " - Reputacao: " + String.format("%.2f", usuario.getReputacao()) + "|";
 			}
 		}
 		return melhores;
@@ -363,11 +363,11 @@ public class Sistema {
 		if (usuarios.size()>=10){
 			for (int i = 0; i < 10; i++){
 				Usuario usuario = novaLista.get(i);
-				piores+= (i+1) +": " + usuario.getNome() + " - Reputacao: " + usuario.getReputacao() + "|";
+				piores+= (i+1) +": " + usuario.getNome() + " - Reputacao: " + String.format("%.2f", usuario.getReputacao()) + "|";
 			}
 		} else{
 			for (Usuario usuario: novaLista){
-				piores += (novaLista.indexOf(usuario)+1) + ": " + usuario.getNome() + " - Reputacao: " + usuario.getReputacao() + "|";
+				piores += (novaLista.indexOf(usuario)+1) + ": " + usuario.getNome() + " - Reputacao: " + String.format("%.2f", usuario.getReputacao()) + "|";
 			}
 		}
 		return piores;

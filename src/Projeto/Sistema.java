@@ -71,8 +71,6 @@ public class Sistema {
 		Usuario usuario = getUsuario(nome, telefone);
 		Item eletronico = new JogosEletronicos(nomeItem, preco, plataforma);
 		usuario.adicionaItem(eletronico);
-		usuario.somaReputacao(eletronico.getValor() * 0.05);
-		usuario.atualizaQualificacao();
 	}
 
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
@@ -80,8 +78,6 @@ public class Sistema {
 		Usuario usuario = getUsuario(nome, telefone);
 		Item tabuleiro = new JogoTabuleiro(nomeItem, preco);	
 		usuario.adicionaItem(tabuleiro);
-		usuario.somaReputacao(tabuleiro.getValor() * 0.05);
-		usuario.atualizaQualificacao();
 	}
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
@@ -96,8 +92,6 @@ public class Sistema {
 		Usuario usuario = getUsuario(nome, telefone);
 		Item filme = new BlurayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
 		usuario.adicionaItem(filme);
-		usuario.somaReputacao(filme.getValor() * 0.05);
-		usuario.atualizaQualificacao();
 	}
 
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao, int numeroFaixas, String artista, String classificacao) {
@@ -105,8 +99,6 @@ public class Sistema {
 		Usuario usuario = getUsuario(nome, telefone);
 		Item show = new BlurayShow(nomeItem, preco, duracao, numeroFaixas, artista, classificacao);
 		usuario.adicionaItem(show);
-		usuario.somaReputacao(show.getValor() * 0.05);
-		usuario.atualizaQualificacao();
 	}
 
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
@@ -114,8 +106,6 @@ public class Sistema {
 		Usuario usuario = getUsuario(nome, telefone);
 		Item serie = new BluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 		usuario.adicionaItem(serie);
-		usuario.somaReputacao(serie.getValor() * 0.05);
-		usuario.atualizaQualificacao();
 	}
 
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {

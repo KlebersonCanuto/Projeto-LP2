@@ -28,6 +28,7 @@ public class Usuario {
 		this.email = email;
 		this.reputacao = 0.0;
 		this.qualificacao = "FreeRyder";
+		this.periodoMaximo = 5;
 		itens = new HashSet<>();
 		emprestimos = new ArrayList<>();
 	}
@@ -40,16 +41,17 @@ public class Usuario {
 		if (reputacao < 0){
 			this.qualificacao = "Caloteiro";
 			this.setPeriodoMaximo(0);
-		}else if (reputacao >= 0 && reputacao <= 100){
-			this.qualificacao = "Noob";
-			this.setPeriodoMaximo(7);
 		}else if (reputacao >= 0 && itens.size() == 0){
 			this.qualificacao = "FreeRyder";
 			this.setPeriodoMaximo(5);
+		}
+		else if (reputacao >= 0 && reputacao <= 100){
+			this.qualificacao = "Noob";
+			this.setPeriodoMaximo(7);
 		}else{
 			this.qualificacao = "BomAmigo";
 			this.setPeriodoMaximo(14);
-			}
+		}
 	}
 	
 	public int getPeriodoMaximo(){
@@ -101,6 +103,11 @@ public class Usuario {
 	public void adicionaItem(Item item){
 		// Adiciona um item ao usuario
 		itens.add(item);
+		this.reputacao+=(item.getValor()*0.05);
+		this.atualizaQualificacao();
+	}
+	
+	public void adicionaItemEmprestado(Item item) {
 		
 	}
 	

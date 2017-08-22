@@ -20,13 +20,10 @@ public class Emprestimo {
 		this.dono = dono;
 		this.requerente = requerente;
 		this.item = item;
-		this.requerente.adicionaItem(this.item);
+		this.requerente.adicionaItemEmprestado(this.item);
 		this.item.emprestou();
 		this.dataEmprestimo = LocalDate.parse(dataEmprestimo, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		if (periodo < 7)
-			this.periodo = periodo;
-		else
-			this.periodo = 7;
+		this.periodo = periodo;
 		this.terminou = false;
 	}
 

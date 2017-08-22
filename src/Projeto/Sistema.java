@@ -9,12 +9,12 @@ import java.util.Set;
 
 public class Sistema {
 
-	private Set<Usuario> usuarios;
+	private List<Usuario> usuarios;
 	private List<Emprestimo> emprestimos;
 	
 	public Sistema(){
 		
-		usuarios = new HashSet<>();
+		usuarios = new ArrayList<>();
 		emprestimos = new ArrayList<>();
 	}
 
@@ -323,7 +323,10 @@ public class Sistema {
 	public String listarCaloteiros(){
 		
 		String caloteiros = "Lista de usuarios com reputacao negativa: ";
-		for (Usuario usuario : usuarios) {
+		List<Usuario> novaLista = new ArrayList<>();
+		novaLista.addAll(usuarios);
+		Collections.sort(novaLista, new ComparadorUsuarioNome());
+		for (Usuario usuario : novaLista) {
 			if (usuario.getReputacao() < 0)
 				caloteiros+= usuario.toString() + "|";
 		}
@@ -334,12 +337,40 @@ public class Sistema {
 
 	public String listarTop10MelhoresUsuarios(){
 		
-		return null;
+		String melhores = "";
+		List<Usuario> novaLista = new ArrayList<>();
+		novaLista.addAll(usuarios);
+		Collections.sort(novaLista, new ComparadorUsuarioReputacaoMaior());
+		if (usuarios.size()>=10){
+			for (int i = 0; i < 10; i++){
+				Usuario usuario = novaLista.get(i);
+				melhores+= (i+1) +": " + usuario.getNome() + " - Reputacao: " + usuario.getReputacao() + "|";
+			}
+		} else{
+			for (Usuario usuario: novaLista){
+				melhores += (novaLista.indexOf(usuario)+1) + ": " + usuario.getNome() + " - Reputacao: " + usuario.getReputacao() + "|";
+			}
+		}
+		return melhores;
 	}
 
 	public String listarTop10PioresUsuarios(){
 		
-		return null;
+		String piores = "";
+		List<Usuario> novaLista = new ArrayList<>();
+		novaLista.addAll(usuarios);
+		Collections.sort(novaLista, new ComparadorUsuarioReputacaoMenor());
+		if (usuarios.size()>=10){
+			for (int i = 0; i < 10; i++){
+				Usuario usuario = novaLista.get(i);
+				piores+= (i+1) +": " + usuario.getNome() + " - Reputacao: " + usuario.getReputacao() + "|";
+			}
+		} else{
+			for (Usuario usuario: novaLista){
+				piores += (novaLista.indexOf(usuario)+1) + ": " + usuario.getNome() + " - Reputacao: " + usuario.getReputacao() + "|";
+			}
+		}
+		return piores;
 	}
 	
 	

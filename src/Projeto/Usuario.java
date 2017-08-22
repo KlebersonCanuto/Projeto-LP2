@@ -1,6 +1,7 @@
 package Projeto;
 
 import java.util.ArrayList;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -117,7 +118,16 @@ public class Usuario {
 		throw new NullPointerException("Item nao encontrado");
 		}
 	
-	public List<Item> listaItens(List<Item> lista){
+	public List<Item> itensNaoEmprestados(List<Item> lista){
+		
+		for (Item item : itens){
+			if (!item.emprestado())
+				lista.add(item);
+		}
+		return lista;
+	}
+	
+	public Set<Item> listaItens(Set<Item> lista){
 		// Retorna a lista de itens do usuario
 		for (Item item : itens){
 			

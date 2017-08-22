@@ -1,11 +1,11 @@
 package Projeto;
 
 import java.util.List;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-
 
 public class Sistema {
 
@@ -242,15 +242,132 @@ public class Sistema {
 			throw new NullPointerException("Emprestimo nao encontrado");}
 	}
 	
+
+	public String listarEmprestimoUsuarioEmprestando(String nome, String telefone){
+		
+		Usuario usuario = getUsuario(nome, telefone);
+		String stringEmprestimos = "Emprestimos: ";
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getDono().equals(usuario))
+				stringEmprestimos+=emprestimo.toString() + "|";
+		}
+		if (stringEmprestimos.equals("Emprestimos: "))
+			return "Nenhum item emprestado";
+		return stringEmprestimos;
+	}
+
+	public String listarEmprestimoUsuarioPegandoEmprestado(String nome, String telefone){
+
+		Usuario usuario = getUsuario(nome, telefone);
+		String stringEmprestimos = "Emprestimos pegos: ";
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getRequerente().equals(usuario))
+				stringEmprestimos+=emprestimo.toString() + "|";
+		}
+		if (stringEmprestimos.equals("Emprestimos pegos: "))
+			return "Nenhum item pego emprestado";
+		return stringEmprestimos;
+	}
+	
+	public String listarEmprestimosItem(String nomeItem){
+		
+		String stringEmprestimos = "Emprestimos associados ao item: ";
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getItem().getNome().equals(nomeItem))
+				stringEmprestimos+=emprestimo.toString() + "|";
+		}
+		if (stringEmprestimos.equals("Emprestimos associados ao item: "))
+			return "Nenhum emprestimos associados ao item";
+		return stringEmprestimos;
+	}
+
+	public String listarItensNaoEmprestados(){
+		
+		String itensNaoEmprestados = "";
+		List<Item> itens = itensNaoEmprestados();
+		Collections.sort(itens, new ComparadorNome());
+		for (Item item : itens){
+			
+			itensNaoEmprestados+=item.toString() + "|";
+		}
+		return itensNaoEmprestados;
+	}
+
+	public String listarItensEmprestados(){
+
+		String itensEmprestados = "";
+		for (Emprestimo emprestimo: emprestimos){
+			if (!emprestimo.terminou())
+				itensEmprestados+="Dono do item: " + emprestimo.getDono().getNome() + ", Nome do item emprestado: " + emprestimo.getItem().getNome() + "|";
+		}
+		
+		return itensEmprestados;
+	}
+
+	public String listarTop10Itens(){
+		
+		String top10 = "";
+		List<Item> itens = listaItens();
+		Collections.sort(itens, new ComparadorEmprestimos());
+		int contador = 0;
+		for (Item item : itens){
+			contador+=1;
+			if (item.getQuantidadeEmprestimo() > 0)
+				top10+= contador + ") " + item.getQuantidadeEmprestimo() + " emprestimos - " + item.toString() + "|";
+			if(contador == 10)
+				break;
+		}
+		return top10;
+	}
+	
+	public String listarHistoricoEmprestimoItem(String nomeItem){
+		
+		String historico = "";
+		for (Emprestimo emprestimo : emprestimos){
+			if(emprestimo.getItem().getNome().equals(nomeItem))
+				historico+=emprestimo.toString() + "|";
+		}
+		return historico;
+	}
+	
+	public String listarCaloteiros(){
+
+		return null;
+	}
+
+	public String listarTop10MelhoresUsuarios(){
+		
+		return null;
+	}
+
+	public String listarTop10PioresUsuarios(){
+		
+		return null;
+	}
+	
+	
 	private List<Item> listaItens() {
 		// Lista todos os itens (sem ordem definida)
-		List<Item> itens = new ArrayList<Item>();
+		Set<Item> itens = new HashSet<Item>();
 		for (Usuario usuario : usuarios){
 			usuario.listaItens(itens);
 		}
-		return itens;
+		
+		List<Item> lista = new ArrayList<>();
+		for (Item item : itens){
+			lista.add(item);
+		}
+		return lista;
 	}
 	
+	private List<Item> itensNaoEmprestados() {
+		// Lista todos os itens (sem ordem definida)
+		List<Item> itens = new ArrayList<Item>();
+		for (Usuario usuario : usuarios){
+			usuario.itensNaoEmprestados(itens);
+		}
+		return itens;
+	}
 	private boolean usuarioExiste(String nome, String telefone) {
 		// Verifica se o usuario existe
 		for (Usuario usuario : usuarios){

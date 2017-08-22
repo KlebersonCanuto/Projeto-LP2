@@ -321,8 +321,15 @@ public class Sistema {
 	}
 	
 	public String listarCaloteiros(){
-
-		return null;
+		
+		String caloteiros = "Lista de usuarios com reputacao negativa: ";
+		for (Usuario usuario : usuarios) {
+			if (usuario.getReputacao() < 0)
+				caloteiros+= usuario.toString() + "|";
+		}
+		if (caloteiros.equals("Lista de usuarios com reputacao negativa: "))
+			return "Nao tem usuario com reputacao negativa";
+		return caloteiros;
 	}
 
 	public String listarTop10MelhoresUsuarios(){

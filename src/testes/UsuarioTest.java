@@ -128,10 +128,10 @@ public class UsuarioTest {
 		assertEquals(false, emprestimos.size() == 2);
 
 	}
-	
+
 	@Test
-	public void testDevolveItem(){
-		
+	public void testDevolveItem() {
+
 	}
 
 }

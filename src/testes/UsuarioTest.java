@@ -3,6 +3,7 @@ package testes;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -131,6 +132,10 @@ public class UsuarioTest {
 
 	@Test
 	public void testDevolveItem() {
+		Set<Item> itens = new HashSet<>();
+		itens.add(I1);
+
+		assertEquals(true, itens.remove(I1));
 
 	}
 

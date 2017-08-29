@@ -1,20 +1,26 @@
 package Kleberson;
 
 import java.util.List;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class Sistema {
 
-	private Set<Usuario> usuarios;
+	private List<Usuario> usuarios;
 	private List<Emprestimo> emprestimos;
 	
 	public Sistema(){
 		
-		usuarios = new HashSet<>();
+		usuarios = new ArrayList<>();
 		emprestimos = new ArrayList<>();
 	}
 
@@ -32,10 +38,22 @@ public class Sistema {
 
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
 		// Retorna uma informacao do usuario
-		if (atributo.toLowerCase().equals("email"))
-			return getUsuario(nome, telefone).getEmail();
-		
-		throw new IllegalArgumentException("Usuario invalido");
+		if (usuarioExiste(nome, telefone)){
+			if (atributo.toLowerCase().equals("email"))
+				return getUsuario(nome, telefone).getEmail();
+			else if (atributo.toLowerCase().equals("nome"))
+				return getUsuario(nome, telefone).getNome();
+			else if (atributo.toLowerCase().equals("telefone"))
+				return getUsuario(nome, telefone).getCelular();
+			else if (atributo.toLowerCase().equals("reputacao"))
+				return String.valueOf(getUsuario(nome, telefone).getReputacao());
+			else if (atributo.toLowerCase().equals("cartao"))
+				return getUsuario(nome, telefone).getQualificacao();
+			else
+				return null;
+		}
+		else
+			throw new IllegalArgumentException("Usuario invalido");
 	}
 
 	public void removerUsuario(String nome, String telefone) {
@@ -47,11 +65,14 @@ public class Sistema {
 		// Atualiza um atributo do usuario
 		Usuario usuario = getUsuario(nome, telefone);
 		if(atributo.toLowerCase().equals("email"))
-			usuario.setEmail(valor);
+			if (usuario.getEmail() != valor)
+				usuario.setEmail(valor);
 		else if(atributo.toLowerCase().equals("nome"))
-			usuario.setNome(valor);
+			if (usuario.getNome() != valor)
+				usuario.setNome(valor);
 		else if(atributo.toLowerCase().equals("telefone"))
-			usuario.setCelular(valor);
+			if (usuario.getCelular() != valor)
+				usuario.setCelular(valor);
 	}
 
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
@@ -168,10 +189,18 @@ public class Sistema {
 		Usuario requerente = getUsuario(nomeRequerente, telefoneRequerente);
 		Item item = dono.getItem(nomeItem);
 		if (!item.emprestado()){
-			Emprestimo emprestimo = new Emprestimo(dono, requerente, item, dataEmprestimo, periodo);
-			dono.adicionaEmprestimo(emprestimo);
-			requerente.adicionaEmprestimo(emprestimo);
-			emprestimos.add(emprestimo);
+			if (requerente.getQualificacao() != "Caloteiro")
+				if (periodo <= requerente.getPeriodoMaximo()){	
+					Emprestimo emprestimo = new Emprestimo(dono, requerente, item, dataEmprestimo, periodo);
+					dono.adicionaEmprestimo(emprestimo);
+					dono.somaReputacao(item.getValor() * 0.10);
+					requerente.adicionaEmprestimo(emprestimo);
+					emprestimos.add(emprestimo);
+				}else{
+					throw new IllegalArgumentException("Usuario impossiblitado de pegar emprestado por esse periodo");
+				}
+			else
+				throw new IllegalArgumentException("Usuario nao pode pegar nenhum item emprestado");
 		}
 		else
 			throw new IllegalArgumentException("Item emprestado no momento");
@@ -194,11 +223,24 @@ public class Sistema {
 			}
 		}
 		
-		if (teveEmprestimo)
+		if (teveEmprestimo){
 			emprestimo.encerra(dataDevolucao);
-		else
-			throw new NullPointerException("Emprestimo nao encontrado");
+			int dias;
+			double total;
+			if (emprestimo.passouDoPeriodo()){
+				dias = emprestimo.getDuracao() - emprestimo.getPeriodo();
+				total = -((dias * 0.01) * emprestimo.getItem().getValor());
+				emprestimo.getRequerente().somaReputacao(total);
+				emprestimo.getRequerente().atualizaQualificacao();
+			}else{
+				emprestimo.getRequerente().somaReputacao(emprestimo.getItem().getValor() * 0.05);
+				emprestimo.getRequerente().atualizaQualificacao();
+				}
+		
+		}else{
+			throw new NullPointerException("Emprestimo nao encontrado");}
 	}
+	
 
 	public String listarEmprestimoUsuarioEmprestando(String nome, String telefone){
 		
@@ -225,7 +267,7 @@ public class Sistema {
 			return "Nenhum item pego emprestado";
 		return stringEmprestimos;
 	}
-
+	
 	public String listarEmprestimosItem(String nomeItem){
 		
 		String stringEmprestimos = "Emprestimos associados ao item: ";
@@ -288,19 +330,58 @@ public class Sistema {
 	}
 	
 	public String listarCaloteiros(){
-
-		return null;
+		
+		String caloteiros = "Lista de usuarios com reputacao negativa: ";
+		List<Usuario> novaLista = new ArrayList<>();
+		novaLista.addAll(usuarios);
+		Collections.sort(novaLista, new ComparadorUsuarioNome());
+		for (Usuario usuario : novaLista) {
+			if (usuario.getReputacao() < 0)
+				caloteiros+= usuario.toString() + "|";
+		}
+		if (caloteiros.equals("Lista de usuarios com reputacao negativa: "))
+			return "Nao tem usuario com reputacao negativa";
+		return caloteiros;
 	}
 
 	public String listarTop10MelhoresUsuarios(){
 		
-		return null;
+		String melhores = "";
+		List<Usuario> novaLista = new ArrayList<>();
+		novaLista.addAll(usuarios);
+		Collections.sort(novaLista, new ComparadorUsuarioReputacaoMaior());
+		if (usuarios.size()>=10){
+			for (int i = 0; i < 10; i++){
+				Usuario usuario = novaLista.get(i);
+				melhores+= (i+1) +": " + usuario.getNome() + " - Reputacao: " + String.format("%.2f", usuario.getReputacao()) + "|";
+			}
+		} else{
+			for (Usuario usuario: novaLista){
+				melhores += (novaLista.indexOf(usuario)+1) + ": " + usuario.getNome() + " - Reputacao: " + String.format("%.2f", usuario.getReputacao()) + "|";
+			}
+		}
+		return melhores;
 	}
 
 	public String listarTop10PioresUsuarios(){
 		
-		return null;
+		String piores = "";
+		List<Usuario> novaLista = new ArrayList<>();
+		novaLista.addAll(usuarios);
+		Collections.sort(novaLista, new ComparadorUsuarioReputacaoMenor());
+		if (usuarios.size()>=10){
+			for (int i = 0; i < 10; i++){
+				Usuario usuario = novaLista.get(i);
+				piores+= (i+1) +": " + usuario.getNome() + " - Reputacao: " + String.format("%.2f", usuario.getReputacao()) + "|";
+			}
+		} else{
+			for (Usuario usuario: novaLista){
+				piores += (novaLista.indexOf(usuario)+1) + ": " + usuario.getNome() + " - Reputacao: " + String.format("%.2f", usuario.getReputacao()) + "|";
+			}
+		}
+		return piores;
 	}
+	
 	
 	private List<Item> listaItens() {
 		// Lista todos os itens (sem ordem definida)
@@ -324,18 +405,17 @@ public class Sistema {
 		}
 		return itens;
 	}
-	
-	private boolean usuarioExiste(String nome, String telefone){
+	private boolean usuarioExiste(String nome, String telefone) {
 		// Verifica se o usuario existe
 		for (Usuario usuario : usuarios){
-			if(usuario.getNome().equals(nome))
+			if(usuario.getNome().toLowerCase().equals(nome.toLowerCase()))
 				if(usuario.getCelular().equals(telefone))
 					return true;
 		}
 		return false;
 	}
 
-	private Usuario getUsuario(String nome, String telefone){
+	private Usuario getUsuario(String nome, String telefone) {
 		// Retorna um usuario
 		for (Usuario usuario : usuarios){
 			if(usuario.getNome().equals(nome))
@@ -345,4 +425,68 @@ public class Sistema {
 		throw new NullPointerException("Usuario invalido");
 	}
 
+	
+	public void inicia() {
+		try{
+			
+		InputStream fisu = new FileInputStream("usuarios.txt");
+		ObjectInputStream oisu = new ObjectInputStream(fisu);
+		InputStream fise = new FileInputStream("emprestimos.txt");
+		ObjectInputStream oise = new ObjectInputStream(fise);
+
+		int n = oisu.readInt();
+		int m = oise.readInt();
+			
+		for (int i = 0; i < n; i++) {
+			usuarios.add( (Usuario) oisu.readObject());
+		}
+			
+		for (int i = 0; i < m; i++){
+			emprestimos.add((Emprestimo) oise.readObject());
+		}
+		
+		oise.close();
+		oisu.close();
+			
+			
+		} catch(IOException e){
+			
+			System.out.println("Arquivo não encontrado" + e);		
+		} catch (ClassNotFoundException e){
+			
+			System.out.println("Ocorreu um erro");
+		}
+	}
+
+	public void fecha() {
+		try{
+			
+			
+		OutputStream fosu = new FileOutputStream("usuarios.txt");
+		ObjectOutputStream oosu = new ObjectOutputStream(fosu);
+		
+		OutputStream fose = new FileOutputStream("emprestimos.txt");
+		ObjectOutputStream oose = new ObjectOutputStream(fose);
+		
+		oose.writeInt(emprestimos.size());
+		oosu.writeInt(usuarios.size());
+		
+		for (Usuario usuario : usuarios) {
+			oosu.writeObject(usuario);
+			
+		}
+		
+		for (Emprestimo emprestimo : emprestimos){
+			oose.writeObject(emprestimo);
+		}
+		
+		oose.close();
+		oosu.close();
+		usuarios.clear();
+		emprestimos.clear();
+		} catch(IOException e){
+			
+			System.out.println("Arquivo não encontrado" + e);		
+		}
+	}
 }

@@ -1,10 +1,15 @@
 package Projeto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Emprestimo {
+public class Emprestimo implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1238008821695884368L;
 	private Usuario dono;
 	private Usuario requerente;
 	private Item item;

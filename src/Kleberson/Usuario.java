@@ -1,15 +1,25 @@
 package Kleberson;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Usuario {
+public class Usuario implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8045523698148959051L;
 	private String nome;
 	private String email;
 	private String telefone;
+	private double reputacao;
+	private String qualificacao;
+	private int periodoMaximo;
+	
 	
 	private Set<Item> itens;
 	
@@ -21,8 +31,48 @@ public class Usuario {
 		this.nome = nome;
 		this.telefone = telefone ;
 		this.email = email;
+		this.reputacao = 0.0;
+		this.qualificacao = "FreeRyder";
+		this.periodoMaximo = 5;
 		itens = new HashSet<>();
 		emprestimos = new ArrayList<>();
+	}
+	
+	public String getQualificacao(){
+		return this.qualificacao;
+	}
+	
+	public void atualizaQualificacao(){
+		if (reputacao < 0){
+			this.qualificacao = "Caloteiro";
+			this.setPeriodoMaximo(0);
+		}else if (reputacao >= 0 && itens.size() == 0){
+			this.qualificacao = "FreeRyder";
+			this.setPeriodoMaximo(5);
+		}
+		else if (reputacao >= 0 && reputacao <= 100){
+			this.qualificacao = "Noob";
+			this.setPeriodoMaximo(7);
+		}else{
+			this.qualificacao = "BomAmigo";
+			this.setPeriodoMaximo(14);
+		}
+	}
+	
+	public int getPeriodoMaximo(){
+		return this.periodoMaximo;
+	}
+	
+	public void setPeriodoMaximo(int periodoMaximo){
+		this.periodoMaximo = periodoMaximo;
+	}
+	
+	public double getReputacao(){
+		return this.reputacao;
+	}
+	
+	public void somaReputacao(double valor){
+		this.reputacao += valor;
 	}
 
 	public String getNome() {
@@ -58,6 +108,13 @@ public class Usuario {
 	public void adicionaItem(Item item){
 		// Adiciona um item ao usuario
 		itens.add(item);
+		this.reputacao+=(item.getValor()*0.05);
+		this.atualizaQualificacao();
+	}
+	
+	public void adicionaItemEmprestado(Item item) {
+		
+		itens.add(item);
 	}
 	
 	public void removeItem(String nomeItem) {
@@ -73,6 +130,15 @@ public class Usuario {
 			}
 		throw new NullPointerException("Item nao encontrado");
 		}
+	
+	public List<Item> itensNaoEmprestados(List<Item> lista){
+		
+		for (Item item : itens){
+			if (!item.emprestado())
+				lista.add(item);
+		}
+		return lista;
+	}
 	
 	public Set<Item> listaItens(Set<Item> lista){
 		// Retorna a lista de itens do usuario
@@ -92,17 +158,8 @@ public class Usuario {
 		// Devolve um item emprestado ao dono original
 		itens.remove(item);
 	}
-	
-	public List<Item> itensNaoEmprestados(List<Item> lista){
-	
-		for (Item item : itens){
-			if (!item.emprestado())
-				lista.add(item);
-		}
-		return lista;
-	}
-	
-	public String toString(){
+
+	public String toString() {
 		// Representacao em string do usuario
 		return this.nome + ", " +this.email + ", " + this.telefone;
 	}
@@ -115,8 +172,8 @@ public class Usuario {
 		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
 		return result;
 	}
-	
-	public boolean equals(Object obj){
+
+	public boolean equals(Object obj) {
 		// Verifica se 2 usuarios sao iguais
 		if (this == obj)
 			return true;

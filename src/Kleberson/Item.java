@@ -1,7 +1,13 @@
 package Kleberson;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2302455036203561862L;
 	private String nomeItem;
 	private double valor; 
 	private boolean emprestado;
@@ -76,7 +82,7 @@ public class Item {
 	}
 
 	public boolean equals(Object obj){
-		// Verifica se 2 itens são iguais
+		// Verifica se 2 itens sï¿½o iguais
 		if (this == obj)
 			return true;
 		if (obj == null)

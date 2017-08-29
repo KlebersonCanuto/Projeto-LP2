@@ -12,6 +12,7 @@ public class Facade {
 	
 	public void iniciarSistema(){
 		// Inicializa o sistema
+		sistema.inicia();
 	}
 	
 	public void cadastrarUsuario(String nome, String telefone, String email){
@@ -109,6 +110,11 @@ public class Facade {
 		sistema.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 	}
 	
+	public void fecharSistema(){
+		// Fecha o sistema
+		sistema.fecha();
+	}
+	
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone){
 		
 		return sistema.listarEmprestimoUsuarioEmprestando(nome, telefone);
@@ -158,13 +164,11 @@ public class Facade {
 		
 		return sistema.listarTop10PioresUsuarios();
 	}
-	public void fecharSistema(){
-		// Fecha o sistema
-	}
 	
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		// Testes easyAccept
-		args = new String[] {"Kleberson.Facade", "Tests/us1.txt", "Tests/us2.txt", "Tests/us3.txt", "Tests/us4.txt", "Tests/us5.txt", "Tests/us6.txt", "Tests/us7.txt", "Tests/us8.txt"};
+		args = new String[] {"Projeto.Facade", "Tests/us1.txt", "Tests/us2.txt", "Tests/us3.txt", "Tests/us4.txt", "Tests/us5.txt", "Tests/us6.txt", "Tests/us7.txt", "Tests/us8.txt"};
+//		args = new String[] {"Projeto.Facade", "Tests/us1.txt"};
 		EasyAccept.main(args);
 	}
 }

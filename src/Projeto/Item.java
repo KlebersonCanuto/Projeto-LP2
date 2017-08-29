@@ -1,15 +1,19 @@
 package Projeto;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2302455036203561862L;
 	private String nomeItem;
 	private double valor; 
 	private boolean emprestado;
 	private int quantidadeEmprestimo;
 	
 	public Item(String nomeItem, double valor){
-		
-		//Construtor da classe Item
 		
 		if (valor < 0)
 			throw new IllegalArgumentException("Preco invalido");

@@ -9,6 +9,8 @@ public class Item {
 	
 	public Item(String nomeItem, double valor){
 		
+		//Construtor da classe Item
+		
 		if (valor < 0)
 			throw new IllegalArgumentException("Preco invalido");
 		else{

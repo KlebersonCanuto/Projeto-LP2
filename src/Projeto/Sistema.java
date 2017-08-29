@@ -13,7 +13,7 @@ public class Sistema {
 	private List<Emprestimo> emprestimos;
 	
 	public Sistema(){
-		
+		// Construtor de Sistema
 		usuarios = new ArrayList<>();
 		emprestimos = new ArrayList<>();
 	}
@@ -247,6 +247,7 @@ public class Sistema {
 	}
 
 	public String listarEmprestimoUsuarioPegandoEmprestado(String nome, String telefone){
+		// lista emprestimos do usuario 
 
 		Usuario usuario = getUsuario(nome, telefone);
 		String stringEmprestimos = "Emprestimos pegos: ";
@@ -260,6 +261,7 @@ public class Sistema {
 	}
 	
 	public String listarEmprestimosItem(String nomeItem){
+		// lista emprestimos de item
 		
 		String stringEmprestimos = "Emprestimos associados ao item: ";
 		for (Emprestimo emprestimo : emprestimos) {
@@ -272,6 +274,7 @@ public class Sistema {
 	}
 
 	public String listarItensNaoEmprestados(){
+		// lista itens não emprestados
 		
 		String itensNaoEmprestados = "";
 		List<Item> itens = itensNaoEmprestados();
@@ -284,6 +287,7 @@ public class Sistema {
 	}
 
 	public String listarItensEmprestados(){
+		//Lista emprestados
 
 		String itensEmprestados = "";
 		for (Emprestimo emprestimo: emprestimos){
@@ -295,6 +299,8 @@ public class Sistema {
 	}
 
 	public String listarTop10Itens(){
+		
+		// Lista Top 10 itens
 		
 		String top10 = "";
 		List<Item> itens = listaItens();
@@ -311,7 +317,7 @@ public class Sistema {
 	}
 	
 	public String listarHistoricoEmprestimoItem(String nomeItem){
-		
+		// Listar Historico
 		String historico = "";
 		for (Emprestimo emprestimo : emprestimos){
 			if(emprestimo.getItem().getNome().equals(nomeItem))
@@ -321,6 +327,7 @@ public class Sistema {
 	}
 	
 	public String listarCaloteiros(){
+		//Listar Caloteiros
 		
 		String caloteiros = "Lista de usuarios com reputacao negativa: ";
 		List<Usuario> novaLista = new ArrayList<>();

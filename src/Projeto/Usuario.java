@@ -23,6 +23,8 @@ public class Usuario {
 	
 	public Usuario(String nome, String telefone, String email ){
 		
+		// Construtor da classe Usuário
+		
 		this.nome = nome;
 		this.telefone = telefone ;
 		this.email = email;
@@ -34,10 +36,12 @@ public class Usuario {
 	}
 	
 	public String getQualificacao(){
+		// Retorna a qualificação
 		return this.qualificacao;
 	}
 	
 	public void atualizaQualificacao(){
+		// Modifica a qualificação
 		if (reputacao < 0){
 			this.qualificacao = "Caloteiro";
 			this.setPeriodoMaximo(0);
@@ -55,18 +59,22 @@ public class Usuario {
 	}
 	
 	public int getPeriodoMaximo(){
+		// Retorna o periodo
 		return this.periodoMaximo;
 	}
 	
 	public void setPeriodoMaximo(int periodoMaximo){
+		// Modifica o periodo
 		this.periodoMaximo = periodoMaximo;
 	}
 	
 	public double getReputacao(){
+		// Retorna a reputação
 		return this.reputacao;
 	}
 	
 	public void somaReputacao(double valor){
+		// Modifica a reputação
 		this.reputacao += valor;
 	}
 
@@ -108,6 +116,7 @@ public class Usuario {
 	}
 	
 	public void adicionaItemEmprestado(Item item) {
+		// Adicioa o item a Item
 		
 		itens.add(item);
 	}

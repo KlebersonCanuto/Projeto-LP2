@@ -2,7 +2,7 @@ package Projeto;
 
 import java.util.Comparator;
 
-public class ComparadorNome implements Comparator<Item>{
+public class ComparadorItemNome implements Comparator<Item>{
 	
 	/**
 	 * Compara 2 itens pelo nome

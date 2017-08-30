@@ -373,7 +373,7 @@ public class Sistema {
 		
 		String todosItens = "";
 		List<Item> itens = listaItens();
-		Collections.sort(itens, new ComparadorNome());
+		Collections.sort(itens, new ComparadorItemNome());
 		
 		for (Item item : itens) {
 			todosItens += item.toString() + "|";
@@ -391,7 +391,7 @@ public class Sistema {
 		
 		String todosItens = "";
 		List<Item> itens = listaItens();
-		Collections.sort(itens, new ComparadorValor());
+		Collections.sort(itens, new ComparadorItemValor());
 		
 		for (Item item : itens) {
 			todosItens += item.toString() + "|";
@@ -582,7 +582,7 @@ public class Sistema {
 
 		String itensNaoEmprestados = "";
 		List<Item> itens = itensNaoEmprestados();
-		Collections.sort(itens, new ComparadorNome());
+		Collections.sort(itens, new ComparadorItemNome());
 		
 		for (Item item : itens) {
 			itensNaoEmprestados += item.toString() + "|";
@@ -606,7 +606,7 @@ public class Sistema {
 				itensEmprestados.add(emprestimo);
 		}
 		
-		Collections.sort(itensEmprestados, new ComparadorEmprestimo());
+		Collections.sort(itensEmprestados, new ComparadorEmprestimoDono());
 		
 		for (Emprestimo emprestimo : itensEmprestados){
 			stringItens += "Dono do item: " + emprestimo.getDono().getNome() + ", Nome do item emprestado: "
@@ -625,7 +625,7 @@ public class Sistema {
 
 		String top10 = "";
 		List<Item> itens = listaItens();
-		Collections.sort(itens, new ComparadorEmprestimos());
+		Collections.sort(itens, new ComparadorItemEmprestimos());
 		
 		if (itens.size() > 10){
 			for (Item item : itens) {

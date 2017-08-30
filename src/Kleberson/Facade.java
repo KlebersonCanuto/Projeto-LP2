@@ -12,7 +12,12 @@ public class Facade {
 	
 	public void iniciarSistema(){
 		// Inicializa o sistema
-		sistema.inicia();
+		sistema.iniciarSistema();
+	}
+	
+	public void fecharSistema(){
+		// Fecha o sistema
+		sistema.fecharSistema();
 	}
 	
 	public void cadastrarUsuario(String nome, String telefone, String email){
@@ -108,11 +113,6 @@ public class Facade {
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao){
 		// Devolve um item
 		sistema.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
-	}
-	
-	public void fecharSistema(){
-		// Fecha o sistema
-		sistema.fecha();
 	}
 	
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone){

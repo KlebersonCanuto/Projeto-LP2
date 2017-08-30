@@ -24,6 +24,60 @@ public class Sistema {
 		emprestimos = new ArrayList<>();
 	}
 
+	public void iniciarSistema() {
+		try{
+			
+			InputStream fisUsuarios = new FileInputStream("usuarios.txt");
+			ObjectInputStream oisUsuarios = new ObjectInputStream(fisUsuarios);
+			InputStream fisEmprestimos = new FileInputStream("emprestimos.txt");
+			ObjectInputStream oisEmprestimos = new ObjectInputStream(fisEmprestimos);
+
+			int n = oisUsuarios.readInt();
+			int m = oisEmprestimos.readInt();
+			
+			for (int i = 0; i < n; i++) {
+				usuarios.add( (Usuario) oisUsuarios.readObject());
+			}
+			for (int i = 0; i < m; i++){
+				emprestimos.add((Emprestimo) oisEmprestimos.readObject());
+			}
+		
+			oisEmprestimos.close();
+			oisUsuarios.close();	
+		} catch(IOException e){
+			System.out.println("Arquivo não encontrado");		
+		} catch (ClassNotFoundException e){
+			System.out.println("Ocorreu um erro");
+		}
+	}
+
+	public void fecharSistema() {
+		
+		try{
+			OutputStream fosUsuarios = new FileOutputStream("usuarios.txt");
+			ObjectOutputStream oosUsuarios = new ObjectOutputStream(fosUsuarios);
+		
+			OutputStream fosEmprestimos = new FileOutputStream("emprestimos.txt");
+			ObjectOutputStream oosEmprestimos = new ObjectOutputStream(fosEmprestimos);
+		
+			oosEmprestimos.writeInt(emprestimos.size());
+			oosUsuarios.writeInt(usuarios.size());
+		
+			for (Usuario usuario : usuarios) {
+				oosUsuarios.writeObject(usuario);	
+			}
+			for	(Emprestimo emprestimo : emprestimos){
+				oosEmprestimos.writeObject(emprestimo);
+			}
+			oosEmprestimos.close();
+			oosUsuarios.close();
+			usuarios.clear();
+			emprestimos.clear();
+		} catch(IOException e){
+			System.out.println("Arquivo não encontrado");		
+		}
+	}
+	
 	public void cadastraUsuario(String nome, String telefone, String email) {
 		// Cadastra um usuario
 		try{
@@ -245,7 +299,7 @@ public class Sistema {
 			Usuario requerente = getUsuario(nomeRequerente, telefoneRequerente);
 			Item item = dono.getItem(nomeItem);
 			if (!item.emprestado()){
-				if (requerente.getQualificacao() != "Caloteiro")
+				if (!requerente.getQualificacao().equals("Caloteiro")){
 					if (periodo <= requerente.getPeriodoMaximo()){	
 						Emprestimo emprestimo = new Emprestimo(dono, requerente, item, dataEmprestimo, periodo);
 						dono.adicionaEmprestimo(emprestimo);
@@ -255,8 +309,10 @@ public class Sistema {
 					}else{
 						throw new IllegalArgumentException("Usuario impossiblitado de pegar emprestado por esse periodo");
 					}
-				else
+				}
+				else{
 					throw new IllegalArgumentException("Usuario nao pode pegar nenhum item emprestado");
+				}
 			}
 			else
 				throw new IllegalArgumentException("Item emprestado no momento");
@@ -489,70 +545,5 @@ public class Sistema {
 					return usuario;
 		}
 		throw new NullPointerException("Usuario invalido");
-	}
-
-	
-	public void inicia() {
-		try{
-			
-		InputStream fisu = new FileInputStream("usuarios.txt");
-		ObjectInputStream oisu = new ObjectInputStream(fisu);
-		InputStream fise = new FileInputStream("emprestimos.txt");
-		ObjectInputStream oise = new ObjectInputStream(fise);
-
-		int n = oisu.readInt();
-		int m = oise.readInt();
-			
-		for (int i = 0; i < n; i++) {
-			usuarios.add( (Usuario) oisu.readObject());
-		}
-			
-		for (int i = 0; i < m; i++){
-			emprestimos.add((Emprestimo) oise.readObject());
-		}
-		
-		oise.close();
-		oisu.close();
-			
-			
-		} catch(IOException e){
-			
-			System.out.println("Arquivo não encontrado" + e);		
-		} catch (ClassNotFoundException e){
-			
-			System.out.println("Ocorreu um erro");
-		}
-	}
-
-	public void fecha() {
-		try{
-			
-			
-		OutputStream fosu = new FileOutputStream("usuarios.txt");
-		ObjectOutputStream oosu = new ObjectOutputStream(fosu);
-		
-		OutputStream fose = new FileOutputStream("emprestimos.txt");
-		ObjectOutputStream oose = new ObjectOutputStream(fose);
-		
-		oose.writeInt(emprestimos.size());
-		oosu.writeInt(usuarios.size());
-		
-		for (Usuario usuario : usuarios) {
-			oosu.writeObject(usuario);
-			
-		}
-		
-		for (Emprestimo emprestimo : emprestimos){
-			oose.writeObject(emprestimo);
-		}
-		
-		oose.close();
-		oosu.close();
-		usuarios.clear();
-		emprestimos.clear();
-		} catch(IOException e){
-			
-			System.out.println("Arquivo não encontrado" + e);		
-		}
 	}
 }

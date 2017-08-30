@@ -9,14 +9,12 @@ import java.util.Set;
 
 public class Usuario implements Serializable{
 	
-	private static final long serialVersionUID = 8045523698148959051L;
+	private static final long serialVersionUID = -1224016188549565215L;
 	private String nome;
 	private String email;
 	private String telefone;
 	private double reputacao;
-	private String qualificacao;
-	private int periodoMaximo;
-	
+	private Cartao cartao;
 	
 	private Set<Item> itens;
 	private List<Emprestimo> emprestimos;
@@ -37,8 +35,8 @@ public class Usuario implements Serializable{
 		this.telefone = telefone ;
 		this.email = email;
 		this.reputacao = 0.0;
-		this.qualificacao = "FreeRyder";
-		this.periodoMaximo = 5;
+		this.cartao = new CartaoFreeRyder();
+
 		itens = new HashSet<>();
 		emprestimos = new ArrayList<>();
 	}
@@ -49,7 +47,7 @@ public class Usuario implements Serializable{
 	 */
 	public String getQualificacao(){
 		
-		return this.qualificacao;
+		return this.cartao.qualificacao();
 	}
 	
 	/**
@@ -58,23 +56,19 @@ public class Usuario implements Serializable{
 	public void atualizaQualificacao(){
 		
 		if (reputacao < 0){
-			this.qualificacao = "Caloteiro";
-			this.setPeriodoMaximo(0);
+			this.cartao = new CartaoCaloteiro();
 		}
 		
 		else if (reputacao >= 0 && itens.size() == 0){
-			this.qualificacao = "FreeRyder";
-			this.setPeriodoMaximo(5);
+			this.cartao = new CartaoFreeRyder();
 		}
 		
 		else if (reputacao >= 0 && reputacao <= 100){
-			this.qualificacao = "Noob";
-			this.setPeriodoMaximo(7);
+			this.cartao = new CartaoNoob();
 		}
 		
 		else{
-			this.qualificacao = "BomAmigo";
-			this.setPeriodoMaximo(14);
+			this.cartao = new CartaoBomAmigo();
 		}
 	}
 	
@@ -84,17 +78,7 @@ public class Usuario implements Serializable{
 	 */
 	public int getPeriodoMaximo(){
 		
-		return this.periodoMaximo;
-	}
-	
-	/**
-	 * Modifica o periodo maximo de acordo com o valor parametrizado
-	 * 
-	 * @param periodoMaximo
-	 */
-	public void setPeriodoMaximo(int periodoMaximo){
-		
-		this.periodoMaximo = periodoMaximo;
+		return this.cartao.periodoMaximo();
 	}
 	
 	/**

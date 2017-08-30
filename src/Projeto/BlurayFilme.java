@@ -16,7 +16,7 @@ public class BlurayFilme extends Bluray {
 	 * @param anoLancamento
 	 */
 	public BlurayFilme(String nome, double valor, int duracao, String genero, String classificao, int anoLancamento){
-	
+			
 		super(nome, valor, duracao, classificao);
 		this.genero = genero;
 		this.anoLancamento = anoLancamento;
@@ -28,6 +28,7 @@ public class BlurayFilme extends Bluray {
 	 * @return o genero
 	 */
 	public String getGenero(){
+		
 		return this.genero;
 	}
 	
@@ -36,6 +37,7 @@ public class BlurayFilme extends Bluray {
 	 * @param genero
 	 */
 	public void setGenero(String genero){
+		
 		this.genero = genero;
 	}
 	
@@ -44,6 +46,7 @@ public class BlurayFilme extends Bluray {
 	 * @return o ano de lancamento
 	 */
 	public int getAnoLancamento(){
+		
 		return this.anoLancamento;
 	}
 	
@@ -53,6 +56,7 @@ public class BlurayFilme extends Bluray {
 	 * @return a representação de um BlurayFilme
 	 */
 	public String toString(){
+		
 		return "FILME: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getGenero() + ", " + this.getAnoLancamento();
 	}
 }

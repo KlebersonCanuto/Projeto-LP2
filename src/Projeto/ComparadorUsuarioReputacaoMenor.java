@@ -9,7 +9,6 @@ public class ComparadorUsuarioReputacaoMenor implements Comparator<Usuario>{
 	 * 
 	 * @return representacoes em inteiro para os casos de comparacao
 	 */
-	@Override
 	public int compare(Usuario u1, Usuario u2) {
 
 		if (u1.getReputacao() < u2.getReputacao()) 
@@ -18,5 +17,4 @@ public class ComparadorUsuarioReputacaoMenor implements Comparator<Usuario>{
         	return 1;
         return 0;	
 	}
-
 }

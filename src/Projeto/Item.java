@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 public class Item implements Serializable{
 	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 2302455036203561862L;
 	private String nomeItem;
 	private double valor; 
@@ -20,6 +23,7 @@ public class Item implements Serializable{
 		
 		if (valor < 0)
 			throw new IllegalArgumentException("Preco invalido");
+		
 		else{
 			this.nomeItem = nomeItem;
 			this.valor = valor;
@@ -33,6 +37,7 @@ public class Item implements Serializable{
 	 * @return o nome
 	 */
 	public String getNome(){
+		
 		return this.nomeItem;
 	}
 
@@ -42,6 +47,7 @@ public class Item implements Serializable{
 	 * @param nomeItem
 	 */
 	public void setNome(String nomeItem){
+		
 		this.nomeItem = nomeItem;
 	}
 	
@@ -50,6 +56,7 @@ public class Item implements Serializable{
 	 * @return o valor
 	 */
 	public double getValor(){
+		
 		return this.valor;
 	}
 
@@ -68,6 +75,7 @@ public class Item implements Serializable{
 	 * @return o boolean definindo se esta emprestado ou nao
 	 */
 	public boolean emprestado(){
+		
 		return this.emprestado;
 	}
 	
@@ -77,6 +85,7 @@ public class Item implements Serializable{
 	 *
 	 */
 	public void emprestou(){
+		
 		this.quantidadeEmprestimo+=1;
 		this.emprestado = true;
 	}
@@ -85,6 +94,7 @@ public class Item implements Serializable{
 	 * Muda o estado para nao emprestado
 	 */
 	public void retornou(){
+		
 		this.emprestado = false;
 	}
 	
@@ -96,8 +106,10 @@ public class Item implements Serializable{
 	 * @return "Nao emprestado"
 	 */
 	public String stringEmprestado(){
+		
 		if (this.emprestado)
 			return "Emprestado";
+		
 		return "Nao emprestado";
 	}
 	
@@ -127,7 +139,7 @@ public class Item implements Serializable{
 	 * @return boolean
 	 */
 	public boolean equals(Object obj){
-		// Verifica se 2 itens s�o iguais
+
 		if (this == obj)
 			return true;
 		if (obj == null)

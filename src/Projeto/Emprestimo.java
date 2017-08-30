@@ -48,17 +48,20 @@ public class Emprestimo implements Serializable{
 	 * @param dataDevolucao
 	 */
 	public void encerra(String dataDevolucao) {
+		
 		LocalDate diaDevolucao = LocalDate.parse(dataDevolucao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		
 		this.dataDevolucao = diaDevolucao;
 		this.requerente.devolveItem(this.item);
 		this.item.retornou();
 		this.duracao = (int) (diaDevolucao.toEpochDay() - this.dataEmprestimo.toEpochDay());
+		this.terminou = true;
 		
 		if (duracao > this.periodo)
 			this.passouDoPeriodo = true;
+		
 		else
 			this.passouDoPeriodo = false;
-		this.terminou = true;
 	}
 	
 	/**
@@ -75,6 +78,7 @@ public class Emprestimo implements Serializable{
 	 * @return o dono do item
 	 */
 	public Usuario getDono() {
+		
 		return this.dono;
 	}
 	
@@ -83,6 +87,7 @@ public class Emprestimo implements Serializable{
 	 * @return o requerente
 	 */
 	public Usuario getRequerente() {
+		
 		return this.requerente;
 	}
 	
@@ -91,6 +96,7 @@ public class Emprestimo implements Serializable{
 	 * @return o item do emprestimo
  	 */
 	public Item getItem() {
+		
 		return this.item;
 	}
 	
@@ -99,6 +105,7 @@ public class Emprestimo implements Serializable{
 	 * @return data que o emprestimo aconteceu
 	 */
 	public String getDataEmprestimo() {
+		
 		return this.dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 
@@ -107,6 +114,7 @@ public class Emprestimo implements Serializable{
 	 * @return o periodo estipulado do emprestimo
 	 */
 	public int getPeriodo() {
+		
 		return this.periodo;
 	}
 
@@ -116,6 +124,7 @@ public class Emprestimo implements Serializable{
 	 * @param periodo
 	 */
 	public void setPeriodo(int periodo) {
+		
 		this.periodo = periodo;
 	}
 	

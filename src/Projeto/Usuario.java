@@ -19,7 +19,6 @@ public class Usuario implements Serializable{
 	
 	
 	private Set<Item> itens;
-	
 	private List<Emprestimo> emprestimos;
 	
 	
@@ -49,6 +48,7 @@ public class Usuario implements Serializable{
 	 * @return a qualificacao
 	 */
 	public String getQualificacao(){
+		
 		return this.qualificacao;
 	}
 	
@@ -56,17 +56,23 @@ public class Usuario implements Serializable{
 	 * Modifica a qualificacao de acordo com a reputacao
 	 */
 	public void atualizaQualificacao(){
+		
 		if (reputacao < 0){
 			this.qualificacao = "Caloteiro";
 			this.setPeriodoMaximo(0);
-		}else if (reputacao >= 0 && itens.size() == 0){
+		}
+		
+		else if (reputacao >= 0 && itens.size() == 0){
 			this.qualificacao = "FreeRyder";
 			this.setPeriodoMaximo(5);
 		}
+		
 		else if (reputacao >= 0 && reputacao <= 100){
 			this.qualificacao = "Noob";
 			this.setPeriodoMaximo(7);
-		}else{
+		}
+		
+		else{
 			this.qualificacao = "BomAmigo";
 			this.setPeriodoMaximo(14);
 		}
@@ -77,6 +83,7 @@ public class Usuario implements Serializable{
 	 * @return o periodo maximo de dias 
 	 */
 	public int getPeriodoMaximo(){
+		
 		return this.periodoMaximo;
 	}
 	
@@ -86,6 +93,7 @@ public class Usuario implements Serializable{
 	 * @param periodoMaximo
 	 */
 	public void setPeriodoMaximo(int periodoMaximo){
+		
 		this.periodoMaximo = periodoMaximo;
 	}
 	
@@ -94,6 +102,7 @@ public class Usuario implements Serializable{
 	 * @return a reputacao
 	 */
 	public double getReputacao(){
+		
 		return this.reputacao;
 	}
 	
@@ -103,6 +112,7 @@ public class Usuario implements Serializable{
 	 * @param valor
 	 */
 	public void somaReputacao(double valor){
+		
 		this.reputacao += valor;
 	}
 
@@ -111,6 +121,7 @@ public class Usuario implements Serializable{
 	 * @return o nome
 	 */
 	public String getNome() {
+		
 		return this.nome;
 	}
 	
@@ -120,6 +131,7 @@ public class Usuario implements Serializable{
 	 * @param nome
 	 */
 	public void setNome(String nome) {
+		
 		this.nome = nome;
 	}
 	
@@ -128,6 +140,7 @@ public class Usuario implements Serializable{
 	 * @return o email
 	 */
 	public String getEmail() {
+		
 		return this.email;
 	}
 	
@@ -137,6 +150,7 @@ public class Usuario implements Serializable{
 	 * @param email
 	 */
 	public void setEmail(String email) {
+		
 		this.email = email;
 	}
 	
@@ -155,6 +169,7 @@ public class Usuario implements Serializable{
 	 * @param celular
 	 */
 	public void setCelular(String celular) {
+		
 		this.telefone = celular;
 	}
 	
@@ -164,6 +179,7 @@ public class Usuario implements Serializable{
 	 * @param item
 	 */
 	public void adicionaItem(Item item){
+		
 		itens.add(item);
 		this.reputacao+=(item.getValor()*0.05);
 		this.atualizaQualificacao();
@@ -185,6 +201,7 @@ public class Usuario implements Serializable{
 	 * @param nomeItem
 	 */
 	public void removeItem(String nomeItem) {
+		
 		itens.remove(getItem(nomeItem));
 	}	
 	
@@ -198,13 +215,14 @@ public class Usuario implements Serializable{
 	 * @return "Item nao encontrado"
 	 */
 	public Item getItem(String nomeItem){
-		// Retorna um item do usuario
+		
 		for (Item item : itens){
 			if(item.getNome().equals(nomeItem))
 				return item;
 			}
+		
 		throw new NullPointerException("Item nao encontrado");
-		}
+	}
 	
 	/**
 	 * retorna uma lista de itens nao emprestados
@@ -218,6 +236,7 @@ public class Usuario implements Serializable{
 			if (!item.emprestado())
 				lista.add(item);
 		}
+		
 		return lista;
 	}
 	
@@ -227,10 +246,11 @@ public class Usuario implements Serializable{
 	 * @return lista de itens do usuario
 	 */
 	public Set<Item> listaItens(Set<Item> lista){
-		for (Item item : itens){
-			
+		
+		for (Item item : itens){		
 			lista.add(item);
 		}
+		
 		return lista;
 	}
 	
@@ -240,6 +260,7 @@ public class Usuario implements Serializable{
 	 * @param emprestimo
 	 */
 	public void adicionaEmprestimo(Emprestimo emprestimo){
+		
 		emprestimos.add(emprestimo);
 	}
 	
@@ -249,6 +270,7 @@ public class Usuario implements Serializable{
 	 * @param item
 	 */
 	public void devolveItem(Item item){
+		
 		itens.remove(item);
 	}
 
@@ -258,6 +280,7 @@ public class Usuario implements Serializable{
 	 * @return representacao de usuario	 
 	 */
 	public String toString() {
+		
 		return this.nome + ", " +this.email + ", " + this.telefone;
 	}
 
@@ -265,6 +288,7 @@ public class Usuario implements Serializable{
 	 * return o hashCode de Usuario
 	 */
 	public int hashCode() {
+		
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
@@ -278,6 +302,7 @@ public class Usuario implements Serializable{
 	 * @return boolean
 	 */
 	public boolean equals(Object obj) {
+		
 		if (this == obj)
 			return true;
 		if (obj == null)

@@ -26,6 +26,7 @@ public class JogoTabuleiro extends Item{
 	 * @param nomePeca
 	 */
 	public void adicionaPecaPerdida(String nomePeca){
+		
 		pecasPerdidas.add(nomePeca);
 	}
 	
@@ -36,10 +37,10 @@ public class JogoTabuleiro extends Item{
 	 * @return "COM PECAS PERDIDAS"
 	 */
 	public String verificaPecas(){
+		
 		if(pecasPerdidas.size() > 0)
 			return "COM PECAS PERDIDAS";
-		else
-			return "COMPLETO";	
+		return "COMPLETO";	
 	}
 
 	/**
@@ -48,6 +49,7 @@ public class JogoTabuleiro extends Item{
 	 * @return a representacao de jogo de tabuleiro
 	 */
 	public String toString(){
+		
 		return "JOGO DE TABULEIRO: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.verificaPecas();
 	}
 	
@@ -56,7 +58,7 @@ public class JogoTabuleiro extends Item{
 	 * Apartir do  nome e pecas perdidas
 	 */
 	public boolean equals(Object obj){
-		// Verifica se 2 jogos de tabuleiro são iguais
+
 		if (this == obj)
 			return true;
 		if (obj == null)

@@ -24,6 +24,7 @@ public class Bluray extends Item{
 	 * @return a duracao
 	 */
 	public int getDuracao(){
+		
 		return this.duracao;
 	}
 	
@@ -32,6 +33,7 @@ public class Bluray extends Item{
 	 * @param duracao
 	 */
 	public void setDuracao(int duracao){
+		
 		this.duracao = duracao;
 	}
 	
@@ -40,6 +42,7 @@ public class Bluray extends Item{
 	 * @return a classificacao 
 	 */
 	public String getClassificao(){
+		
 		return this.classificao;
 	}
 
@@ -48,6 +51,7 @@ public class Bluray extends Item{
 	 * @param classificao
 	 */
 	public void setClassificao(String classificao){
+		
 		this.classificao = classificao;
 	}
 }

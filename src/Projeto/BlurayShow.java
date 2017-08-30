@@ -26,6 +26,7 @@ public class BlurayShow extends Bluray{
 	 * @return o artista
 	 */
 	public String getArtista(){
+		
 		return this.artista;
 	}
 
@@ -34,6 +35,7 @@ public class BlurayShow extends Bluray{
 	 * @param artista
 	 */
 	public void setArtista(String artista){
+		
 		this.artista = artista;
 	}
 	
@@ -41,6 +43,7 @@ public class BlurayShow extends Bluray{
 	 * @return o numero de faixas como int
 	 */
 	public int getNumeroFaixas(){
+		
 		return this.numeroFaixas;
 	}
 
@@ -49,6 +52,7 @@ public class BlurayShow extends Bluray{
 	 * @param numeroFaixas
 	 */
 	public void setNumeroFaixas(int numeroFaixas){
+		
 		this.numeroFaixas = numeroFaixas;
 	}
 	
@@ -58,6 +62,7 @@ public class BlurayShow extends Bluray{
 	 * @return A representacao de BlurayShow
 	 */
 	public String toString(){
+		
 		return "SHOW: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getArtista() + ", " + this.getNumeroFaixas() + " faixas";
 	}
 }

@@ -22,6 +22,7 @@ public class JogosEletronicos extends Item {
 	 * @return a plataforma
 	 */
 	public String getPlataforma(){
+		
 		return plataforma;
 	}
 
@@ -31,6 +32,7 @@ public class JogosEletronicos extends Item {
 	 * @param plataforma
 	 */
 	public void setPlataforma(String plataforma){
+		
 		this.plataforma = plataforma;
 	}
 	
@@ -40,6 +42,7 @@ public class JogosEletronicos extends Item {
 	 * @return representacao de um Jogo Eletronico
 	 */
 	public String toString(){
+		
 		return "JOGO ELETRONICO: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getPlataforma();
 	}
 	
@@ -47,6 +50,7 @@ public class JogosEletronicos extends Item {
 	 * @return hashCode de Jogo Eletronico
 	 */
 	public int hashCode(){
+		
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((this.getNome() == null) ? 0 : this.getNome().hashCode());
@@ -61,6 +65,7 @@ public class JogosEletronicos extends Item {
 	 * @return boolean
 	 */
 	public boolean equals(Object obj){
+		
 		if (this == obj)
 			return true;
 		if (!super.equals(obj))
@@ -83,4 +88,3 @@ public class JogosEletronicos extends Item {
 		return true;
 	}
 }
-

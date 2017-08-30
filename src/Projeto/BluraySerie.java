@@ -37,6 +37,7 @@ public class BluraySerie extends Bluray {
 	 * @return a descricao 
 	 */
 	public String getDescricao(){
+		
 		return this.descricao;
 	}
 	
@@ -46,6 +47,7 @@ public class BluraySerie extends Bluray {
 	 * @param descricao
 	 */
 	public void setDescricao(String descricao){
+		
 		this.descricao = descricao;
 	}
 	
@@ -54,6 +56,7 @@ public class BluraySerie extends Bluray {
 	 * @return o genero
 	 */
 	public String getGenero(){
+		
 		return this.genero;
 	}
 	
@@ -62,6 +65,7 @@ public class BluraySerie extends Bluray {
 	 * @param genero
 	 */
 	public void setGenero(String genero){
+		
 		this.genero = genero;
 	}
 	
@@ -70,6 +74,7 @@ public class BluraySerie extends Bluray {
 	 * @return a temporada
 	 */
 	public int getTemporada(){
+		
 		return this.temporada;
 	}
 	
@@ -79,6 +84,7 @@ public class BluraySerie extends Bluray {
 	 * @param duracao
 	 */
 	public void adicionaBluRay(int duracao){
+		
 		episodios.add(duracao);
 	}
 	
@@ -88,6 +94,7 @@ public class BluraySerie extends Bluray {
 	 *  @return a representacao de BluraySerie
 	 */
 	public String toString(){
+		
 		return "SERIE: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getGenero() + ", Temporada " + this.getTemporada();
 	}
 
@@ -109,6 +116,7 @@ public class BluraySerie extends Bluray {
 	 * @return true ou false 
 	 */
 	public boolean equals(Object obj){
+		
 		if (this == obj)
 			return true;
 		if (!super.equals(obj))

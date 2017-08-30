@@ -32,18 +32,19 @@ public class Sistema {
 			InputStream fisEmprestimos = new FileInputStream("emprestimos.txt");
 			ObjectInputStream oisEmprestimos = new ObjectInputStream(fisEmprestimos);
 
-			int n = oisUsuarios.readInt();
-			int m = oisEmprestimos.readInt();
+			int numeroUsuarios = oisUsuarios.readInt();
+			int numeroEmprestimos = oisEmprestimos.readInt();
 			
-			for (int i = 0; i < n; i++) {
+			for (int i = 0; i < numeroUsuarios; i++) {
 				usuarios.add( (Usuario) oisUsuarios.readObject());
 			}
-			for (int i = 0; i < m; i++){
+			for (int i = 0; i < numeroEmprestimos; i++){
 				emprestimos.add((Emprestimo) oisEmprestimos.readObject());
 			}
 		
 			oisEmprestimos.close();
-			oisUsuarios.close();	
+			oisUsuarios.close();
+
 		} catch(IOException e){
 			System.out.println("Arquivo não encontrado");		
 		} catch (ClassNotFoundException e){
@@ -54,6 +55,7 @@ public class Sistema {
 	public void fecharSistema() {
 		
 		try{
+			
 			OutputStream fosUsuarios = new FileOutputStream("usuarios.txt");
 			ObjectOutputStream oosUsuarios = new ObjectOutputStream(fosUsuarios);
 		
@@ -69,10 +71,12 @@ public class Sistema {
 			for	(Emprestimo emprestimo : emprestimos){
 				oosEmprestimos.writeObject(emprestimo);
 			}
+			
 			oosEmprestimos.close();
 			oosUsuarios.close();
 			usuarios.clear();
 			emprestimos.clear();
+			
 		} catch(IOException e){
 			System.out.println("Arquivo não encontrado");		
 		}

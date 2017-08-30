@@ -2,11 +2,10 @@ package testes;
 
 import static org.junit.Assert.*;
 
-
 import org.junit.Before;
 import org.junit.Test;
 
-import Projeto.JogoTabuleiro;
+import Kleberson.JogoTabuleiro;
 
 public class JogoTabuleiroTest {
 

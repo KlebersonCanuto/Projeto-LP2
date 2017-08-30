@@ -53,9 +53,7 @@ public class Sistema {
 			oisUsuarios.close();
 
 		} catch (IOException e) {
-			System.out.println("Arquivo não encontrado");
 		} catch (ClassNotFoundException e) {
-			System.out.println("Ocorreu um erro");
 		}
 	}
 
@@ -90,7 +88,6 @@ public class Sistema {
 			emprestimos.clear();
 
 		} catch (IOException e) {
-			System.out.println("Arquivo não encontrado");
 		}
 	}
 

@@ -25,11 +25,10 @@ public class Sistema {
 	}
 
 	/**
-	 * Cadastra um novo usuario no sistema, caso o usuario nao existe no sistema ou passe informacao errada
+	 * Inicia o programa e faz a leitura dos arquivos
 	 * 
-	 * @param nome
-	 * @param telefone
-	 * @param email
+	 * caso ocorra um erro ou o arquivo nao seja encontrado é lançado exception
+	 * 
 	 */
 	public void iniciarSistema() {
 		try{
@@ -59,6 +58,11 @@ public class Sistema {
 		}
 	}
 
+	/**
+	 * Faz a escrita dos dado no arquivo antes de fechar o programa
+	 * 
+	 * caso o arquivo nao exista é lançado uma exception
+	 */
 	public void fecharSistema() {
 		
 		try{
@@ -89,6 +93,13 @@ public class Sistema {
 		}
 	}
 	
+	/**
+	 * Cadastra um novo usuario no sistema, caso o usuario nao existe no sistema ou passe informacao errada
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @param email
+	 */
 	public void cadastraUsuario(String nome, String telefone, String email) {
 		try{
 			if (usuarioExiste(nome, telefone))
@@ -790,80 +801,5 @@ public class Sistema {
 					return usuario;
 		}
 		throw new NullPointerException("Usuario invalido");
-	}
-	
-	/**
-	 * Inicia o programa e faz a leitura dos arquivos
-	 * 
-	 * caso ocorra um erro ou o arquivo nao seja encontrado é lançado exception
-	 * 
-	 */
-	public void inicia() {
-		try{
-			
-		InputStream fisu = new FileInputStream("usuarios.txt");
-		ObjectInputStream oisu = new ObjectInputStream(fisu);
-		InputStream fise = new FileInputStream("emprestimos.txt");
-		ObjectInputStream oise = new ObjectInputStream(fise);
-
-		int n = oisu.readInt();
-		int m = oise.readInt();
-			
-		for (int i = 0; i < n; i++) {
-			usuarios.add( (Usuario) oisu.readObject());
-		}
-			
-		for (int i = 0; i < m; i++){
-			emprestimos.add((Emprestimo) oise.readObject());
-		}
-		
-		oise.close();
-		oisu.close();
-			
-			
-		} catch(IOException e){
-			
-			System.out.println("Arquivo não encontrado" + e);		
-		} catch (ClassNotFoundException e){
-			
-			System.out.println("Ocorreu um erro");
-		}
-	}
-
-	/**
-	 * Faz a escrita dos dado no arquivo antes de fechar o programa
-	 * 
-	 * caso o arquivo nao exista é lançado uma exception
-	 */
-	public void fecha() {
-		try{
-			
-			
-		OutputStream fosu = new FileOutputStream("usuarios.txt");
-		ObjectOutputStream oosu = new ObjectOutputStream(fosu);
-		
-		OutputStream fose = new FileOutputStream("emprestimos.txt");
-		ObjectOutputStream oose = new ObjectOutputStream(fose);
-		
-		oose.writeInt(emprestimos.size());
-		oosu.writeInt(usuarios.size());
-		
-		for (Usuario usuario : usuarios) {
-			oosu.writeObject(usuario);
-			
-		}
-		
-		for (Emprestimo emprestimo : emprestimos){
-			oose.writeObject(emprestimo);
-		}
-		
-		oose.close();
-		oosu.close();
-		usuarios.clear();
-		emprestimos.clear();
-		} catch(IOException e){
-			
-			System.out.println("Arquivo não encontrado" + e);		
-		}
 	}
 }

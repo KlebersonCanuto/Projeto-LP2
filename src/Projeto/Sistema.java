@@ -15,12 +15,12 @@ import java.util.Set;
 
 public class Sistema {
 
-	private List<Usuario> usuarios;
+	private Set<Usuario> usuarios;
 	private List<Emprestimo> emprestimos;
 	
 	public Sistema(){
 		
-		usuarios = new ArrayList<>();
+		usuarios = new HashSet<>();
 		emprestimos = new ArrayList<>();
 	}
 
@@ -65,14 +65,11 @@ public class Sistema {
 		// Atualiza um atributo do usuario
 		Usuario usuario = getUsuario(nome, telefone);
 		if(atributo.toLowerCase().equals("email"))
-			if (usuario.getEmail() != valor)
-				usuario.setEmail(valor);
+			usuario.setEmail(valor);
 		else if(atributo.toLowerCase().equals("nome"))
-			if (usuario.getNome() != valor)
-				usuario.setNome(valor);
+			usuario.setNome(valor);
 		else if(atributo.toLowerCase().equals("telefone"))
-			if (usuario.getCelular() != valor)
-				usuario.setCelular(valor);
+			usuario.setCelular(valor);
 	}
 
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
@@ -347,8 +344,7 @@ public class Sistema {
 	public String listarTop10MelhoresUsuarios(){
 		
 		String melhores = "";
-		List<Usuario> novaLista = new ArrayList<>();
-		novaLista.addAll(usuarios);
+		List<Usuario> novaLista = new ArrayList<>(usuarios);
 		Collections.sort(novaLista, new ComparadorUsuarioReputacaoMaior());
 		if (usuarios.size()>=10){
 			for (int i = 0; i < 10; i++){
@@ -366,8 +362,7 @@ public class Sistema {
 	public String listarTop10PioresUsuarios(){
 		
 		String piores = "";
-		List<Usuario> novaLista = new ArrayList<>();
-		novaLista.addAll(usuarios);
+		List<Usuario> novaLista = new ArrayList<>(usuarios);
 		Collections.sort(novaLista, new ComparadorUsuarioReputacaoMenor());
 		if (usuarios.size()>=10){
 			for (int i = 0; i < 10; i++){

@@ -24,7 +24,6 @@ public class Sistema {
 		emprestimos = new ArrayList<>();
 	}
 
-<<<<<<< HEAD
 	/**
 	 * Cadastra um novo usuario no sistema, caso o usuario nao existe no sistema ou passe informacao errada
 	 * 
@@ -32,7 +31,6 @@ public class Sistema {
 	 * @param telefone
 	 * @param email
 	 */
-=======
 	public void iniciarSistema() {
 		try{
 			
@@ -91,9 +89,7 @@ public class Sistema {
 		}
 	}
 	
->>>>>>> ccb32f617835b2ec0e33a1cf105796471eab3dfd
 	public void cadastraUsuario(String nome, String telefone, String email) {
-		// Cadastra um usuario
 		try{
 			if (usuarioExiste(nome, telefone))
 				throw new IllegalArgumentException("Usuario ja cadastrado");
@@ -120,7 +116,6 @@ public class Sistema {
 	 * @return valor especificado no atributo
 	 */
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
-		// Retorna uma informacao do usuario
 		try{
 			if (usuarioExiste(nome, telefone)){
 				Usuario usuario = getUsuario(nome, telefone);
@@ -149,16 +144,12 @@ public class Sistema {
 	 * @param telefone
 	 */
 	public void removerUsuario(String nome, String telefone) {
-<<<<<<< HEAD
 		usuarios.remove(getUsuario(nome, telefone));
-=======
-		// Remove um usuario
 		try{
 			usuarios.remove(getUsuario(nome, telefone));
 		} catch (NullPointerException e){
 			e.printStackTrace();
 		} 
->>>>>>> ccb32f617835b2ec0e33a1cf105796471eab3dfd
 	}
 
 	/**
@@ -170,16 +161,6 @@ public class Sistema {
 	 * @param valor
 	 */
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
-<<<<<<< HEAD
-		Usuario usuario = getUsuario(nome, telefone);
-		if(atributo.toLowerCase().equals("email"))
-			usuario.setEmail(valor);
-		else if(atributo.toLowerCase().equals("nome"))
-			usuario.setNome(valor);
-		else if(atributo.toLowerCase().equals("telefone"))
-			usuario.setCelular(valor);
-=======
-		// Atualiza um atributo do usuario
 		try{
 			Usuario usuario = getUsuario(nome, telefone);
 			if(atributo.toLowerCase().equals("email"))
@@ -191,7 +172,6 @@ public class Sistema {
 		} catch (NullPointerException e){
 			e.printStackTrace();
 		}
->>>>>>> ccb32f617835b2ec0e33a1cf105796471eab3dfd
 	}
 
 	/**
@@ -204,12 +184,6 @@ public class Sistema {
 	 * @param plataforma
 	 */
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
-<<<<<<< HEAD
-		Usuario usuario = getUsuario(nome, telefone);
-		Item eletronico = new JogosEletronicos(nomeItem, preco, plataforma);
-		usuario.adicionaItem(eletronico);
-=======
-		// Cadastra um jogo eletronico de um usuario
 		try{
 			Usuario usuario = getUsuario(nome, telefone);
 			Item eletronico = new JogosEletronicos(nomeItem, preco, plataforma);
@@ -217,7 +191,6 @@ public class Sistema {
 		} catch (NullPointerException e){
 			e.printStackTrace();
 		}
->>>>>>> ccb32f617835b2ec0e33a1cf105796471eab3dfd
 	}
 
 	/**
@@ -229,12 +202,6 @@ public class Sistema {
 	 * @param preco
 	 */
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
-<<<<<<< HEAD
-		Usuario usuario = getUsuario(nome, telefone);
-		Item tabuleiro = new JogoTabuleiro(nomeItem, preco);	
-		usuario.adicionaItem(tabuleiro);
-=======
-		// Cadastra um jogo de tabuleiro de um usuario
 		try{
 			Usuario usuario = getUsuario(nome, telefone);
 			Item tabuleiro = new JogoTabuleiro(nomeItem, preco);	
@@ -242,7 +209,6 @@ public class Sistema {
 		} catch (NullPointerException e){
 			e.printStackTrace();
 		}
->>>>>>> ccb32f617835b2ec0e33a1cf105796471eab3dfd
 	}
 	
 	/**
@@ -254,12 +220,6 @@ public class Sistema {
 	 * @param nomePeca
 	 */
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
-<<<<<<< HEAD
-		Usuario usuario = getUsuario(nome, telefone);
-		JogoTabuleiro item = (JogoTabuleiro) usuario.getItem(nomeItem);
-		item.adicionaPecaPerdida(nomePeca);
-=======
-		// Adiciona uma peca perdida a um jogo de tabuleiro
 		try{
 			Usuario usuario = getUsuario(nome, telefone);
 			JogoTabuleiro item = (JogoTabuleiro) usuario.getItem(nomeItem);
@@ -268,7 +228,6 @@ public class Sistema {
 			e.printStackTrace();
 		}
 		
->>>>>>> ccb32f617835b2ec0e33a1cf105796471eab3dfd
 	}
 	
 	/**
@@ -284,12 +243,6 @@ public class Sistema {
 	 * @param anoLancamento
 	 */
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao, String genero, String classificacao, int anoLancamento) {
-<<<<<<< HEAD
-		Usuario usuario = getUsuario(nome, telefone);
-		Item filme = new BlurayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
-		usuario.adicionaItem(filme);
-=======
-		// Cadastra um BluRay de filme de um usuario
 		try{
 			Usuario usuario = getUsuario(nome, telefone);
 			Item filme = new BlurayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
@@ -297,7 +250,6 @@ public class Sistema {
 		} catch (NullPointerException e){
 			e.printStackTrace();
 		}
->>>>>>> ccb32f617835b2ec0e33a1cf105796471eab3dfd
 	}
 
 	/**
@@ -313,12 +265,6 @@ public class Sistema {
 	 * @param classificacao
 	 */
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao, int numeroFaixas, String artista, String classificacao) {
-<<<<<<< HEAD
-		Usuario usuario = getUsuario(nome, telefone);
-		Item show = new BlurayShow(nomeItem, preco, duracao, numeroFaixas, artista, classificacao);
-		usuario.adicionaItem(show);
-=======
-		// Cadastra um BluRay de show de um usuario
 		try{
 			Usuario usuario = getUsuario(nome, telefone);
 			Item show = new BlurayShow(nomeItem, preco, duracao, numeroFaixas, artista, classificacao);
@@ -326,7 +272,6 @@ public class Sistema {
 		} catch (NullPointerException e){
 			e.printStackTrace();
 		}
->>>>>>> ccb32f617835b2ec0e33a1cf105796471eab3dfd
 	}
 
 	/**
@@ -343,12 +288,6 @@ public class Sistema {
 	 * @param temporada
 	 */
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
-<<<<<<< HEAD
-		Usuario usuario = getUsuario(nome, telefone);
-		Item serie = new BluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
-		usuario.adicionaItem(serie);
-=======
-		// Cadastra um BluRay de serie de um usuario
 		try{
 			Usuario usuario = getUsuario(nome, telefone);
 			Item serie = new BluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
@@ -356,7 +295,6 @@ public class Sistema {
 		} catch (NullPointerException e){
 			e.printStackTrace();
 		}
->>>>>>> ccb32f617835b2ec0e33a1cf105796471eab3dfd
 	}
 
 	/**
@@ -368,12 +306,6 @@ public class Sistema {
 	 * @param duracao
 	 */
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
-<<<<<<< HEAD
-		Usuario usuario = getUsuario(nome, telefone);
-		BluraySerie serie = (BluraySerie) usuario.getItem(nomeBlurayTemporada);
-		serie.adicionaBluRay(duracao);
-=======
-		// Adiciona um episodio a uma serie
 		try{
 			Usuario usuario = getUsuario(nome, telefone);
 			BluraySerie serie = (BluraySerie) usuario.getItem(nomeBlurayTemporada);
@@ -381,7 +313,6 @@ public class Sistema {
 		} catch (NullPointerException e){
 			e.printStackTrace();
 		}
->>>>>>> ccb32f617835b2ec0e33a1cf105796471eab3dfd
 	}
 	
 	/**
@@ -394,16 +325,6 @@ public class Sistema {
 	 * @return
 	 */
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
-<<<<<<< HEAD
-		Usuario usuario = getUsuario(nome, telefone);
-		Item item = usuario.getItem(nomeItem);
-		if (atributo.toLowerCase().equals("nome"))
-			return item.getNome();
-		else if (atributo.toLowerCase().equals("preco"))
-			return String.valueOf(item.getValor()); 
-		return null;
-=======
-		// Retorna uma informacao de um item
 		try{
 			Usuario usuario = getUsuario(nome, telefone);
 			Item item = usuario.getItem(nomeItem);
@@ -414,7 +335,6 @@ public class Sistema {
 		} catch (NullPointerException e){
 			e.printStackTrace();
 		} return null;
->>>>>>> ccb32f617835b2ec0e33a1cf105796471eab3dfd
 	}
 
 	/**
@@ -425,18 +345,12 @@ public class Sistema {
 	 * @param nomeItem
 	 */
 	public void removerItem(String nome, String telefone, String nomeItem){
-<<<<<<< HEAD
-		Usuario usuario = getUsuario(nome, telefone);
-		usuario.removeItem(nomeItem);
-=======
-		// Remove um item
 		try{
 			Usuario usuario = getUsuario(nome, telefone);
 			usuario.removeItem(nomeItem);
 		} catch (NullPointerException e){
 			e.printStackTrace();
 		}
->>>>>>> ccb32f617835b2ec0e33a1cf105796471eab3dfd
 	}
 
 	/**
@@ -449,16 +363,6 @@ public class Sistema {
 	 * @param valor
 	 */
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
-<<<<<<< HEAD
-		Usuario usuario = getUsuario(nome, telefone);
-		Item item = usuario.getItem(nomeItem);
-		
-		if (atributo.toLowerCase().equals("nome"))
-			item.setNome(valor);
-		else if (atributo.toLowerCase().equals("preco"))
-			item.setValor(Double.valueOf(valor));
-=======
-		// Atualiza um item
 		try{
 			Usuario usuario = getUsuario(nome, telefone);
 			Item item = usuario.getItem(nomeItem);
@@ -469,7 +373,6 @@ public class Sistema {
 		} catch (NullPointerException e){
 			e.printStackTrace();
 		}
->>>>>>> ccb32f617835b2ec0e33a1cf105796471eab3dfd
 	}
 
 	/**
@@ -513,12 +416,6 @@ public class Sistema {
 	 * @return representacao do item passado
 	 */
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
-<<<<<<< HEAD
-		Usuario usuario = getUsuario(nome, telefone);
-		Item item = usuario.getItem(nomeItem);
-		return item.toString();
-=======
-		// Retorna detalhes de um item
 		try{
 			Usuario usuario = getUsuario(nome, telefone);
 			Item item = usuario.getItem(nomeItem);
@@ -526,7 +423,6 @@ public class Sistema {
 		} catch (NullPointerException e){
 			e.printStackTrace();
 		} return null;
->>>>>>> ccb32f617835b2ec0e33a1cf105796471eab3dfd
 	}
 	
 	/**
@@ -542,7 +438,6 @@ public class Sistema {
 	 * @param periodo
 	 */
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
-		// Cria um novo emprestimo
 		try{
 			Usuario dono = getUsuario(nomeDono, telefoneDono);
 			Usuario requerente = getUsuario(nomeRequerente, telefoneRequerente);
@@ -583,7 +478,6 @@ public class Sistema {
 	 * @param dataDevolucao
 	 */
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {		
-		// Encerra um emprestimo
 		try{
 			Emprestimo emprestimo = null;
 			boolean teveEmprestimo = false;
@@ -890,7 +784,6 @@ public class Sistema {
 	 * @return "Usuario invalido"
 	 */
 	private Usuario getUsuario(String nome, String telefone) {
-		// Retorna um usuario
 		for (Usuario usuario : usuarios){
 			if(usuario.getNome().equals(nome))
 				if(usuario.getCelular().equals(telefone))
@@ -898,8 +791,6 @@ public class Sistema {
 		}
 		throw new NullPointerException("Usuario invalido");
 	}
-<<<<<<< HEAD
-
 	
 	/**
 	 * Inicia o programa e faz a leitura dos arquivos
@@ -975,6 +866,4 @@ public class Sistema {
 			System.out.println("Arquivo não encontrado" + e);		
 		}
 	}
-=======
->>>>>>> ccb32f617835b2ec0e33a1cf105796471eab3dfd
 }

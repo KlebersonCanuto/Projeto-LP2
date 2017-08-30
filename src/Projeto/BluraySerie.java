@@ -11,6 +11,18 @@ public class BluraySerie extends Bluray {
 	private int temporada;
 	private List <Integer> episodios; 
 	
+	/**
+	 * Constrói um BluraySerie que herda Bluray a partir de nome, valor, duracao, classificacao, genero, descricao e temporada.
+	 * e cria uma lista de episodios que começa vazio
+	 * 
+	 * @param nome
+	 * @param valor
+	 * @param descricao
+	 * @param duracao
+	 * @param classificao
+	 * @param genero
+	 * @param temporada
+	 */
 	public BluraySerie(String nome, double valor, String descricao, int duracao, String classificao, String genero, int temporada){
 		
 		super(nome, valor, duracao, classificao);
@@ -20,43 +32,70 @@ public class BluraySerie extends Bluray {
 		episodios = new ArrayList<>();
 	}
 	
+	/**
+	 * 
+	 * @return a descricao 
+	 */
 	public String getDescricao(){
-		// Retorna a descricao da serie
 		return this.descricao;
 	}
 	
+	/**
+	 * Modifica a descricao para o valor parametrizado
+	 * 
+	 * @param descricao
+	 */
 	public void setDescricao(String descricao){
-		// Modifica a descricao da serie
 		this.descricao = descricao;
 	}
 	
+	/**
+	 * 
+	 * @return o genero
+	 */
 	public String getGenero(){
-		// Retorna o genero da serie
 		return this.genero;
 	}
 	
+	/**
+	 * Modifica o genero para o valor passado como parametro
+	 * @param genero
+	 */
 	public void setGenero(String genero){
-		// Modifica o genero da serie
 		this.genero = genero;
 	}
 	
+	/**
+	 * 
+	 * @return a temporada
+	 */
 	public int getTemporada(){
-		// Retorna a temporada da serie
 		return this.temporada;
 	}
-		
+	
+	/**
+	 * adiciona a lista de episodios uma duracao, que representa um episodio
+	 * 
+	 * @param duracao
+	 */
 	public void adicionaBluRay(int duracao){
-		// Adiciona um episodio a serie
 		episodios.add(duracao);
 	}
 	
+	/**
+	 *  Retorna a  representação de um BluraySerie em forma de "SERIE: nome, R$ valor, emprestado(ou nao), duracao min, classificacao, genero, Temporada Nº temporada;
+	 *  
+	 *  @return a representacao de BluraySerie
+	 */
 	public String toString(){
-		// Retorna a representacao em String da serie
 		return "SERIE: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getGenero() + ", Temporada " + this.getTemporada();
 	}
 
+	/**
+	 * @return Um o hashCode de BluraySerie
+	 */
 	public int hashCode(){
-		// hashCode da serie
+
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((this.getNome() == null) ? 0 : this.getNome().hashCode());
@@ -64,8 +103,12 @@ public class BluraySerie extends Bluray {
 		return result;
 	}
 	
+	/**
+	 * Retorna se um objeto e igual ao outro seguindo as definicoes do equals
+	 * 
+	 * @return true ou false 
+	 */
 	public boolean equals(Object obj){
-		// Verifica se 2 series sao iguais
 		if (this == obj)
 			return true;
 		if (!super.equals(obj))

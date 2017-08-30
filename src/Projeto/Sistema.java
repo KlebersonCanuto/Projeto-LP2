@@ -24,6 +24,13 @@ public class Sistema {
 		emprestimos = new ArrayList<>();
 	}
 
+	/**
+	 * Cadastra um novo usuario no sistema, caso o usuario nao existe no sistema ou passe informacao errada
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @param email
+	 */
 	public void cadastraUsuario(String nome, String telefone, String email) {
 		// Cadastra um usuario
 		if (usuarioExiste(nome, telefone))
@@ -35,7 +42,18 @@ public class Sistema {
 			usuarios.add(usuario);
 		}
 	}
-
+	
+	/**
+	 * Depedendo do atributo retorna um valor do tipo String
+	 * 
+	 * caso o usuario nao exista
+	 * @return "Usuario Invalido"
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @param atributo
+	 * @return valor especificado no atributo
+	 */
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
 		// Retorna uma informacao do usuario
 		if (usuarioExiste(nome, telefone)){
@@ -56,13 +74,25 @@ public class Sistema {
 			throw new IllegalArgumentException("Usuario invalido");
 	}
 
+	/**
+	 * Retira um Usuario do sistema
+	 * 
+	 * @param nome
+	 * @param telefone
+	 */
 	public void removerUsuario(String nome, String telefone) {
-		// Remove um usuario
 		usuarios.remove(getUsuario(nome, telefone));
 	}
 
+	/**
+	 * Atualiza um dado do Usuario baseado no atributo passado
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @param atributo
+	 * @param valor
+	 */
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
-		// Atualiza um atributo do usuario
 		Usuario usuario = getUsuario(nome, telefone);
 		if(atributo.toLowerCase().equals("email"))
 			usuario.setEmail(valor);
@@ -72,57 +102,128 @@ public class Sistema {
 			usuario.setCelular(valor);
 	}
 
+	/**
+	 * Cadastra um Jogo Eletronico
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @param nomeItem
+	 * @param preco
+	 * @param plataforma
+	 */
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
-		// Cadastra um jogo eletronico de um usuario
 		Usuario usuario = getUsuario(nome, telefone);
 		Item eletronico = new JogosEletronicos(nomeItem, preco, plataforma);
 		usuario.adicionaItem(eletronico);
 	}
 
+	/**
+	 * Cadastra um jogo de tabuleiro de um usuario
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @param nomeItem
+	 * @param preco
+	 */
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
-		// Cadastra um jogo de tabuleiro de um usuario
 		Usuario usuario = getUsuario(nome, telefone);
 		Item tabuleiro = new JogoTabuleiro(nomeItem, preco);	
 		usuario.adicionaItem(tabuleiro);
 	}
-
+	
+	/**
+	 * Adiciona uma peca perdida a um jogo de tabuleiro
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @param nomeItem
+	 * @param nomePeca
+	 */
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
-		// Adiciona uma peca perdida a um jogo de tabuleiro
 		Usuario usuario = getUsuario(nome, telefone);
 		JogoTabuleiro item = (JogoTabuleiro) usuario.getItem(nomeItem);
 		item.adicionaPecaPerdida(nomePeca);
 	}
 	
+	/**
+	 * Cadastra um BluRay de filme de um usuario
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @param nomeItem
+	 * @param preco
+	 * @param duracao
+	 * @param genero
+	 * @param classificacao
+	 * @param anoLancamento
+	 */
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao, String genero, String classificacao, int anoLancamento) {
-		// Cadastra um BluRay de filme de um usuario
 		Usuario usuario = getUsuario(nome, telefone);
 		Item filme = new BlurayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
 		usuario.adicionaItem(filme);
 	}
 
+	/**
+	 * Cadastra um BluRay de show de um usuario
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @param nomeItem
+	 * @param preco
+	 * @param duracao
+	 * @param numeroFaixas
+	 * @param artista
+	 * @param classificacao
+	 */
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao, int numeroFaixas, String artista, String classificacao) {
-		// Cadastra um BluRay de show de um usuario
 		Usuario usuario = getUsuario(nome, telefone);
 		Item show = new BlurayShow(nomeItem, preco, duracao, numeroFaixas, artista, classificacao);
 		usuario.adicionaItem(show);
 	}
 
+	/**
+	 * Cadastra um BluRay de serie de um usuario
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @param nomeItem
+	 * @param preco
+	 * @param descricao
+	 * @param duracao
+	 * @param classificacao
+	 * @param genero
+	 * @param temporada
+	 */
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
-		// Cadastra um BluRay de serie de um usuario
 		Usuario usuario = getUsuario(nome, telefone);
 		Item serie = new BluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 		usuario.adicionaItem(serie);
 	}
 
+	/**
+	 * Adiciona um episodio a uma serie
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @param nomeBlurayTemporada
+	 * @param duracao
+	 */
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
-		// Adiciona um episodio a uma serie
 		Usuario usuario = getUsuario(nome, telefone);
 		BluraySerie serie = (BluraySerie) usuario.getItem(nomeBlurayTemporada);
 		serie.adicionaBluRay(duracao);
 	}
-
+	
+	/**
+	 * Retorna uma informacao de um item de acordo com o atributo passado
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @param nomeItem
+	 * @param atributo
+	 * @return
+	 */
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
-		// Retorna uma informacao de um item
 		Usuario usuario = getUsuario(nome, telefone);
 		Item item = usuario.getItem(nomeItem);
 		if (atributo.toLowerCase().equals("nome"))
@@ -132,14 +233,28 @@ public class Sistema {
 		return null;
 	}
 
+	/**
+	 * Remove um item de usuario
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @param nomeItem
+	 */
 	public void removerItem(String nome, String telefone, String nomeItem){
-		// Remove um item
 		Usuario usuario = getUsuario(nome, telefone);
 		usuario.removeItem(nomeItem);
 	}
 
+	/**
+	 * Atualiza um item de acordo com o atributo passado
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @param nomeItem
+	 * @param atributo
+	 * @param valor
+	 */
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
-		// Atualiza um item
 		Usuario usuario = getUsuario(nome, telefone);
 		Item item = usuario.getItem(nomeItem);
 		
@@ -149,8 +264,12 @@ public class Sistema {
 			item.setValor(Double.valueOf(valor));
 	}
 
+	/**
+	 * Lista todos os itens por nome
+	 * 
+	 * @return uma representacao em string de todos os itens por ordem alfabetica
+	 */
 	public String listarItensOrdenadosPorNome() {
-		// Lista todos os itens por ordem alfabetica
 		String todosItens = "";
 		List<Item> itens = listaItens();
 		Collections.sort(itens, new ComparadorNome());
@@ -161,8 +280,12 @@ public class Sistema {
 		return todosItens;
 	}
 
+	/**
+	 * Lista todos os itens por nome
+	 * 
+	 * @return uma representacao em string de todos os itens por ordem de valor
+	 */
 	public String listarItensOrdenadosPorValor() {
-		// Lista todos os itens por ordem de preco
 		String todosItens = "";
 		List<Item> itens = listaItens();
 		Collections.sort(itens, new ComparadorValor());
@@ -172,14 +295,33 @@ public class Sistema {
 		}
 		return todosItens;
 	}
-		
+	
+	/**
+	 * Retorna a representacao de um item
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @param nomeItem
+	 * @return representacao do item passado
+	 */
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
-		// Retorna detalhes de um item
 		Usuario usuario = getUsuario(nome, telefone);
 		Item item = usuario.getItem(nomeItem);
 		return item.toString();
 	}
-
+	
+	/**
+	 * Verifica se o item está emprestado, se o usuario pode pegar e se o tempo é permitido e se sim, registra um novo emprestimo
+	 * De acordo como foi o emprestimo faz as devidas somas na reputacao
+	 * 
+	 * @param nomeDono
+	 * @param telefoneDono
+	 * @param nomeRequerente
+	 * @param telefoneRequerente
+	 * @param nomeItem
+	 * @param dataEmprestimo
+	 * @param periodo
+	 */
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
 		// Cria um novo emprestimo
 		Usuario dono = getUsuario(nomeDono, telefoneDono);
@@ -202,7 +344,19 @@ public class Sistema {
 		else
 			throw new IllegalArgumentException("Item emprestado no momento");
 	}
-
+	
+	/**
+	 * Encerra um emprestimo e devolve o item
+	 * De acordo como foi o emprestimo faz as devidas somas na reputacao
+	 * 
+	 * @param nomeDono
+	 * @param telefoneDono
+	 * @param nomeRequerente
+	 * @param telefoneRequerente
+	 * @param nomeItem
+	 * @param dataEmprestimo
+	 * @param dataDevolucao
+	 */
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {		
 		// Encerra um emprestimo
 		Emprestimo emprestimo = null;
@@ -238,7 +392,16 @@ public class Sistema {
 			throw new NullPointerException("Emprestimo nao encontrado");}
 	}
 	
-
+	
+	/**
+	 * lista do usuario que foram emprestados
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @return representacao de todos os itens emprestados por ele
+	 * caso nao tenha nenhum 
+	 * @return "Nenhum item emprestado"
+	 */
 	public String listarEmprestimoUsuarioEmprestando(String nome, String telefone){
 		
 		Usuario usuario = getUsuario(nome, telefone);
@@ -251,7 +414,16 @@ public class Sistema {
 			return "Nenhum item emprestado";
 		return stringEmprestimos;
 	}
-
+	
+	/**
+	 * lista do usuario que foram pegados emprestado
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @return representacao de todos os itens que foram pegos
+	 * caso nao tenha nenhum 
+	 * @return "Nenhum item emprestado"
+	 */
 	public String listarEmprestimoUsuarioPegandoEmprestado(String nome, String telefone){
 
 		Usuario usuario = getUsuario(nome, telefone);
@@ -265,6 +437,13 @@ public class Sistema {
 		return stringEmprestimos;
 	}
 	
+	/**
+	 * lista os emprestimos que o item estava 
+	 * @param nomeItem
+	 * @return representacao de todos os emprestimos com tal item
+	 * caso nao tenha sido emprestado nenhuma vez
+	 * @return "Nenhum emprestimo associados ao item"
+	 */
 	public String listarEmprestimosItem(String nomeItem){
 		
 		String stringEmprestimos = "Emprestimos associados ao item: ";
@@ -277,6 +456,11 @@ public class Sistema {
 		return stringEmprestimos;
 	}
 
+	/**
+	 * lista todos os itens nao emprestados
+	 * 
+	 * @return representacao dos itens que nao estao emprestados
+	 */
 	public String listarItensNaoEmprestados(){
 		
 		String itensNaoEmprestados = "";
@@ -289,6 +473,11 @@ public class Sistema {
 		return itensNaoEmprestados;
 	}
 
+	/**
+	 * lista todos os itens emprestados
+	 * 
+	 * @return representacao dos itens emprestados
+	 */
 	public String listarItensEmprestados(){
 
 		String itensEmprestados = "";
@@ -300,6 +489,11 @@ public class Sistema {
 		return itensEmprestados;
 	}
 
+	/**
+	 * Lista o top 10 dos itens com mais quantidade de emprestimos
+	 * 
+	 * @return representacao dos itens mais emprestados
+	 */
 	public String listarTop10Itens(){
 		
 		String top10 = "";
@@ -316,6 +510,11 @@ public class Sistema {
 		return top10;
 	}
 	
+	/**
+	 *
+	 * @param nomeItem
+	 * @return  o historico do item
+	 */
 	public String listarHistoricoEmprestimoItem(String nomeItem){
 		
 		String historico = "";
@@ -326,6 +525,13 @@ public class Sistema {
 		return historico;
 	}
 	
+	/**
+	 * Retorna lista com todos os usuario de reputacao negativa
+	 * 
+	 * @return uma lista ordenada por noem dos usuarios de reputacao negativa
+	 * caso nao tenha nenhum
+	 * @return "Nao tem usuario com reputacao negativa"
+	 */
 	public String listarCaloteiros(){
 		
 		String caloteiros = "Lista de usuarios com reputacao negativa: ";
@@ -341,6 +547,13 @@ public class Sistema {
 		return caloteiros;
 	}
 
+	/**
+	 * Lista o top 10 dos melhores usuarios
+	 * 
+	 * @return representacao dos melhores 10 usuario, com maiores reputacao
+	 * caso nao tenha 10
+	 * @return todos os usuario com reputacao boa
+	 */
 	public String listarTop10MelhoresUsuarios(){
 		
 		String melhores = "";
@@ -359,6 +572,13 @@ public class Sistema {
 		return melhores;
 	}
 
+	/**
+	 * Lista o top 10 dos piores usuarios
+	 * 
+	 * @return representacao dos piores 10 usuario, com menor reputacao
+	 * caso nao tenha 10
+	 * @return todos os usuario com reputacao boa
+	 */
 	public String listarTop10PioresUsuarios(){
 		
 		String piores = "";
@@ -377,9 +597,11 @@ public class Sistema {
 		return piores;
 	}
 	
-	
+	/**
+	 * 
+	 * @return lista de todos os itens
+	 */
 	private List<Item> listaItens() {
-		// Lista todos os itens (sem ordem definida)
 		Set<Item> itens = new HashSet<Item>();
 		for (Usuario usuario : usuarios){
 			usuario.listaItens(itens);
@@ -392,6 +614,10 @@ public class Sistema {
 		return lista;
 	}
 	
+	/**
+	 * 
+	 * @return lista de todos os itens nao emprestado
+	 */
 	private List<Item> itensNaoEmprestados() {
 		// Lista todos os itens (sem ordem definida)
 		List<Item> itens = new ArrayList<Item>();
@@ -400,6 +626,17 @@ public class Sistema {
 		}
 		return itens;
 	}
+	
+	/**
+	 * Verifica se o usuario existe e cria um com os valores do parametro
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @return true
+	 * 
+	 * caso nao exista
+	 * @return false
+	 */
 	private boolean usuarioExiste(String nome, String telefone) {
 		// Verifica se o usuario existe
 		for (Usuario usuario : usuarios){
@@ -410,6 +647,14 @@ public class Sistema {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @return um usuario com os valores parametrizados
+	 * caso nao exista
+	 * @return "Usuario invalido"
+	 */
 	private Usuario getUsuario(String nome, String telefone) {
 		// Retorna um usuario
 		for (Usuario usuario : usuarios){
@@ -421,6 +666,12 @@ public class Sistema {
 	}
 
 	
+	/**
+	 * Inicia o programa e faz a leitura dos arquivos
+	 * 
+	 * caso ocorra um erro ou o arquivo nao seja encontrado é lançado exception
+	 * 
+	 */
 	public void inicia() {
 		try{
 			
@@ -453,6 +704,11 @@ public class Sistema {
 		}
 	}
 
+	/**
+	 * Faz a escrita dos dado no arquivo antes de fechar o programa
+	 * 
+	 * caso o arquivo nao exista é lançado uma exception
+	 */
 	public void fecha() {
 		try{
 			

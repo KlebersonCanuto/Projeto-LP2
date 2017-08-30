@@ -8,30 +8,53 @@ public class JogoTabuleiro extends Item{
 	private List<String> pecasPerdidas;
 	
 	
+	/**
+	 * Constrói um Jogo de Tabuleiro apartir do nome e do valor
+	 * 
+	 * @param nomeItem
+	 * @param valor
+	 */
 	public JogoTabuleiro(String nomeItem, double valor){
 		
 		super(nomeItem, valor);
 		pecasPerdidas = new ArrayList<>();	
 	}
 	
+	/**
+	 * Adiciona o valor do parametro a sua lista de pecas
+	 * 
+	 * @param nomePeca
+	 */
 	public void adicionaPecaPerdida(String nomePeca){
-		// Adiciona uma peca perdida
 		pecasPerdidas.add(nomePeca);
 	}
 	
+	/**
+	 * Verifica o tamanho da lista de pecas, se for igual a 0
+	 * @return "COMPLETO"
+	 * Mas se for maior
+	 * @return "COM PECAS PERDIDAS"
+	 */
 	public String verificaPecas(){
-		// Verifica se tem pecas perdidas ou nao
 		if(pecasPerdidas.size() > 0)
 			return "COM PECAS PERDIDAS";
 		else
 			return "COMPLETO";	
 	}
 
+	/**
+	 * Retorna a representacao em string de um jogo de tabuleiro em forma de  "JOGO DE TABULEIRO: nome, R$ valor, emprestado(ou nao), pecas perdidas(ou nao)"
+	 * 
+	 * @return a representacao de jogo de tabuleiro
+	 */
 	public String toString(){
-		// Retorna a representacao em string de um jogo de tabuleiro
 		return "JOGO DE TABULEIRO: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.verificaPecas();
 	}
 	
+	/**
+	 * Verifica se dois Jogos de Tabuleiros sao iguais
+	 * Apartir do  nome e pecas perdidas
+	 */
 	public boolean equals(Object obj){
 		// Verifica se 2 jogos de tabuleiro são iguais
 		if (this == obj)

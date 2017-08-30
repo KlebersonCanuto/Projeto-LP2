@@ -4,29 +4,49 @@ public class JogosEletronicos extends Item {
 
 	private String plataforma;
 	
+	/**
+	 * Constrói um Jogo Eletronico apartir do nome, valor e plataforma
+	 * 
+	 * @param nomeItem
+	 * @param valor
+	 * @param plataforma
+	 */
 	public JogosEletronicos(String nomeItem, double valor, String plataforma){
 		
 		super(nomeItem, valor);
 		this.plataforma = plataforma;
 	}
 	
+	/**
+	 * 
+	 * @return a plataforma
+	 */
 	public String getPlataforma(){
-		// Retorna a plataforma do jogo
 		return plataforma;
 	}
 
+	/**
+	 * Modifica a plataforma para o valor parametrizado
+	 * 
+	 * @param plataforma
+	 */
 	public void setPlataforma(String plataforma){
-		// Modifica a plataforma do jogo
 		this.plataforma = plataforma;
 	}
 	
+	/**
+	 * Retorna a representacao em forma "JOGO ELETRONICO: nome, R$ valor, emprestado(ou nao), plataforma"
+	 * 
+	 * @return representacao de um Jogo Eletronico
+	 */
 	public String toString(){
-		// Retorna a representacao em string do jogo
 		return "JOGO ELETRONICO: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getPlataforma();
 	}
 	
+	/**
+	 * @return hashCode de Jogo Eletronico
+	 */
 	public int hashCode(){
-		// hashCode do jogo eletronico
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((this.getNome() == null) ? 0 : this.getNome().hashCode());
@@ -34,8 +54,13 @@ public class JogosEletronicos extends Item {
 		return result;
 	}
 
+	/**
+	 * Verifica se dois Jogos Eletronicos sao iguais e retorna um boolean
+	 * apartir do nome e plataforma
+	 * 
+	 * @return boolean
+	 */
 	public boolean equals(Object obj){
-		// Verifica se 2 jogos eletronicos sao iguais
 		if (this == obj)
 			return true;
 		if (!super.equals(obj))

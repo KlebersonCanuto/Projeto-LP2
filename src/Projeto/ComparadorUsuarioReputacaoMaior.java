@@ -3,7 +3,12 @@ package Projeto;
 import java.util.Comparator;
 
 public class ComparadorUsuarioReputacaoMaior implements Comparator<Usuario>{
-
+	
+	/**
+	 * Compara 2 Usuarios pela reputacao maior
+	 * 
+	 * @return representacoes em inteiro para os casos de comparacao
+	 */
 	@Override
 	public int compare(Usuario u1, Usuario u2) {
 

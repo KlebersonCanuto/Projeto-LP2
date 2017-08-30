@@ -4,6 +4,11 @@ import java.util.Comparator;
 
 public class ComparadorUsuarioReputacaoMenor implements Comparator<Usuario>{
 
+	/**
+	 * Compara 2 Usuarios pela reputacao menor
+	 * 
+	 * @return representacoes em inteiro para os casos de comparacao
+	 */
 	@Override
 	public int compare(Usuario u1, Usuario u2) {
 

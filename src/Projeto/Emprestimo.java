@@ -20,6 +20,15 @@ public class Emprestimo implements Serializable{
 	private boolean terminou;
 	private int duracao;
 	
+	/**
+	 * Constrói um emprestimo apartir de um Usuario(Dono), outro usuario(Requerente), um item, uma data de emprestimo e um periodo
+	 * 
+	 * @param dono
+	 * @param requerente
+	 * @param item
+	 * @param dataEmprestimo
+	 * @param periodo
+	 */
 	public Emprestimo(Usuario dono, Usuario requerente, Item item, String dataEmprestimo, int periodo){
 		
 		this.dono = dono;
@@ -31,9 +40,14 @@ public class Emprestimo implements Serializable{
 		this.periodo = periodo;
 		this.terminou = false;
 	}
-
+	
+	/**
+	 * Pega a data de devolucao, devolve o item que estava com o Requerente e verifica, calcula o tempo de emprestimo
+	 * Após isso verifica se foi maior ou nao que o periodo estipulado, e com isso define se passou ou nao do periodo
+	 * 
+	 * @param dataDevolucao
+	 */
 	public void encerra(String dataDevolucao) {
-		// Encerra um emprestimo
 		LocalDate diaDevolucao = LocalDate.parse(dataDevolucao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		this.dataDevolucao = diaDevolucao;
 		this.requerente.devolveItem(this.item);
@@ -47,56 +61,99 @@ public class Emprestimo implements Serializable{
 		this.terminou = true;
 	}
 	
+	/**
+	 * 
+	 * @return o boolean que representa se atrasou ou nao
+	 */
 	public boolean passouDoPeriodo(){
-		// Verifica se passou do periodo de entrega
+		
 		return this.passouDoPeriodo;
 	}
 	
+	/**
+	 * 
+	 * @return o dono do item
+	 */
 	public Usuario getDono() {
-		// Retorna o dono do item
 		return this.dono;
 	}
-
+	
+	/**
+	 * 
+	 * @return o requerente
+	 */
 	public Usuario getRequerente() {
-		// Retorna o requerente do item
 		return this.requerente;
 	}
-
+	
+	/**
+	 * 
+	 * @return o item do emprestimo
+ 	 */
 	public Item getItem() {
-		// Retorna o item emprestado
 		return this.item;
 	}
-
+	
+	/**
+	 * 
+	 * @return data que o emprestimo aconteceu
+	 */
 	public String getDataEmprestimo() {
-		// Retorna a data do emprestimo
 		return this.dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 
+	/**
+	 * 
+	 * @return o periodo estipulado do emprestimo
+	 */
 	public int getPeriodo() {
-		// Retorna o periodo do emprestimo
 		return this.periodo;
 	}
 
+	/**
+	 * Modifica o periodo de acordo com o valor parametrizado
+	 * 
+	 * @param periodo
+	 */
 	public void setPeriodo(int periodo) {
-		// Modifica o periodo de emprestimo
 		this.periodo = periodo;
 	}
 	
+	/**
+	 * 
+	 * @return o boolean se o emprestimo terminou ou nao
+	 */
 	public boolean terminou() {
 		
 		return this.terminou;
 	}
 	
+	/**
+	 * Retorna a representacao no formato "EMPRESTIMO - De: dono, PARA: requerente, item, data do emprestimo, periodo dias, ENTREGA: data de devolucao"
+	 * 
+	 * @return a representacao de um Emprestimo
+	 */
 	public String toString() {
 		
 		return "EMPRESTIMO - De: " + this.dono.getNome() + ", Para: " + this.requerente.getNome() + ", " + this.item.getNome() + ", " + this.getDataEmprestimo() + ", " + this.periodo + " dias, ENTREGA: " + this.getDataEntrega();
 	}
 	
+	/**
+	 * 
+	 * @return a duracao
+	 */
 	public int getDuracao(){
 		
 		return this.duracao;
 	}
 
+	/**
+	 * Caso o emprestimo tenha sido encerrado
+	 * @return data de devolucao
+	 * 
+	 * Já se ainda está em andamento
+	 * @return "Emprestimo em andamento"
+	 */
 	private String getDataEntrega() {
 		
 		if (terminou())

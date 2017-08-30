@@ -24,129 +24,241 @@ public class Sistema {
 		emprestimos = new ArrayList<>();
 	}
 
+	public void iniciarSistema() {
+		try{
+			
+			InputStream fisUsuarios = new FileInputStream("usuarios.txt");
+			ObjectInputStream oisUsuarios = new ObjectInputStream(fisUsuarios);
+			InputStream fisEmprestimos = new FileInputStream("emprestimos.txt");
+			ObjectInputStream oisEmprestimos = new ObjectInputStream(fisEmprestimos);
+
+			int numeroUsuarios = oisUsuarios.readInt();
+			int numeroEmprestimos = oisEmprestimos.readInt();
+			
+			for (int i = 0; i < numeroUsuarios; i++) {
+				usuarios.add( (Usuario) oisUsuarios.readObject());
+			}
+			for (int i = 0; i < numeroEmprestimos; i++){
+				emprestimos.add((Emprestimo) oisEmprestimos.readObject());
+			}
+		
+			oisEmprestimos.close();
+			oisUsuarios.close();
+
+		} catch(IOException e){
+			System.out.println("Arquivo não encontrado");		
+		} catch (ClassNotFoundException e){
+			System.out.println("Ocorreu um erro");
+		}
+	}
+
+	public void fecharSistema() {
+		
+		try{
+			
+			OutputStream fosUsuarios = new FileOutputStream("usuarios.txt");
+			ObjectOutputStream oosUsuarios = new ObjectOutputStream(fosUsuarios);
+		
+			OutputStream fosEmprestimos = new FileOutputStream("emprestimos.txt");
+			ObjectOutputStream oosEmprestimos = new ObjectOutputStream(fosEmprestimos);
+		
+			oosEmprestimos.writeInt(emprestimos.size());
+			oosUsuarios.writeInt(usuarios.size());
+		
+			for (Usuario usuario : usuarios) {
+				oosUsuarios.writeObject(usuario);	
+			}
+			for	(Emprestimo emprestimo : emprestimos){
+				oosEmprestimos.writeObject(emprestimo);
+			}
+			
+			oosEmprestimos.close();
+			oosUsuarios.close();
+			usuarios.clear();
+			emprestimos.clear();
+			
+		} catch(IOException e){
+			System.out.println("Arquivo não encontrado");		
+		}
+	}
+	
 	public void cadastraUsuario(String nome, String telefone, String email) {
 		// Cadastra um usuario
-		if (usuarioExiste(nome, telefone))
-			throw new IllegalArgumentException("Usuario ja cadastrado");
-		else if (nome.equals("") || email.equals("") || telefone.equals(""))
-			throw new IllegalArgumentException("Atributo vazio");
-		else{
-			Usuario usuario = new Usuario(nome, telefone, email);
-			usuarios.add(usuario);
+		try{
+			if (usuarioExiste(nome, telefone))
+				throw new IllegalArgumentException("Usuario ja cadastrado");
+			else if (nome.equals("") || email.equals("") || telefone.equals(""))
+				throw new IllegalArgumentException("Atributo vazio");
+			else{
+				Usuario usuario = new Usuario(nome, telefone, email);
+				usuarios.add(usuario);
+			} 
+		} catch (IllegalArgumentException e){
+			e.printStackTrace();
 		}
 	}
 
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
 		// Retorna uma informacao do usuario
-		if (usuarioExiste(nome, telefone)){
-			if (atributo.toLowerCase().equals("email"))
-				return getUsuario(nome, telefone).getEmail();
-			else if (atributo.toLowerCase().equals("nome"))
-				return getUsuario(nome, telefone).getNome();
-			else if (atributo.toLowerCase().equals("telefone"))
-				return getUsuario(nome, telefone).getCelular();
-			else if (atributo.toLowerCase().equals("reputacao"))
-				return String.valueOf(getUsuario(nome, telefone).getReputacao());
-			else if (atributo.toLowerCase().equals("cartao"))
-				return getUsuario(nome, telefone).getQualificacao();
+		try{
+			if (usuarioExiste(nome, telefone)){
+				Usuario usuario = getUsuario(nome, telefone);
+				if (atributo.toLowerCase().equals("email"))
+					return usuario.getEmail();
+				else if (atributo.toLowerCase().equals("nome"))
+					return usuario.getNome();
+				else if (atributo.toLowerCase().equals("telefone"))
+					return usuario.getCelular();
+				else if (atributo.toLowerCase().equals("reputacao"))
+					return String.valueOf(usuario.getReputacao());
+				else if (atributo.toLowerCase().equals("cartao"))
+					return usuario.getQualificacao();
+			}
 			else
-				return null;
-		}
-		else
-			throw new IllegalArgumentException("Usuario invalido");
+				throw new IllegalArgumentException("Usuario invalido");
+		} catch (IllegalArgumentException e){
+			e.printStackTrace();
+		} return null;
 	}
 
 	public void removerUsuario(String nome, String telefone) {
 		// Remove um usuario
-		usuarios.remove(getUsuario(nome, telefone));
+		try{
+			usuarios.remove(getUsuario(nome, telefone));
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		} 
 	}
 
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
 		// Atualiza um atributo do usuario
-		Usuario usuario = getUsuario(nome, telefone);
-		if(atributo.toLowerCase().equals("email"))
-			usuario.setEmail(valor);
-		else if(atributo.toLowerCase().equals("nome"))
-			usuario.setNome(valor);
-		else if(atributo.toLowerCase().equals("telefone"))
-			usuario.setCelular(valor);
+		try{
+			Usuario usuario = getUsuario(nome, telefone);
+			if(atributo.toLowerCase().equals("email"))
+				usuario.setEmail(valor);
+			else if(atributo.toLowerCase().equals("nome"))
+				usuario.setNome(valor);
+			else if(atributo.toLowerCase().equals("telefone"))
+				usuario.setCelular(valor);
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		}
 	}
 
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
 		// Cadastra um jogo eletronico de um usuario
-		Usuario usuario = getUsuario(nome, telefone);
-		Item eletronico = new JogosEletronicos(nomeItem, preco, plataforma);
-		usuario.adicionaItem(eletronico);
+		try{
+			Usuario usuario = getUsuario(nome, telefone);
+			Item eletronico = new JogosEletronicos(nomeItem, preco, plataforma);
+			usuario.adicionaItem(eletronico);
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		}
 	}
 
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
 		// Cadastra um jogo de tabuleiro de um usuario
-		Usuario usuario = getUsuario(nome, telefone);
-		Item tabuleiro = new JogoTabuleiro(nomeItem, preco);	
-		usuario.adicionaItem(tabuleiro);
+		try{
+			Usuario usuario = getUsuario(nome, telefone);
+			Item tabuleiro = new JogoTabuleiro(nomeItem, preco);	
+			usuario.adicionaItem(tabuleiro);
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		}
 	}
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
 		// Adiciona uma peca perdida a um jogo de tabuleiro
-		Usuario usuario = getUsuario(nome, telefone);
-		JogoTabuleiro item = (JogoTabuleiro) usuario.getItem(nomeItem);
-		item.adicionaPecaPerdida(nomePeca);
+		try{
+			Usuario usuario = getUsuario(nome, telefone);
+			JogoTabuleiro item = (JogoTabuleiro) usuario.getItem(nomeItem);
+			item.adicionaPecaPerdida(nomePeca);
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao, String genero, String classificacao, int anoLancamento) {
 		// Cadastra um BluRay de filme de um usuario
-		Usuario usuario = getUsuario(nome, telefone);
-		Item filme = new BlurayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
-		usuario.adicionaItem(filme);
+		try{
+			Usuario usuario = getUsuario(nome, telefone);
+			Item filme = new BlurayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
+			usuario.adicionaItem(filme);
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		}
 	}
 
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao, int numeroFaixas, String artista, String classificacao) {
 		// Cadastra um BluRay de show de um usuario
-		Usuario usuario = getUsuario(nome, telefone);
-		Item show = new BlurayShow(nomeItem, preco, duracao, numeroFaixas, artista, classificacao);
-		usuario.adicionaItem(show);
+		try{
+			Usuario usuario = getUsuario(nome, telefone);
+			Item show = new BlurayShow(nomeItem, preco, duracao, numeroFaixas, artista, classificacao);
+			usuario.adicionaItem(show);
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		}
 	}
 
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
 		// Cadastra um BluRay de serie de um usuario
-		Usuario usuario = getUsuario(nome, telefone);
-		Item serie = new BluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
-		usuario.adicionaItem(serie);
+		try{
+			Usuario usuario = getUsuario(nome, telefone);
+			Item serie = new BluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
+			usuario.adicionaItem(serie);
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		}
 	}
 
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
 		// Adiciona um episodio a uma serie
-		Usuario usuario = getUsuario(nome, telefone);
-		BluraySerie serie = (BluraySerie) usuario.getItem(nomeBlurayTemporada);
-		serie.adicionaBluRay(duracao);
+		try{
+			Usuario usuario = getUsuario(nome, telefone);
+			BluraySerie serie = (BluraySerie) usuario.getItem(nomeBlurayTemporada);
+			serie.adicionaBluRay(duracao);
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		}
 	}
 
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
 		// Retorna uma informacao de um item
-		Usuario usuario = getUsuario(nome, telefone);
-		Item item = usuario.getItem(nomeItem);
-		if (atributo.toLowerCase().equals("nome"))
-			return item.getNome();
-		else if (atributo.toLowerCase().equals("preco"))
-			return String.valueOf(item.getValor()); 
-		return null;
+		try{
+			Usuario usuario = getUsuario(nome, telefone);
+			Item item = usuario.getItem(nomeItem);
+			if (atributo.toLowerCase().equals("nome"))
+				return item.getNome();
+			else if (atributo.toLowerCase().equals("preco"))
+				return String.valueOf(item.getValor()); 
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		} return null;
 	}
 
 	public void removerItem(String nome, String telefone, String nomeItem){
 		// Remove um item
-		Usuario usuario = getUsuario(nome, telefone);
-		usuario.removeItem(nomeItem);
+		try{
+			Usuario usuario = getUsuario(nome, telefone);
+			usuario.removeItem(nomeItem);
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		}
 	}
 
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
 		// Atualiza um item
-		Usuario usuario = getUsuario(nome, telefone);
-		Item item = usuario.getItem(nomeItem);
-		
-		if (atributo.toLowerCase().equals("nome"))
-			item.setNome(valor);
-		else if (atributo.toLowerCase().equals("preco"))
-			item.setValor(Double.valueOf(valor));
+		try{
+			Usuario usuario = getUsuario(nome, telefone);
+			Item item = usuario.getItem(nomeItem);
+			if (atributo.toLowerCase().equals("nome"))
+				item.setNome(valor);
+			else if (atributo.toLowerCase().equals("preco"))
+				item.setValor(Double.valueOf(valor));
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		}
 	}
 
 	public String listarItensOrdenadosPorNome() {
@@ -175,94 +287,116 @@ public class Sistema {
 		
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
 		// Retorna detalhes de um item
-		Usuario usuario = getUsuario(nome, telefone);
-		Item item = usuario.getItem(nomeItem);
-		return item.toString();
+		try{
+			Usuario usuario = getUsuario(nome, telefone);
+			Item item = usuario.getItem(nomeItem);
+			return item.toString();
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		} return null;
 	}
 
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
 		// Cria um novo emprestimo
-		Usuario dono = getUsuario(nomeDono, telefoneDono);
-		Usuario requerente = getUsuario(nomeRequerente, telefoneRequerente);
-		Item item = dono.getItem(nomeItem);
-		if (!item.emprestado()){
-			if (requerente.getQualificacao() != "Caloteiro")
-				if (periodo <= requerente.getPeriodoMaximo()){	
-					Emprestimo emprestimo = new Emprestimo(dono, requerente, item, dataEmprestimo, periodo);
-					dono.adicionaEmprestimo(emprestimo);
-					dono.somaReputacao(item.getValor() * 0.10);
-					requerente.adicionaEmprestimo(emprestimo);
-					emprestimos.add(emprestimo);
-				}else{
-					throw new IllegalArgumentException("Usuario impossiblitado de pegar emprestado por esse periodo");
+		try{
+			Usuario dono = getUsuario(nomeDono, telefoneDono);
+			Usuario requerente = getUsuario(nomeRequerente, telefoneRequerente);
+			Item item = dono.getItem(nomeItem);
+			if (!item.emprestado()){
+				if (!requerente.getQualificacao().equals("Caloteiro")){
+					if (periodo <= requerente.getPeriodoMaximo()){	
+						Emprestimo emprestimo = new Emprestimo(dono, requerente, item, dataEmprestimo, periodo);
+						dono.adicionaEmprestimo(emprestimo);
+						dono.somaReputacao(item.getValor() * 0.10);
+						requerente.adicionaEmprestimo(emprestimo);
+						emprestimos.add(emprestimo);
+					}else{
+						throw new IllegalArgumentException("Usuario impossiblitado de pegar emprestado por esse periodo");
+					}
 				}
+				else{
+					throw new IllegalArgumentException("Usuario nao pode pegar nenhum item emprestado");
+				}
+			}
 			else
-				throw new IllegalArgumentException("Usuario nao pode pegar nenhum item emprestado");
+				throw new IllegalArgumentException("Item emprestado no momento");
+		} catch (IllegalArgumentException e){
+			e.printStackTrace();
 		}
-		else
-			throw new IllegalArgumentException("Item emprestado no momento");
 	}
 
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) {		
 		// Encerra um emprestimo
-		Emprestimo emprestimo = null;
-		boolean teveEmprestimo = false;
+		try{
+			Emprestimo emprestimo = null;
+			boolean teveEmprestimo = false;
 		
-		Usuario dono = getUsuario(nomeDono, telefoneDono);
-		Usuario requerente = getUsuario(nomeRequerente, telefoneRequerente);
-		Item item = dono.getItem(nomeItem);
+			Usuario dono = getUsuario(nomeDono, telefoneDono);
+			Usuario requerente = getUsuario(nomeRequerente, telefoneRequerente);
+			Item item = dono.getItem(nomeItem);
 		
-		for (Emprestimo emp : emprestimos){
+			for (Emprestimo emp : emprestimos){
 		
-			if (emp.getItem().equals(item) && emp.getDono().equals(dono) && emp.getRequerente().equals(requerente) && emp.getDataEmprestimo().equals(dataEmprestimo)){
-				emprestimo = emp;
-				teveEmprestimo = true;
-			}
-		}
-		
-		if (teveEmprestimo){
-			emprestimo.encerra(dataDevolucao);
-			int dias;
-			double total;
-			if (emprestimo.passouDoPeriodo()){
-				dias = emprestimo.getDuracao() - emprestimo.getPeriodo();
-				total = -((dias * 0.01) * emprestimo.getItem().getValor());
-				emprestimo.getRequerente().somaReputacao(total);
-				emprestimo.getRequerente().atualizaQualificacao();
-			}else{
-				emprestimo.getRequerente().somaReputacao(emprestimo.getItem().getValor() * 0.05);
-				emprestimo.getRequerente().atualizaQualificacao();
+				if (emp.getItem().equals(item) && emp.getDono().equals(dono) && emp.getRequerente().equals(requerente) && emp.getDataEmprestimo().equals(dataEmprestimo)){
+					emprestimo = emp;
+					teveEmprestimo = true;
 				}
+			}
 		
-		}else{
-			throw new NullPointerException("Emprestimo nao encontrado");}
+			if (teveEmprestimo){
+				emprestimo.encerra(dataDevolucao);
+				int dias;
+				double total;
+				if (emprestimo.passouDoPeriodo()){
+					dias = emprestimo.getDuracao() - emprestimo.getPeriodo();
+					total = -((dias * 0.01) * emprestimo.getItem().getValor());
+					emprestimo.getRequerente().somaReputacao(total);
+					emprestimo.getRequerente().atualizaQualificacao();
+				}else{
+					emprestimo.getRequerente().somaReputacao(emprestimo.getItem().getValor() * 0.05);
+					emprestimo.getRequerente().atualizaQualificacao();
+				}
+			}else{
+			throw new NullPointerException("Emprestimo nao encontrado");
+			}
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		}
 	}
 	
 
 	public String listarEmprestimoUsuarioEmprestando(String nome, String telefone){
 		
-		Usuario usuario = getUsuario(nome, telefone);
-		String stringEmprestimos = "Emprestimos: ";
-		for (Emprestimo emprestimo : emprestimos) {
-			if (emprestimo.getDono().equals(usuario))
-				stringEmprestimos+=emprestimo.toString() + "|";
-		}
-		if (stringEmprestimos.equals("Emprestimos: "))
-			return "Nenhum item emprestado";
-		return stringEmprestimos;
+		try{
+			Usuario usuario = getUsuario(nome, telefone);
+			String stringEmprestimos = "Emprestimos: ";
+			for (Emprestimo emprestimo : emprestimos) {
+				if (emprestimo.getDono().equals(usuario))
+					stringEmprestimos+=emprestimo.toString() + "|";
+			}
+			if (stringEmprestimos.equals("Emprestimos: "))
+				return "Nenhum item emprestado";
+			return stringEmprestimos;
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		} return null;
 	}
 
 	public String listarEmprestimoUsuarioPegandoEmprestado(String nome, String telefone){
 
-		Usuario usuario = getUsuario(nome, telefone);
-		String stringEmprestimos = "Emprestimos pegos: ";
-		for (Emprestimo emprestimo : emprestimos) {
-			if (emprestimo.getRequerente().equals(usuario))
-				stringEmprestimos+=emprestimo.toString() + "|";
-		}
-		if (stringEmprestimos.equals("Emprestimos pegos: "))
-			return "Nenhum item pego emprestado";
-		return stringEmprestimos;
+		try{
+			Usuario usuario = getUsuario(nome, telefone);
+			String stringEmprestimos = "Emprestimos pegos: ";
+			for (Emprestimo emprestimo : emprestimos) {
+				if (emprestimo.getRequerente().equals(usuario))
+					stringEmprestimos+=emprestimo.toString() + "|";
+			}
+			if (stringEmprestimos.equals("Emprestimos pegos: "))
+				return "Nenhum item pego emprestado";
+			return stringEmprestimos;
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		} return null;
 	}
 	
 	public String listarEmprestimosItem(String nomeItem){
@@ -385,10 +519,7 @@ public class Sistema {
 			usuario.listaItens(itens);
 		}
 		
-		List<Item> lista = new ArrayList<>();
-		for (Item item : itens){
-			lista.add(item);
-		}
+		List<Item> lista = new ArrayList<>(itens);
 		return lista;
 	}
 	
@@ -418,70 +549,5 @@ public class Sistema {
 					return usuario;
 		}
 		throw new NullPointerException("Usuario invalido");
-	}
-
-	
-	public void inicia() {
-		try{
-			
-		InputStream fisu = new FileInputStream("usuarios.txt");
-		ObjectInputStream oisu = new ObjectInputStream(fisu);
-		InputStream fise = new FileInputStream("emprestimos.txt");
-		ObjectInputStream oise = new ObjectInputStream(fise);
-
-		int n = oisu.readInt();
-		int m = oise.readInt();
-			
-		for (int i = 0; i < n; i++) {
-			usuarios.add( (Usuario) oisu.readObject());
-		}
-			
-		for (int i = 0; i < m; i++){
-			emprestimos.add((Emprestimo) oise.readObject());
-		}
-		
-		oise.close();
-		oisu.close();
-			
-			
-		} catch(IOException e){
-			
-			System.out.println("Arquivo não encontrado" + e);		
-		} catch (ClassNotFoundException e){
-			
-			System.out.println("Ocorreu um erro");
-		}
-	}
-
-	public void fecha() {
-		try{
-			
-			
-		OutputStream fosu = new FileOutputStream("usuarios.txt");
-		ObjectOutputStream oosu = new ObjectOutputStream(fosu);
-		
-		OutputStream fose = new FileOutputStream("emprestimos.txt");
-		ObjectOutputStream oose = new ObjectOutputStream(fose);
-		
-		oose.writeInt(emprestimos.size());
-		oosu.writeInt(usuarios.size());
-		
-		for (Usuario usuario : usuarios) {
-			oosu.writeObject(usuario);
-			
-		}
-		
-		for (Emprestimo emprestimo : emprestimos){
-			oose.writeObject(emprestimo);
-		}
-		
-		oose.close();
-		oosu.close();
-		usuarios.clear();
-		emprestimos.clear();
-		} catch(IOException e){
-			
-			System.out.println("Arquivo não encontrado" + e);		
-		}
 	}
 }

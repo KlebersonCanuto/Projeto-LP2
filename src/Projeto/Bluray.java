@@ -3,7 +3,7 @@ package Projeto;
 public class Bluray extends Item{
 	
 	private int duracao;
-	private String classificao;
+	private Classificacao classificacao;
 	
 	/**	
 	 * Constrói um Bluray a partir de seu nome, valor, duracao e classificacao.
@@ -11,13 +11,13 @@ public class Bluray extends Item{
 	 *@param nome, define o nome
 	 *@param valor, define o valor em double	
 	 *@param duracao, define a duracao em int
-	 *@param classificao
+	 *@param classificacao
 	   */
-	public Bluray(String nome, double valor, int duracao, String classificao){
+	public Bluray(String nome, double valor, int duracao, String classificacao){
 		
 		super(nome, valor);
 		this.duracao = duracao;
-		this.classificao = classificao;
+		setClassificacao(classificacao);
 	}
 	
 	/**
@@ -41,17 +41,36 @@ public class Bluray extends Item{
 	 * 
 	 * @return a classificacao 
 	 */
-	public String getClassificao(){
+	public String getClassificacao(){
 		
-		return this.classificao;
+		return this.classificacao.getClassificacao();
 	}
 
 	/**
 	 * Modifica a classificacao atual para a que foi passada como parametro
-	 * @param classificao
+	 * @param classificacao
 	 */
-	public void setClassificao(String classificao){
+	public void setClassificacao(String classificacao){
 		
-		this.classificao = classificao;
+		if (classificacao.equals("LIVRE"))
+			this.classificacao = Classificacao.LIVRE;		
+		
+		else if (classificacao.equals("DEZ_ANOS"))
+			this.classificacao = Classificacao.DEZ_ANOS;
+		
+		else if (classificacao.equals("DOZE_ANOS"))
+			this.classificacao = Classificacao.DOZE_ANOS;
+		
+		else if (classificacao.equals("QUATORZE_ANOS"))
+			this.classificacao = Classificacao.QUATORZE_ANOS;
+		
+		else if (classificacao.equals("DEZESSEIS_ANOS"))
+			this.classificacao = Classificacao.DEZESSEIS_ANOS;
+		
+		else if (classificacao.equals("DEZOITO_ANOS"))
+			this.classificacao = Classificacao.DEZOITO_ANOS;
+		
+		else
+			throw new IllegalArgumentException("Classicacao invalida");
 	}
 }

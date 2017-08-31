@@ -808,7 +808,7 @@ public class Sistema {
 	private Usuario getUsuario(String nome, String telefone) {
 		
 		for (Usuario usuario : usuarios) {
-			if (usuario.getNome().equals(nome))
+			if (usuario.getNome().toLowerCase().equals(nome.toLowerCase()))
 				if (usuario.getCelular().equals(telefone))
 					return usuario;
 		}

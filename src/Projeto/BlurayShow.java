@@ -13,11 +13,11 @@ public class BlurayShow extends Bluray{
 	 * @param duracao
 	 * @param numeroFaixas
 	 * @param artista
-	 * @param classificao
+	 * @param classificacao
 	 */
-	public BlurayShow(String nome, double valor, int duracao, int numeroFaixas, String artista, String classificao){
+	public BlurayShow(String nome, double valor, int duracao, int numeroFaixas, String artista, String classificacao){
 		
-		super(nome, valor, duracao, classificao);
+		super(nome, valor, duracao, classificacao);
 		this.artista = artista;
 		this.numeroFaixas = numeroFaixas;
 	}
@@ -63,6 +63,6 @@ public class BlurayShow extends Bluray{
 	 */
 	public String toString(){
 		
-		return "SHOW: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getArtista() + ", " + this.getNumeroFaixas() + " faixas";
+		return "SHOW: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificacao() + ", " + this.getArtista() + ", " + this.getNumeroFaixas() + " faixas";
 	}
 }

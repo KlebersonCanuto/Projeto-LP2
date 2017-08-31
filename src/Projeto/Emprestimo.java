@@ -6,9 +6,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Emprestimo implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1238008821695884368L;
 	private Usuario dono;
 	private Usuario requerente;
@@ -170,6 +167,9 @@ public class Emprestimo implements Serializable{
 		return "Emprestimo em andamento";
 	}
 	
+	/**
+	 * @return o hashCode do emprestimo
+	 */
 	public int hashCode() {
 		
 		final int prime = 31;
@@ -180,7 +180,12 @@ public class Emprestimo implements Serializable{
 		result = prime * result + ((requerente == null) ? 0 : requerente.hashCode());
 		return result;
 	}
-
+	
+	/**
+	 * Verifica se os dois objetos sao iguais e retorna um boolean
+	 * 
+	 * @return boolean
+	 */
 	public boolean equals(Object obj) {
 		
 		if (this == obj)

@@ -6,8 +6,8 @@ import java.util.List;
 
 public class BluraySerie extends Bluray {
 
+	private Genero genero;
 	private String descricao;
-	private String genero;
 	private int temporada;
 	private List <Integer> episodios; 
 	
@@ -19,17 +19,17 @@ public class BluraySerie extends Bluray {
 	 * @param valor
 	 * @param descricao
 	 * @param duracao
-	 * @param classificao
+	 * @param classificacao
 	 * @param genero
 	 * @param temporada
 	 */
-	public BluraySerie(String nome, double valor, String descricao, int duracao, String classificao, String genero, int temporada){
+	public BluraySerie(String nome, double valor, String descricao, int duracao, String classificacao, String genero, int temporada){
 		
-		super(nome, valor, duracao, classificao);
+		super(nome, valor, duracao, classificacao);
 		this.descricao = descricao;
-		this.genero = genero;
 		this.temporada = temporada;
 		episodios = new ArrayList<>();
+		setGenero(genero);
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class BluraySerie extends Bluray {
 	 */
 	public String getGenero(){
 		
-		return this.genero;
+		return this.genero.getGenero();
 	}
 	
 	/**
@@ -66,7 +66,53 @@ public class BluraySerie extends Bluray {
 	 */
 	public void setGenero(String genero){
 		
-		this.genero = genero;
+		if (genero.equals("ACAO"))
+			this.genero = Genero.ACAO;
+		
+		else if (genero.equals("ANIMACAO"))
+			this.genero = Genero.ANIMACAO;
+		
+		else if (genero.equals("AVENTURA"))
+			this.genero = Genero.AVENTURA;
+		
+		else if (genero.equals("COMEDIA"))
+			this.genero = Genero.COMEDIA;
+		
+		else if (genero.equals("DOCUMENTARIO"))
+			this.genero = Genero.DOCUMENTARIO;
+		
+		else if (genero.equals("DRAMA"))
+			this.genero = Genero.DRAMA;
+		
+		else if (genero.equals("EROTICO"))
+			this.genero = Genero.EROTICO;
+		
+		else if (genero.equals("FAROESTE"))
+			this.genero = Genero.FAROESTE;
+		
+		else if (genero.equals("FICCAO"))
+			this.genero = Genero.FICCAO;
+		
+		else if (genero.equals("MUSICAL"))
+			this.genero = Genero.MUSICAL;
+		
+		else if (genero.equals("POLICIAL"))
+			this.genero = Genero.POLICIAL;
+		
+		else if (genero.equals("ROMANCE"))
+			this.genero = Genero.ROMANCE;
+		
+		else if (genero.equals("SUSPENSE"))
+			this.genero = Genero.SUSPENSE;
+		
+		else if (genero.equals("TERROR"))
+			this.genero = Genero.TERROR;
+		
+		else if (genero.equals("OUTRO"))
+			this.genero = Genero.OUTRO;
+		
+		else
+			throw new IllegalArgumentException("Genero invalido");
 	}
 	
 	/**
@@ -95,7 +141,7 @@ public class BluraySerie extends Bluray {
 	 */
 	public String toString(){
 		
-		return "SERIE: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificao() + ", " + this.getGenero() + ", Temporada " + this.getTemporada();
+		return "SERIE: " + this.getNome() + ", R$ " + this.getValor() + ", " + this.stringEmprestado() + ", " + this.getDuracao() + " min, " + this.getClassificacao() + ", " + this.getGenero() + ", Temporada " + this.getTemporada();
 	}
 
 	/**

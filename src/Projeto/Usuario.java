@@ -297,7 +297,7 @@ public class Usuario implements Serializable{
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
-		} else if (!nome.equals(other.nome))
+		} else if (!nome.toLowerCase().equals(other.nome.toLowerCase()))
 			return false;
 		if (telefone == null) {
 			if (other.telefone != null)

@@ -2,7 +2,7 @@ package Projeto;
 
 public class JogosEletronicos extends Item {
 
-	private String plataforma;
+	private Plataforma plataforma;
 	
 	/**
 	 * Constrói um Jogo Eletronico apartir do nome, valor e plataforma
@@ -14,7 +14,7 @@ public class JogosEletronicos extends Item {
 	public JogosEletronicos(String nomeItem, double valor, String plataforma){
 		
 		super(nomeItem, valor);
-		this.plataforma = plataforma;
+		setPlataforma(plataforma);
 	}
 	
 	/**
@@ -23,7 +23,7 @@ public class JogosEletronicos extends Item {
 	 */
 	public String getPlataforma(){
 		
-		return plataforma;
+		return this.plataforma.getPlataforma();
 	}
 
 	/**
@@ -33,7 +33,32 @@ public class JogosEletronicos extends Item {
 	 */
 	public void setPlataforma(String plataforma){
 		
-		this.plataforma = plataforma;
+		if (plataforma.equals("PC"))
+			this.plataforma = Plataforma.PC;
+		
+		else if (plataforma.equals("MAC"))
+			this.plataforma = Plataforma.MAC;
+		
+		else if (plataforma.equals("PS3"))
+			this.plataforma = Plataforma.PS3;
+		
+		else if (plataforma.equals("PS4"))
+			this.plataforma = Plataforma.PS4;
+		
+		else if (plataforma.equals("XBOX360"))
+			this.plataforma = Plataforma.XBOX360;
+		
+		else if (plataforma.equals("XBOX_ONE"))
+			this.plataforma = Plataforma.XBOX_ONE;
+		
+		else if (plataforma.equals("NINTENDO_3DS"))
+			this.plataforma = Plataforma.NINTENDO_3DS;
+		
+		else if (plataforma.equals("OUTRO"))
+			this.plataforma = Plataforma.OUTRO;
+		
+		else
+			throw new IllegalArgumentException("Plataforma Invalida");
 	}
 	
 	/**

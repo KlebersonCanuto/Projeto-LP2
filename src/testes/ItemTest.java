@@ -118,7 +118,13 @@ public class ItemTest {
 		
 	}
 	
-	
+	@Test
+	public void testGetQuatidadeEmprestimos() {
+		assertEquals(0, I1.getQuantidadeEmprestimo());
+		I1.emprestou();
+		assertEquals(1, I1.getQuantidadeEmprestimo());
+		
+	}
 
 
 

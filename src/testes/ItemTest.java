@@ -125,7 +125,4 @@ public class ItemTest {
 		assertEquals(1, I1.getQuantidadeEmprestimo());
 		
 	}
-
-
-
 }

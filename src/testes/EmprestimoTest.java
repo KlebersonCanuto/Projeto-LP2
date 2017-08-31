@@ -86,5 +86,4 @@ public class EmprestimoTest {
 		assertEquals(false, e1.getDuracao() == 6);
 
 	}
-
 }

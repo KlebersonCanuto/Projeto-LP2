@@ -134,9 +134,9 @@ public class SistemaTest {
 	public void testListarItensOrdenadosPorNome() {
 		sistema.cadastraUsuario("Matheus1", "94189425", "matheusYasuo@hotmail.com");
 		sistema.cadastrarBluRayShow("Matheus1", "94189425", "Pior Cenario", 50.00, 50, 15, "Matanza", "DEZOITO_ANOS");
-		sistema.cadastrarBluRaySerie("Matheus1", "94189425","VIKINGS", 60.00 ,"As aventuras de ragnaldo e seus amigos", 50, "CATORZE_ANOS", "A��O", 4 );;
+		sistema.cadastrarBluRaySerie("Matheus1", "94189425","VIKINGS", 60.00 ,"As aventuras de ragnaldo e seus amigos", 50, "QUATORZE_ANOS", "ACAO", 4 );;
 		sistema.cadastrarEletronico("Matheus1", "94189425", "Lolzin", 23, "PC");
-		assertEquals("JOGO ELETRONICO: Lolzin, R$ 23.0, Nao emprestado, PC|SHOW: Pior Cenario, R$ 50.0, Nao emprestado, 50 min, DEZOITO_ANOS, Matanza, 15 faixas|SERIE: VIKINGS, R$ 60.0, Nao emprestado, 50 min, CATORZE_ANOS, A��O, Temporada 4|",sistema.listarItensOrdenadosPorNome());
+		assertEquals("JOGO ELETRONICO: Lolzin, R$ 23.0, Nao emprestado, PC|SHOW: Pior Cenario, R$ 50.0, Nao emprestado, 50 min, DEZOITO_ANOS, Matanza, 15 faixas|SERIE: VIKINGS, R$ 60.0, Nao emprestado, 50 min, QUATORZE_ANOS, ACAO, Temporada 4|",sistema.listarItensOrdenadosPorNome());
 	}
 	
 	/**
@@ -146,9 +146,9 @@ public class SistemaTest {
 	public void testListarItensOrdenadosPorValor() {
 		sistema.cadastraUsuario("Matheus1", "94189425", "matheusYasuo@hotmail.com");
 		sistema.cadastrarBluRayShow("Matheus1", "94189425", "Pior Cenario", 50.00, 50, 15, "Matanza", "DEZOITO_ANOS");
-		sistema.cadastrarBluRaySerie("Matheus1", "94189425","VIKINGS", 60.00 ,"As aventuras de ragnaldo e seus amigos", 50, "CATORZE_ANOS", "A��O", 4 );;
+		sistema.cadastrarBluRaySerie("Matheus1", "94189425","VIKINGS", 60.00 ,"As aventuras de ragnaldo e seus amigos", 50, "QUATORZE_ANOS", "ACAO", 4 );;
 		sistema.cadastrarEletronico("Matheus1", "94189425", "Lolzin", 23, "PC");
-		assertEquals("JOGO ELETRONICO: Lolzin, R$ 23.0, Nao emprestado, PC|SHOW: Pior Cenario, R$ 50.0, Nao emprestado, 50 min, DEZOITO_ANOS, Matanza, 15 faixas|SERIE: VIKINGS, R$ 60.0, Nao emprestado, 50 min, CATORZE_ANOS, A��O, Temporada 4|", sistema.listarItensOrdenadosPorValor());
+		assertEquals("JOGO ELETRONICO: Lolzin, R$ 23.0, Nao emprestado, PC|SHOW: Pior Cenario, R$ 50.0, Nao emprestado, 50 min, DEZOITO_ANOS, Matanza, 15 faixas|SERIE: VIKINGS, R$ 60.0, Nao emprestado, 50 min, QUATORZE_ANOS, ACAO, Temporada 4|", sistema.listarItensOrdenadosPorValor());
 	}
 	
 	/**
@@ -159,11 +159,11 @@ public class SistemaTest {
 	public void testPesquisarDetalhesItem() {
 		sistema.cadastraUsuario("Matheus1", "94189425", "matheusYasuo@hotmail.com");
 		sistema.cadastrarBluRayShow("Matheus1", "94189425", "Pior Cenario", 50.00, 50, 15, "Matanza", "DEZOITO_ANOS");
-		sistema.cadastrarBluRaySerie("Matheus1", "94189425","VIKINGS", 60.00 ,"As aventuras de ragnaldo e seus amigos", 50, "CATORZE_ANOS", "A��O", 4 );;
+		sistema.cadastrarBluRaySerie("Matheus1", "94189425","VIKINGS", 60.00 ,"As aventuras de ragnaldo e seus amigos", 50, "QUATORZE_ANOS", "ACAO", 4 );;
 		
 		assertEquals("SHOW: Pior Cenario, R$ 50.0, Nao emprestado, 50 min, DEZOITO_ANOS, Matanza, 15 faixas", sistema.pesquisarDetalhesItem("Matheus1", "94189425", "Pior Cenario"));
 		
-		assertEquals("SERIE: VIKINGS, R$ 60.0, Nao emprestado, 50 min, CATORZE_ANOS, A��O, Temporada 4", sistema.pesquisarDetalhesItem("Matheus1", "94189425", "VIKINGS") );
+		assertEquals("SERIE: VIKINGS, R$ 60.0, Nao emprestado, 50 min, QUATORZE_ANOS, ACAO, Temporada 4", sistema.pesquisarDetalhesItem("Matheus1", "94189425", "VIKINGS") );
 	}
 
 	/**

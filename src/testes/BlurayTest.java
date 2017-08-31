@@ -21,8 +21,13 @@ public class BlurayTest {
 	assertEquals("Matanza- Ao vivo", B2.getNome());
 	assertEquals(89.70, B2.getValor(), 0.00001);
 	assertEquals(100, B1.getDuracao());
-	assertEquals("LIVRE", B1.getClassificao());
+	assertEquals("LIVRE", B1.getClassificacao());
 	
 	}
-
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testErro(){
+		
+		Bluray B1 = new Bluray("Valente", 29.50, 100, "LIVRR");
+	}
 }

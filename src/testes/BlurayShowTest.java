@@ -21,7 +21,7 @@ public class BlurayShowTest {
 		assertEquals(60, BS1.getDuracao());
 		assertEquals(15, BS1.getNumeroFaixas());
 		assertEquals("Matanza", BS1.getArtista());
-		assertEquals("DEZOITO_ANOS", BS1.getClassificao());
+		assertEquals("DEZOITO_ANOS", BS1.getClassificacao());
 	}
 
 	/** 
@@ -35,5 +35,4 @@ public class BlurayShowTest {
 		assertEquals("SHOW: Tempo de Paz, R$ 89.7, Nao emprestado, 40 min, LIVRE, Maneva, 10 faixas", BS2.toString());
 		
 	}
-
 }
